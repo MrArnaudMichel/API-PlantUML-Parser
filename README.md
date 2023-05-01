@@ -73,7 +73,7 @@ les éléments sélectionnés.
 Le doclet a accès aux éléments à travers son environnement (`DocletEnvironment`) 
 - Faire le DCC de l'API *Java Language Model* (package `javax.lang.model`) 
   à partir de l'interface `Element` (`javax.lang.model.element.Element`)
-- Démarrer la conception de l'API `` pour générer le DCA sans associations
+- Démarrer la conception de l'API `Java2Puml` pour générer le DCA sans associations
 - Générer le DCA sans relation pour les classes et/ou packages passés à `javadoc`
 
 ###### En savoir plus :
@@ -125,7 +125,7 @@ Les relations de dépendance ne seront traitées qu'en semaine 5.
 
 > ###### Objectif
 > Produire un DCC sans les associations.  
-> Ajouter au doclet une option --dca pour demander la production du DCA .  
+> Ajouter au doclet une option `--dca` pour demander la production du DCA .  
 > Par défaut, le diagramme produit sera le DCC.
 
 
