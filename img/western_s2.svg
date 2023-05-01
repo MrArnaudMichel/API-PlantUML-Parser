@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="359px" preserveAspectRatio="none" style="width:442px;height:359px;background:#FFFFFF;" version="1.1" viewBox="0 0 442 359" width="442px" zoomAndPan="magnify"><defs/><g><!--MD5=[11010fd69b96a586933bf6c752090985]
+cluster western--><polygon fill="#FFFFFF" points="16,6,79,6,86,28.4883,425,28.4883,425,352,16,352,16,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="86" y1="28.4883" y2="28.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="57" x="20" y="21.5352">western</text><!--MD5=[a93748344b27e1d2d91ebb498fd42112]
+class western.Substantif--><rect codeLine="11" fill="#FEFECE" height="24.1328" id="western.Substantif" style="stroke:#A80036;stroke-width:1.5;" width="70" x="32" y="65"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="64" x="35" y="81.6016">Substantif</text><!--MD5=[36fb504d99aab5b8634b0e6c36c0e4c1]
+class western.Nommable--><rect codeLine="15" fill="#FEFECE" height="38.2656" id="western.Nommable" style="stroke:#A80036;stroke-width:1.5;" width="73" x="137.5" y="58"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="62" x="143" y="74.6016">«interface»</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="67" x="140.5" y="88.7344">Nommable</text><!--MD5=[1c1358dda3e85f8227184602b3972f27]
+class western.Genre--><rect codeLine="19" fill="#FEFECE" height="72.1758" id="western.Genre" style="stroke:#A80036;stroke-width:1.5;" width="86" x="246" y="41"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="84" x="247" y="57.6016">«enumeration»</text><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="36" x="271" y="71.7344">Genre</text><line style="stroke:#A80036;stroke-width:1.5;" x1="247" x2="331" y1="79.2656" y2="79.2656"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="43" x="252" y="93.9004">FEMININ</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="56" x="252" y="106.8555">MASCULIN</text><!--MD5=[f08f54a911e4b2664fbc8868165c202d]
+class western.Ripou--><rect codeLine="25" fill="#FEFECE" height="24.1328" id="western.Ripou" style="stroke:#A80036;stroke-width:1.5;" width="42" x="367" y="65"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="36" x="370" y="81.6016">Ripou</text><!--MD5=[b474ecee520e5ff080582f85150c6708]
+class western.HorsLaLoi--><rect codeLine="29" fill="#FEFECE" height="38.2656" id="western.HorsLaLoi" style="stroke:#A80036;stroke-width:1.5;" width="68" x="33" y="183"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="62" x="36" y="199.6016">«interface»</text><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="62" x="36" y="213.7344">HorsLaLoi</text><!--MD5=[8fe698b15ae7e29e71dbd627ce591e89]
+class western.Brigand--><rect codeLine="33" fill="#FEFECE" height="58.043" id="western.Brigand" style="stroke:#A80036;stroke-width:1.5;" width="78" x="136" y="173"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="48" x="151" y="189.6016">Brigand</text><line style="stroke:#A80036;stroke-width:1.5;" x1="137" x2="213" y1="197.1328" y2="197.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="66" x="142" y="211.7676">recompense</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="43" x="142" y="224.7227">estLibre</text><!--MD5=[cf612f81f66edfd0762efbad529369df]
+class western.Dame--><rect codeLine="39" fill="#FEFECE" height="45.0879" id="western.Dame" style="stroke:#A80036;stroke-width:1.5;" width="55" x="249.5" y="179.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="36" x="259" y="196.1016">Dame</text><line style="stroke:#A80036;stroke-width:1.5;" x1="250.5" x2="303.5" y1="203.6328" y2="203.6328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="43" x="255.5" y="218.2676">estLibre</text><!--MD5=[5c86f6ef71a03c5db629e96d52e95f5c]
+class western.Boisson--><rect codeLine="44" fill="#FEFECE" height="24.1328" id="western.Boisson" style="stroke:#A80036;stroke-width:1.5;" width="56" x="340" y="190"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50" x="343" y="206.6016">Boisson</text><!--MD5=[ef384b193dccaf23cc07f5ab2f8ee386]
+class western.Narrateur--><rect codeLine="48" fill="#FEFECE" height="24.1328" id="western.Narrateur" style="stroke:#A80036;stroke-width:1.5;" width="64" x="35" y="301.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="58" x="38" y="318.1016">Narrateur</text><!--MD5=[5a0308fdca10b9337c24793fed9a0e15]
+class western.Personnage--><rect codeLine="52" fill="#FEFECE" height="24.1328" id="western.Personnage" style="stroke:#A80036;stroke-width:1.5;" width="78" x="134" y="301.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="72" x="137" y="318.1016">Personnage</text><!--MD5=[f2c82bb1970d0f20660fd2bc99fd30e2]
+class western.Histoire4--><rect codeLine="56" fill="#FEFECE" height="24.1328" id="western.Histoire4" style="stroke:#A80036;stroke-width:1.5;" width="63" x="247.5" y="301.5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="57" x="250.5" y="318.1016">Histoire4</text><!--MD5=[b1e37f595a6651d504cde0246fefb5a9]
+class western.Cowboy--><rect codeLine="60" fill="#FEFECE" height="45.0879" id="western.Cowboy" style="stroke:#A80036;stroke-width:1.5;" width="56" x="346" y="291"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50" x="349" y="307.6016">Cowboy</text><line style="stroke:#A80036;stroke-width:1.5;" x1="347" x2="401" y1="315.1328" y2="315.1328"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="352" y="329.7676">gains</text><!--MD5=[75ad0a2c1a97c4b90ea46a9e872c2f3b]
+link western.Substantif to western.Nommable--><!--MD5=[a000213c4f34da2c2f29c5d3b5f1deef]
+link western.Nommable to western.Genre--><!--MD5=[f877f2191ad8c9c246bc8dc729c11446]
+link western.Genre to western.Ripou--><!--MD5=[e72e9896d6428d4483c2de04be2d46c5]
+link western.Substantif to western.HorsLaLoi--><!--MD5=[58722955803dadf3c750a023332cf87a]
+link western.HorsLaLoi to western.Brigand--><!--MD5=[3d632df7b6ff10a8bf3514b66bd707b2]
+link western.Brigand to western.Dame--><!--MD5=[d0c6c4d541f827c0b83b3a2bdbfd0fde]
+link western.Dame to western.Boisson--><!--MD5=[a72bafd0bfd461bdda8c720c6ff8df5a]
+link western.HorsLaLoi to western.Narrateur--><!--MD5=[0cc84e2d872e2c8818e6f35e780975a9]
+link western.Narrateur to western.Personnage--><!--MD5=[89ebef7f8681ef3232252f1218b14919]
+link western.Personnage to western.Histoire4--><!--MD5=[26092b896d06de1257b686518a88f253]
+link western.Histoire4 to western.Cowboy--><!--MD5=[7365b49d69ab41e738f1cd620c4df26f]
+@startuml
+' doclet: sae21.s2.PumlDoclet
+' specified: [western]
+' included: [unnamed module, western, western.Substantif, western.Nommable, western.Genre, western.Ripou, western.HorsLaLoi, western.Brigand, western.Dame, western.Boisson, western.Narrateur, western.Personnage, western.Histoire4, western.Cowboy]
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package western
+{
+class "western.Substantif" 
+{
+}
+
+interface "western.Nommable" <<interface>>
+{
+}
+
+enum "western.Genre" <<enumeration>>
+{
+FEMININ
+MASCULIN
+}
+
+class "western.Ripou" 
+{
+}
+
+interface "western.HorsLaLoi" <<interface>>
+{
+}
+
+class "western.Brigand" 
+{
+recompense
+estLibre
+}
+
+class "western.Dame" 
+{
+estLibre
+}
+
+class "western.Boisson" 
+{
+}
+
+class "western.Narrateur" 
+{
+}
+
+class "western.Personnage" 
+{
+}
+
+class "western.Histoire4" 
+{
+}
+
+class "western.Cowboy" 
+{
+gains
+}
+
+}
+
+@enduml
+
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package western
+{
+class "western.Substantif" 
+{
+}
+
+interface "western.Nommable" <<interface>>
+{
+}
+
+enum "western.Genre" <<enumeration>>
+{
+FEMININ
+MASCULIN
+}
+
+class "western.Ripou" 
+{
+}
+
+interface "western.HorsLaLoi" <<interface>>
+{
+}
+
+class "western.Brigand" 
+{
+recompense
+estLibre
+}
+
+class "western.Dame" 
+{
+estLibre
+}
+
+class "western.Boisson" 
+{
+}
+
+class "western.Narrateur" 
+{
+}
+
+class "western.Personnage" 
+{
+}
+
+class "western.Histoire4" 
+{
+}
+
+class "western.Cowboy" 
+{
+gains
+}
+
+}
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 17:16:42 CET 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>
