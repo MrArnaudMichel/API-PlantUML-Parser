@@ -3,10 +3,16 @@ package pumlFromJava;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
+import jdk.javadoc.doclet.Doclet.Option;
 
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import java.util.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 public class PumlDoclet implements Doclet {
     private PumlDiagram pumlDiagram = new PumlDiagram();
@@ -23,10 +29,12 @@ public class PumlDoclet implements Doclet {
     }
 
     @Override
-    public Set<? extends Doclet.Option> getSupportedOptions() {
-        // This doclet does not support any options.
-        return Collections.emptySet();
+    public Set<? extends Option> getSupportedOptions() {
+        return Set.of(
+                new OptionNomdeSortie(),
+                new OptionOut());
     }
+
 
     @Override
     public SourceVersion getSupportedSourceVersion() {
@@ -50,6 +58,7 @@ public class PumlDoclet implements Doclet {
         {
             dumpElement(element);
         }
+
         return true;
     }
 
@@ -74,6 +83,7 @@ public class PumlDoclet implements Doclet {
 
                 }
             }
+            pumlDiagram.addClasse(setClasse(element, attributs, methodes));
         } else if (Objects.equals(element.getKind().toString(), "INTERFACE")) {
             for (Element enclosedElement : element.getEnclosedElements()) {
                 if (enclosedElement.getKind().toString().equals("METHOD")) {
@@ -82,6 +92,7 @@ public class PumlDoclet implements Doclet {
 
                 }
             }
+            pumlDiagram.addInterface(setInterface(element, attributs, methodes));
         } else if (Objects.equals(element.getKind().toString(), "ENUM")) {
             for (Element enclosedElement : element.getEnclosedElements()) {
                 if (enclosedElement.getKind().toString().equals("ENUM_CONSTANT")) {
@@ -92,6 +103,7 @@ public class PumlDoclet implements Doclet {
 
                 }
             }
+            pumlDiagram.addEnumeration(setEnumeration(element));
         } else if (Objects.equals(element.getKind().toString(), "ANNOTATION_TYPE")) {
             for (Element enclosedElement : element.getEnclosedElements()) {
                 if (enclosedElement.getKind().toString().equals("METHOD")) {
@@ -100,7 +112,6 @@ public class PumlDoclet implements Doclet {
 
                 }
             }
-
         }
         /*
             pumlDiagram.addClasse(setClasse(element, attributs, methodes));
@@ -153,6 +164,89 @@ public class PumlDoclet implements Doclet {
         enumeration.setName(element.getSimpleName().toString());
         //enumeration.setAttributes(attributs);
         return enumeration;
+    }
+
+    private class OptionNomdeSortie implements Option
+    {
+
+        @Override
+        public int getArgumentCount() {
+            return 1;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Passage à puml :";
+        }
+
+        @Override
+        public Kind getKind() {
+            return Kind.STANDARD;
+        }
+
+        @Override
+        public List<String> getNames() {
+            return List.of("-out");
+        }
+
+        @Override
+        public String getParameters() {
+            return " nom fichier :";
+        }
+
+        @Override
+        public boolean process(String option, List<String> arguments)
+        {
+            File file = new File(arguments.get(0));
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return true;
+        }
+    }
+
+    private class OptionOut implements Option
+    {
+
+        @Override
+        public int getArgumentCount() {
+            return 1;
+        }
+
+        @Override
+        public String getDescription() {
+            return "Sortie :";
+        }
+
+        @Override
+        public Kind getKind() {
+            return Kind.STANDARD;
+        }
+
+        @Override
+        public List<String> getNames() {
+            return List.of("-d");
+        }
+
+        @Override
+        public String getParameters() {
+            return "destination";
+        }
+
+        @Override
+        public boolean process(String option, List<String> arguments) {
+            // travailler sur la fonction
+            // On sait pas encore ce qu'on doit faire avec "File"s
+            File repSortie = new File(arguments.get(0));
+            try {
+                repSortie.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return true;
+        }
     }
 }
 
