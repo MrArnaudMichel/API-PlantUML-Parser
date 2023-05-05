@@ -1,18 +1,18 @@
 @startuml
 title DCA des interfaces et classes utiles pour les Doclets
 
+
+
+
+class Java2Puml
+interface ToolProvider
 interface Doclet
-interface LanguageVersion
+class Optional
 
-class ClassDoc
-class MethodDoc
-class FieldDoc
-class Parameter
+class FirstDoclet implements Doclet
 
-Doclet <|-- LanguageVersion
+ ToolProvider <-- Java2Puml : < utilise
+ Optional <-- ToolProvider : < cree
 
-ClassDoc "1" *-- "*" MethodDoc : contient
-ClassDoc "1" *-- "*" FieldDoc : contient
-MethodDoc "1" *-- "*" Parameter : contient
 
 @enduml
