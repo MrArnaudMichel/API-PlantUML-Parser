@@ -197,7 +197,7 @@ public class PumlDoclet implements Doclet {
         @Override
         public boolean process(String option, List<String> arguments)
         {
-            File file = new File(arguments.get(0));
+            File file = new File(arguments.get(0) + ".puml");
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -239,9 +239,10 @@ public class PumlDoclet implements Doclet {
         public boolean process(String option, List<String> arguments) {
             // travailler sur la fonction
             // On sait pas encore ce qu'on doit faire avec "File"s
-            File repSortie = new File(arguments.get(0));
+            File file = new File(arguments.get(0) + "/" + "fichier.puml");
             try {
-                repSortie.createNewFile();
+                System.out.println(file.getCanonicalPath());
+                file.createNewFile();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
