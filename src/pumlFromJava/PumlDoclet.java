@@ -74,7 +74,15 @@ public class PumlDoclet implements Doclet {
                 }
             }
             pumlDiagram.addClasse(setClasse(element, attributs, methodes));
-            System.out.println(pumlDiagram.getClasses().toString());
+            for (Classe classe : pumlDiagram.getClasses()) {
+                System.out.println(classe.getName());
+                for (Attributs attribut : classe.getAttributes()) {
+                    System.out.println(attribut.getName());
+                }
+                for (Methode methode : classe.getMethods()) {
+                    System.out.println(methode.getName());
+                }
+            }
         }
     }
 
