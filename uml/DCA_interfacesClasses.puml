@@ -1,0 +1,18 @@
+@startuml
+title DCA des interfaces et classes utiles pour les Doclets
+
+interface Doclet
+interface LanguageVersion
+
+class ClassDoc
+class MethodDoc
+class FieldDoc
+class Parameter
+
+Doclet <|-- LanguageVersion
+
+ClassDoc "1" *-- "*" MethodDoc : contient
+ClassDoc "1" *-- "*" FieldDoc : contient
+MethodDoc "1" *-- "*" Parameter : contient
+
+@enduml
