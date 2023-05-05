@@ -65,14 +65,44 @@ public class PumlDoclet implements Doclet {
         ArrayList<Methode> methodes = new ArrayList<>();
         if (Objects.equals(element.getKind().toString(), "CLASS")) {
             for (Element enclosedElement : element.getEnclosedElements()) {
-                System.out.println(enclosedElement.getKind().toString());
                 if (enclosedElement.getKind().toString().equals("FIELD")) {
                     attributs.add(setAttribut(enclosedElement));
                 }
                 else if (enclosedElement.getKind().toString().equals("METHOD")) {
                     methodes.add(setMethode(enclosedElement));
+                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
+
                 }
             }
+        } else if (Objects.equals(element.getKind().toString(), "INTERFACE")) {
+            for (Element enclosedElement : element.getEnclosedElements()) {
+                if (enclosedElement.getKind().toString().equals("METHOD")) {
+                    methodes.add(setMethode(enclosedElement));
+                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
+
+                }
+            }
+        } else if (Objects.equals(element.getKind().toString(), "ENUM")) {
+            for (Element enclosedElement : element.getEnclosedElements()) {
+                if (enclosedElement.getKind().toString().equals("ENUM_CONSTANT")) {
+                    attributs.add(setAttribut(enclosedElement));
+                } else if (enclosedElement.getKind().toString().equals("METHOD")) {
+                    methodes.add(setMethode(enclosedElement));
+                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
+
+                }
+            }
+        } else if (Objects.equals(element.getKind().toString(), "ANNOTATION_TYPE")) {
+            for (Element enclosedElement : element.getEnclosedElements()) {
+                if (enclosedElement.getKind().toString().equals("METHOD")) {
+                    methodes.add(setMethode(enclosedElement));
+                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
+
+                }
+            }
+
+        }
+        /*
             pumlDiagram.addClasse(setClasse(element, attributs, methodes));
             for (Classe classe : pumlDiagram.getClasses()) {
                 System.out.println(classe.getName());
@@ -82,8 +112,7 @@ public class PumlDoclet implements Doclet {
                 for (Methode methode : classe.getMethods()) {
                     System.out.println(methode.getName());
                 }
-            }
-        }
+            }*/
     }
 
     private Attributs setAttribut(Element element){
