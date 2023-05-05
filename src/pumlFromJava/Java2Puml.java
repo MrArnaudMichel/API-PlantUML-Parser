@@ -11,8 +11,7 @@ public class Java2Puml
         System.out.println(toolProvider.name());
 
 /*
-    javadoc -private -sourcepath <src> -doclet pumlFromJava.FirstDoclet -docletpath out/production/<projet>
-      <package> ... <fichiers>
+    javadoc -private -sourcepath ../../P21/p21/P21_Western/src -doclet pumlFromJava.FirstDoclet -docletpath out/production/SAE21/ western
  */
         toolProvider.run(System.out, System.err, args);
     }
