@@ -4,16 +4,22 @@ skinparam style strictuml
 
 participant Java2puml as J
 participant ToolProvider.Class as T
-participant toolProvider as t
+participant ":Optionnal<ToolProvider>" as tp
+participant "toolProvider:ToolProvider" as t
 participant FirstDoclet as F
+
 
 [->J ++
 
+
 J -> T ++: toolProvider = findFirst("javadoc")
-return Optionnal<ToolProvider> : toolProvider
+create tp
+T -> tp: <<Create>>
+return Optionnal<ToolProvider>
+J -> tp ++: get()
 create t
-J -> t ++: get()
-return toolProvider
+tp -> t: <<Create>>
+return toolProvider: ToolProvider
 
 J -> t ++: getName()
 return name = getName()
