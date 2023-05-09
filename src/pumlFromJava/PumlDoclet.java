@@ -12,9 +12,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 
 public class PumlDoclet implements Doclet {
+    private static final String DEFAULT_NAME = ".puml";
+    private static final String DEFAULT_PATH = "./";
+
+    private String outFileName;
+    private String outFilePath;
+    private String outputFile;
+
     private PumlDiagram pumlDiagram = new PumlDiagram();
     @Override
     public void init(Locale locale, Reporter reporter) {  }
@@ -28,11 +40,65 @@ public class PumlDoclet implements Doclet {
         return getClass().getSimpleName();
     }
 
+    abstract static class Option implements Doclet.Option {
+        private final String name;
+        private final boolean hasArg;
+        private final String description;
+        private final String parameters;
+
+        Option(String name, boolean hasArg,
+               String description, String parameters) {
+            this.name = name;
+            this.hasArg = hasArg;
+            this.description = description;
+            this.parameters = parameters;
+        }
+
+        @Override
+        public int getArgumentCount() {
+            return hasArg ? 1 : 0;
+        }
+
+        @Override
+        public String getDescription() {
+            return description;
+        }
+
+        @Override
+        public Kind getKind() {
+            return Kind.STANDARD;
+        }
+
+        @Override
+        public List<String> getNames() {
+            return List.of(name);
+        }
+
+        @Override
+        public String getParameters() {
+            return hasArg ? parameters : "";
+        }
+    }
+
     @Override
     public Set<? extends Option> getSupportedOptions() {
         return Set.of(
-                new OptionNomdeSortie(),
-                new OptionOut());
+            new Option("--out", true, "an option", "<string>"){
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    outFileName = arguments.get(0) + DEFAULT_NAME;
+                    return true;
+                }
+            },
+            new Option("--d", true, "an option", "<string>") {
+                @Override
+                public boolean process(String option,
+                                       List<String> arguments) {
+                    outFilePath = arguments.get(0);
+                    return true;
+                }
+            }
+        );
     }
 
 
@@ -48,28 +114,42 @@ public class PumlDoclet implements Doclet {
 
     @Override
     public boolean run(DocletEnvironment environment) {
-        // This method is called to perform the work of the doclet.
-        // In this case, it just prints out the names of the
-        // elements specified on the command line.
-        System.out.println(this.getName());
-        System.out.println(environment.getSpecifiedElements());
-        System.out.println(environment.getIncludedElements());
+        if (outFileName == null)
+        {
+            outFileName = DEFAULT_NAME;
+        }
+        if (outFilePath == null)
+        {
+            outFilePath = DEFAULT_PATH;
+        }
+        else if (!outFilePath.endsWith("/"))
+        {
+            outFilePath += "/";
+        }
+        String out = outFilePath + outFileName;
+
+        createFile(out);
+        try {
+            fillPuml(environment, out);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        /*
         for (Element element : environment.getSpecifiedElements())
         {
             dumpElement(element);
-        }
-
+        }*/
         return true;
     }
 
     private void dumpElement(Element element)
     {
         for (Element enclosedElement : element.getEnclosedElements()) {
-            drawElement(enclosedElement);
+            addelement(enclosedElement);
         }
     }
 
-    private void drawElement(Element element){
+    private void addelement(Element element){
         ArrayList<Attributs> attributs = new ArrayList<>();
         ArrayList<Methode> methodes = new ArrayList<>();
         if (Objects.equals(element.getKind().toString(), "CLASS")) {
@@ -126,6 +206,60 @@ public class PumlDoclet implements Doclet {
             }*/
     }
 
+    public void fillPuml(DocletEnvironment environment, String fileName) throws IOException {
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        writer.write("@startuml\n" +
+                "'https://plantuml.com/class-diagram\n" +
+                "skinparam classAttributeIconSize 0\n" +
+                "skinparam classFontStyle Bold\n" +
+                "skinparam style strictuml\n" +
+                "hide empty members\n\n");
+
+
+        for(Element element : environment.getSpecifiedElements()) {
+            for (Element member : element.getEnclosedElements()) {
+                String text = "";
+
+                if (member.getKind().toString().equalsIgnoreCase("class"))
+                {
+                    text = "class " + member.getSimpleName().toString() + "{}\n";
+                }
+                if (member.getKind().toString().equalsIgnoreCase("enum"))
+                {
+                    text = "enum " + member.getSimpleName().toString() + "<<enum>> {}\n";
+                }
+                if (member.getKind().toString().equalsIgnoreCase("interface"))
+                {
+                    text = "interface " + member.getSimpleName().toString() + "<<interface>> {}\n";
+                }
+
+                //System.out.println(member.toString() + " - " + member.getKind().toString());
+
+                writer.write(text);
+
+            }
+        }
+
+        writer.write("@enduml");
+        writer.close();
+    }
+
+    public void createFile(String fileName)
+    {
+        try {
+            File myObj = new File(fileName);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
     private Attributs setAttribut(Element element){
         Attributs attributs = new Attributs();
         attributs.setName(element.getSimpleName().toString());
@@ -164,90 +298,6 @@ public class PumlDoclet implements Doclet {
         enumeration.setName(element.getSimpleName().toString());
         //enumeration.setAttributes(attributs);
         return enumeration;
-    }
-
-    private class OptionNomdeSortie implements Option
-    {
-
-        @Override
-        public int getArgumentCount() {
-            return 1;
-        }
-
-        @Override
-        public String getDescription() {
-            return "Passage à puml :";
-        }
-
-        @Override
-        public Kind getKind() {
-            return Kind.STANDARD;
-        }
-
-        @Override
-        public List<String> getNames() {
-            return List.of("-out");
-        }
-
-        @Override
-        public String getParameters() {
-            return " nom fichier :";
-        }
-
-        @Override
-        public boolean process(String option, List<String> arguments)
-        {
-            File file = new File(arguments.get(0) + ".puml");
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            return true;
-        }
-    }
-
-    private class OptionOut implements Option
-    {
-
-        @Override
-        public int getArgumentCount() {
-            return 1;
-        }
-
-        @Override
-        public String getDescription() {
-            return "Sortie :";
-        }
-
-        @Override
-        public Kind getKind() {
-            return Kind.STANDARD;
-        }
-
-        @Override
-        public List<String> getNames() {
-            return List.of("-d");
-        }
-
-        @Override
-        public String getParameters() {
-            return "destination";
-        }
-
-        @Override
-        public boolean process(String option, List<String> arguments) {
-            // travailler sur la fonction
-            // On sait pas encore ce qu'on doit faire avec "File"s
-            File file = new File(arguments.get(0) + "/" + "fichier.puml");
-            try {
-                System.out.println(file.getCanonicalPath());
-                file.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            return true;
-        }
     }
 }
 
