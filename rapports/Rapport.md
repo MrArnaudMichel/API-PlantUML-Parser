@@ -17,7 +17,7 @@ Nous avons ensuite implémenté le doclet `PumlDoclet` qui permet de générer u
 Nous avons aussi implémenté les options `-out` et `-d` qui permettent de choisir le nom du fichier `.puml` et le dossier de sortie.
 Ajout de toutes les fakes classes, interfaces et énumérations. Elles s'ont automatiquement completes avec les methods de PumlDoclet.
 Ces classes sont faites des classes Methods et attributes ainsi que d'autres elements.
-Ajout de la création du fichier avec les options -out et -d. Pour l'instant deux fichiers sont créés l'un dans le dossier courant avec le bon nom et l'autre dans le dossier choisi avec le mauvais nom.
-Nous n'avons pas encore écris dans le fichier mais nous avons réussi à le créer.
+Ajout de la création du fichier avec les options --out et --d. Ensuite si la valeur n'est pas choisi alors on met le nom de fichier initial et le dossier de sortie est le dossier courant.
+Puis on lance la classe pour générer le fichier .puml et l'ecrire.
 
 ---

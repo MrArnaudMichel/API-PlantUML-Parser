@@ -25,7 +25,6 @@ public class PumlDoclet implements Doclet {
 
     private String outFileName;
     private String outFilePath;
-    private String outputFile;
 
     private PumlDiagram pumlDiagram = new PumlDiagram();
     @Override
