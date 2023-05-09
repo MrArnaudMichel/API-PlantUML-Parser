@@ -20,7 +20,7 @@ import java.util.*;
 
 
 public class PumlDoclet implements Doclet {
-    private static final String DEFAULT_NAME = ".puml";
+    private static final String DEFAULT_NAME = "fichier.puml";
     private static final String DEFAULT_PATH = "./";
 
     private String outFileName;
@@ -116,6 +116,10 @@ public class PumlDoclet implements Doclet {
         if (outFileName == null)
         {
             outFileName = DEFAULT_NAME;
+        }
+        else if (!outFileName.endsWith(".puml"))
+        {
+            outFileName += ".puml";
         }
         if (outFilePath == null)
         {
