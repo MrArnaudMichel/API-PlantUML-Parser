@@ -1,8 +1,10 @@
 package pumlFromJava;
 
-import javax.lang.model.element.Element;
+import pumlFromJava.classes.Classe;
+import pumlFromJava.classes.Enumerations;
+import pumlFromJava.classes.Interface;
+
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 public class PumlDiagram {
     private ArrayList<Classe> classes=new ArrayList<Classe>();

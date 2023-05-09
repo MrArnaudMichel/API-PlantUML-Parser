@@ -21,3 +21,20 @@ Ajout de la création du fichier avec les options --out et --d. Ensuite si la va
 Puis on lance la classe pour générer le fichier .puml et l'ecrire.
 
 ---
+
+## Semaine 2 : Java Language API et DCA sans associations
+### Objectif
+- Produire le DCA avec les associations :
+- les généralisations et les réalisations
+- les agrégations
+
+### Rendus
+- DCC de Java Language API
+- DCA et DCC API pumlFromJava
+- commande Java2Puml de production d'un DCA sans relations
+- rapport hebdomadaire
+
+### Bilan de la semaine
+Ajout de la classe CreateFic qui permet de créer le fichier.
+Nous avons ajouter les classes et les attributs de type primitif. Nous avons aussi terminé le fait de mettre les fonctions avec leur visibilité. Nous pouvons également afficher tous les attributs quelques soit leurs types. Nous n'avons pas considéré le type String comme un type primitif car il est un objet. Nous avons aussi ajouté les classes, les interfaces et les enumeration.
+Pour activer l'affichage des méthodes, il faut commenter ou décommenter les fonctions drawMethods dans la classe PumlDoclet.

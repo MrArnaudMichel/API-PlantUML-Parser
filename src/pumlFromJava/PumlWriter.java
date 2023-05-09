@@ -1,5 +1,9 @@
 package pumlFromJava;
 
+import pumlFromJava.classes.*;
+import pumlFromJava.classes.Object;
+
+import javax.lang.model.type.TypeKind;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +24,7 @@ public class PumlWriter {
         writer.close();
     }
 
-    public static void writeType(Type type, BufferedWriter writer) throws IOException {
+    private static void writeType(Type type, BufferedWriter writer) throws IOException {
         if (type.isPublic(type.getVisibility())){
             writer.write("+");
         }
@@ -38,6 +42,34 @@ public class PumlWriter {
         }
     }
 
+    private static void drawAttribut(pumlFromJava.classes.Object o, BufferedWriter writer) throws IOException {
+        for (Attributs attribut : o.getAttributes()) {
+            TypeKind typeKind = attribut.getType().getKind();
+            if (typeKind.isPrimitive()) {
+                writeType(attribut, writer);
+                writer.write(attribut.getName() + " : " + attribut.getType() + "\n");
+            }
+        }
+    }
+
+    private static void drawAttribut(Enumerations o, BufferedWriter writer) throws IOException {
+        for (String attribut : o.getAttributes()) {
+            writer.write(attribut + "\n");
+        }
+    }
+
+    private static void drawMethode(Object o, BufferedWriter writer) throws IOException {
+        for (Methode methode : o.getMethods()) {
+            writeType(methode, writer);
+            writer.write(" " + methode.getName() + "(");
+            for (String param : methode.getParameters()) {
+                writer.write(param + ", ");
+            }
+            writer.write(") : " + methode.getReturnType() + "\n");
+            writer.write("\n");
+        }
+    }
+
     public static void fillPuml(PumlDiagram pumldiagram, String fileName) throws IOException {
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
@@ -45,90 +77,20 @@ public class PumlWriter {
 
 
         for (Classe classe : pumldiagram.getClasses()) {
-            writer.write("class " + classe.getName() + "{\n");
-            for (Attributs attribut : classe.getAttributes()) {
-                writeType(attribut, writer);
-                writer.write(" " + attribut.getName() + " : " + attribut.getType() + "\n");
-            }
-            for (Methode methode : classe.getMethods()) {
-                if (methode.isPublic(methode.getVisibility())){
-                    writer.write("+");
-                }
-                else if (methode.isPrivate(methode.getVisibility())){
-                    writer.write("-");
-                }
-                else if (methode.isProtected(methode.getVisibility())){
-                    writer.write("#");
-                }
-                else if (methode.isAbstract(methode.getVisibility())){
-                    writer.write("{abstract} ");
-                }
-                if (methode.isStatic(methode.getVisibility())){
-                    writer.write("{static} ");
-                }
-
-                writer.write(" " + methode.getName() + "(");
-                for (String param : methode.getParameters()) {
-                    writer.write(param + ", ");
-                }
-                writer.write(") : " + methode.getReturnType() + "\n");
-                writer.write("\n");
-
-            }
+            writer.write("class " + classe.getNamePackage() + '.' + classe.getName() + "{\n");
+            drawAttribut(classe, writer);
+            //drawMethode(classe, writer);
             writer.write("}\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
-            writer.write("interface " + inter.getName() + "<<interface>>{\n");
-            for (Attributs attribut : inter.getAttributes()) {
-                if (attribut.isPublic(attribut.getVisibility())){
-                    writer.write("+");
-                }
-                else if (attribut.isPrivate(attribut.getVisibility())){
-                    writer.write("-");
-                }
-                else if (attribut.isProtected(attribut.getVisibility())){
-                    writer.write("#");
-                }
-                else if (attribut.isAbstract(attribut.getVisibility())){
-                    writer.write("{abstract} ");
-                }
-                if (attribut.isStatic(attribut.getVisibility())){
-                    writer.write("{static} ");
-                }
-                writer.write(" " + attribut.getName() + " : " + attribut.getType() + "\n");
-            }
-            for (Methode methode : inter.getMethods()) {
-                if (methode.isPublic(methode.getVisibility())){
-                    writer.write("+");
-                }
-                else if (methode.isPrivate(methode.getVisibility())){
-                    writer.write("-");
-                }
-                else if (methode.isProtected(methode.getVisibility())){
-                    writer.write("#");
-                }
-                else if (methode.isAbstract(methode.getVisibility())){
-                    writer.write("{abstract} ");
-                }
-                if (methode.isStatic(methode.getVisibility())){
-                    writer.write("{static} ");
-                }
-
-                writer.write(" " + methode.getName() + "(");
-                for (String param : methode.getParameters()) {
-                    writer.write(param + ", ");
-                }
-                writer.write(") : " + methode.getReturnType() + "\n");
-                writer.write("\n");
-
-            }
+            writer.write("interface " + inter.getNamePackage() + '.' + inter.getName() + "<<interface>>{\n");
+            drawAttribut(inter, writer);
+            //drawMethode(inter, writer);
             writer.write("}\n");
         }
         for (Enumerations enumeration : pumldiagram.getEnumerations()) {
-            writer.write("enum " + enumeration.getName() + "<<Enum>>{\n");
-            for (String attribut : enumeration.getAttributes()) {
-                writer.write(attribut + "\n");
-            }
+            writer.write("enum " + enumeration.getNamePackage() + '.' + enumeration.getName() + "<<enum>>{\n");
+            drawAttribut(enumeration, writer);
             writer.write("}\n");
         }
 

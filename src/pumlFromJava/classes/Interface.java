@@ -1,15 +1,16 @@
-package pumlFromJava;
+package pumlFromJava.classes;
 
 import java.util.ArrayList;
 
-public class Classe {
+public class Interface implements Object {
     private String name;
     private ArrayList<Attributs> attributes = new ArrayList<Attributs>();
     private ArrayList<Methode> methods = new ArrayList<Methode>();
     private ArrayList<String> extendsClasses = new ArrayList<String>();
     private ArrayList<String> implementsInterfaces = new ArrayList<String>();
+    private String namePackage;
 
-    public Classe(){}
+    public Interface(){}
 
     public String getName() {
         return name;
@@ -49,5 +50,13 @@ public class Classe {
 
     public void setImplementsInterfaces(ArrayList<String> implementsInterfaces) {
         this.implementsInterfaces = implementsInterfaces;
+    }
+
+    public String getNamePackage() {
+        return namePackage;
+    }
+
+    public void setNamePackage(String namePackage) {
+        this.namePackage = namePackage;
     }
 }

@@ -1,8 +1,10 @@
-package pumlFromJava;
+package pumlFromJava.classes;
+
+import javax.lang.model.type.TypeMirror;
 
 public class Attributs implements Type {
     private String name;
-    private String type;
+    private TypeMirror type;
     private String visibility;
 
     public Attributs(){}
@@ -15,11 +17,11 @@ public class Attributs implements Type {
         this.name = name;
     }
 
-    public String getType() {
+    public TypeMirror getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(TypeMirror type) {
         this.type = type;
     }
 

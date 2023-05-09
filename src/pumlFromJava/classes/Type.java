@@ -1,4 +1,4 @@
-package pumlFromJava;
+package pumlFromJava.classes;
 
 public interface Type {
 
