@@ -2,7 +2,7 @@ package pumlFromJava;
 
 import java.util.ArrayList;
 
-public class Methode {
+public class Methode implements Type {
     private String name;
     private String returnType;
     private String visibility;
@@ -26,6 +26,7 @@ public class Methode {
         this.returnType = returnType;
     }
 
+    @Override
     public String getVisibility() {
         return visibility;
     }
@@ -41,4 +42,5 @@ public class Methode {
     public void setParameters(ArrayList<String> parameters) {
         this.parameters = parameters;
     }
+
 }

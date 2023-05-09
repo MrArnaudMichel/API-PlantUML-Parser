@@ -1,6 +1,6 @@
 package pumlFromJava;
 
-public class Attributs {
+public class Attributs implements Type {
     private String name;
     private String type;
     private String visibility;
@@ -30,4 +30,5 @@ public class Attributs {
     public void setVisibility(String visibility) {
         this.visibility = visibility;
     }
+
 }

@@ -11,12 +11,7 @@ import java.util.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.*;
 
 
 public class PumlDoclet implements Doclet {
@@ -132,16 +127,23 @@ public class PumlDoclet implements Doclet {
         String out = outFilePath + outFileName;
 
         createFile(out);
+        /*
         try {
             fillPuml(environment, out);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-        /*
+        }*/
+
         for (Element element : environment.getSpecifiedElements())
         {
             dumpElement(element);
-        }*/
+        }
+
+        try {
+            PumlWriter.fillPuml(pumlDiagram, out);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return true;
     }
 
@@ -196,57 +198,9 @@ public class PumlDoclet implements Doclet {
                 }
             }
         }
-        /*
-            pumlDiagram.addClasse(setClasse(element, attributs, methodes));
-            for (Classe classe : pumlDiagram.getClasses()) {
-                System.out.println(classe.getName());
-                for (Attributs attribut : classe.getAttributes()) {
-                    System.out.println(attribut.getName());
-                }
-                for (Methode methode : classe.getMethods()) {
-                    System.out.println(methode.getName());
-                }
-            }*/
     }
 
-    public void fillPuml(DocletEnvironment environment, String fileName) throws IOException {
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
-        writer.write("@startuml\n" +
-                "'https://plantuml.com/class-diagram\n" +
-                "skinparam classAttributeIconSize 0\n" +
-                "skinparam classFontStyle Bold\n" +
-                "skinparam style strictuml\n" +
-                "hide empty members\n\n");
-
-
-        for(Element element : environment.getSpecifiedElements()) {
-            for (Element member : element.getEnclosedElements()) {
-                String text = "";
-
-                if (member.getKind().toString().equalsIgnoreCase("class"))
-                {
-                    text = "class " + member.getSimpleName().toString() + "{}\n";
-                }
-                if (member.getKind().toString().equalsIgnoreCase("enum"))
-                {
-                    text = "enum " + member.getSimpleName().toString() + "<<enum>> {}\n";
-                }
-                if (member.getKind().toString().equalsIgnoreCase("interface"))
-                {
-                    text = "interface " + member.getSimpleName().toString() + "<<interface>> {}\n";
-                }
-
-                //System.out.println(member.toString() + " - " + member.getKind().toString());
-
-                writer.write(text);
-
-            }
-        }
-
-        writer.write("@enduml");
-        writer.close();
-    }
 
     public void createFile(String fileName)
     {
@@ -275,6 +229,7 @@ public class PumlDoclet implements Doclet {
         Methode methode = new Methode();
         methode.setName(element.getSimpleName().toString());
         methode.setReturnType(element.asType().toString());
+        System.out.println(element.asType());
         //methode.setParameters(element.getParameters().toString());
         methode.setVisibility(element.getModifiers().toString());
         return methode;

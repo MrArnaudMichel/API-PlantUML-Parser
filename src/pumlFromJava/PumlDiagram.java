@@ -1,5 +1,6 @@
 package pumlFromJava;
 
+import javax.lang.model.element.Element;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -20,6 +21,7 @@ public class PumlDiagram {
 
     public void addClasse(Classe classe) {
         this.classes.add(classe);
+
     }
 
     public ArrayList<Interface> getInterfaces() {
