@@ -14,9 +14,10 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 public class PumlDoclet implements Doclet {
-    private CreateFic fileCreator = new CreateFic();
+    private final CreateFic fileCreator = new CreateFic();
 
-    private PumlDiagram pumlDiagram = new PumlDiagram();
+    private final PumlDiagram pumlDiagram = new PumlDiagram();
+    private String choixDc = "DCC";
     @Override
     public void init(Locale locale, Reporter reporter) {  }
 
@@ -72,18 +73,37 @@ public class PumlDoclet implements Doclet {
     @Override
     public Set<? extends Option> getSupportedOptions() {
         return Set.of(
-            new Option("--out", true, "an option", "<string>"){
+            new Option("--out", true, "Choix du nom de fichier", "<string>") {
                 @Override
                 public boolean process(String option, List<String> arguments) {
-                    fileCreator.setOutFileName(arguments.get(0) + CreateFic.DEFAULT_NAME);;
+                    fileCreator.setOutFileName(arguments.get(0));
+                    ;
                     return true;
                 }
             },
-            new Option("--d", true, "an option", "<string>") {
+            new Option("--d", true, "Choix du chemin", "<string>") {
                 @Override
                 public boolean process(String option,
                                        List<String> arguments) {
                     fileCreator.setOutFilePath(arguments.get(0));
+                    return true;
+                }
+            },
+            new Option("--DCA", false, "Si l'option est précisée alors le programme produit un DCA", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    choixDc = "DCA";
+                    return true;
+                }
+            },
+            new Option("--help", false, "Afficher l'aide", ""){
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    System.out.println(
+                            "Usage: javadoc [options] [packagenames] [sourcefiles] [@files]\n" +
+                            "Standard options:\n" +
+                            "  --d <directory>             Specify where to place generated output files the directory by default is current directory\n" +
+                            "  --out <title>               Specify a document name the title by default is \"name\".\n");
                     return true;
                 }
             }
@@ -102,12 +122,12 @@ public class PumlDoclet implements Doclet {
     }
 
     @Override
-    public boolean run(DocletEnvironment environment) {
-        String out;
+    public boolean run(DocletEnvironment environment)  {
+        String out = null;
         try {
             out = fileCreator.creationFichier();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
+            throw new RuntimeException(ignored);
         }
 
         for (Element element : environment.getSpecifiedElements())
@@ -116,7 +136,7 @@ public class PumlDoclet implements Doclet {
         }
 
         try {
-            PumlWriter.fillPuml(pumlDiagram, out);
+            PumlWriter.fillPuml(pumlDiagram, out, choixDc);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -126,116 +146,10 @@ public class PumlDoclet implements Doclet {
     private void dumpElement(Element element)
     {
         for (Element enclosedElement : element.getEnclosedElements()) {
-            addelement(enclosedElement);
+            SaveInfo.addelement(enclosedElement, pumlDiagram);
         }
     }
 
-    private void addelement(Element element){
-        ArrayList<Attributs> attributs = new ArrayList<>();
-        ArrayList<Methode> methodes = new ArrayList<>();
-        if (Objects.equals(element.getKind().toString(), "CLASS")) {
-            for (Element enclosedElement : element.getEnclosedElements()) {
-                if (enclosedElement.getKind().toString().equals("FIELD")) {
-                    attributs.add(setAttribut(enclosedElement));
-                }
-                else if (enclosedElement.getKind().toString().equals("METHOD")) {
-                    methodes.add(setMethode(enclosedElement));
-                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
 
-                }
-            }
-            pumlDiagram.addClasse(setClasse(element, attributs, methodes, element.getEnclosingElement().getSimpleName().toString()));
-        } else if (Objects.equals(element.getKind().toString(), "INTERFACE")) {
-            for (Element enclosedElement : element.getEnclosedElements()) {
-                if (enclosedElement.getKind().toString().equals("METHOD")) {
-                    methodes.add(setMethode(enclosedElement));
-                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
-
-                }
-            }
-            pumlDiagram.addInterface(setInterface(element, attributs, methodes, element.getEnclosingElement().getSimpleName().toString()));
-        } else if (Objects.equals(element.getKind().toString(), "ENUM")) {
-            for (Element enclosedElement : element.getEnclosedElements()) {
-                if (enclosedElement.getKind().toString().equals("ENUM_CONSTANT")) {
-                    attributs.add(setAttribut(enclosedElement));
-                } else if (enclosedElement.getKind().toString().equals("METHOD")) {
-                    methodes.add(setMethode(enclosedElement));
-                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
-
-                }
-            }
-            pumlDiagram.addEnumeration(setEnumeration(element, attributs, element.getEnclosingElement().getSimpleName().toString()));
-        } else if (Objects.equals(element.getKind().toString(), "ANNOTATION_TYPE")) {
-            for (Element enclosedElement : element.getEnclosedElements()) {
-                if (enclosedElement.getKind().toString().equals("METHOD")) {
-                    methodes.add(setMethode(enclosedElement));
-                } else if (enclosedElement.getKind().toString().equals("CONSTRUCTOR")) {
-
-                }
-            }
-        }
-    }
-
-    public void createFile(String fileName)
-    {
-        try {
-            File myObj = new File(fileName);
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
-    private Attributs setAttribut(Element element){
-        Attributs attributs = new Attributs();
-        attributs.setName(element.getSimpleName().toString());
-        attributs.setType(element.asType());
-        attributs.setVisibility(element.getModifiers().toString());
-        return attributs;
-    }
-
-    private Methode setMethode(Element element){
-        Methode methode = new Methode();
-        methode.setName(element.getSimpleName().toString());
-        methode.setReturnType(element.asType().toString());
-        //methode.setParameters(element.getParameters().toString());
-        methode.setVisibility(element.getModifiers().toString());
-        return methode;
-    }
-
-    private Classe setClasse(Element element, ArrayList<Attributs> attributs, ArrayList<Methode> methodes, String packageName){
-        Classe classe = new Classe();
-        classe.setNamePackage(packageName);
-        classe.setName(element.getSimpleName().toString());
-        classe.setAttributes(attributs);
-        classe.setMethods(methodes);
-        return classe;
-    }
-
-    private Interface setInterface(Element element, ArrayList<Attributs> attributs, ArrayList<Methode> methodes, String packageName){
-        Interface interface_ = new Interface();
-        interface_.setNamePackage(packageName);
-        interface_.setName(element.getSimpleName().toString());
-        interface_.setAttributes(attributs);
-        interface_.setMethods(methodes);
-        return interface_;
-    }
-
-    private Enumerations setEnumeration(Element element, ArrayList<Attributs> attributs, String packageName){
-        Enumerations enumeration = new Enumerations();
-        enumeration.setNamePackage(packageName);
-        enumeration.setName(element.getSimpleName().toString());
-        ArrayList<String> Arr = new ArrayList<>();
-        for (Attributs attribut : attributs) {
-            Arr.add(attribut.getName());
-        }
-        enumeration.setAttributes(Arr);
-        return enumeration;
-    }
 }
 

@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+class western.Histoire4{
+}
+class western.Cowboy{
+-gains : int
+}
+class western.Substantif{
+}
+class western.Narrateur{
+}
+class western.Boisson{
+}
+class western.Brigand{
+-recompense : int
+-estLibre : boolean
+}
+class western.Personnage{
+}
+class western.Dame{
+-estLibre : boolean
+}
+class western.Ripou{
+}
+interface western.HorsLaLoi<<interface>>{
+}
+interface western.Nommable<<interface>>{
+}
+enum western.Genre<<enum>>{
+FEMININ
+MASCULIN
+}
+
+@enduml

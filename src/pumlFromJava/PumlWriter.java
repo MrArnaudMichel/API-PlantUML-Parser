@@ -70,22 +70,29 @@ public class PumlWriter {
         }
     }
 
-    public static void fillPuml(PumlDiagram pumldiagram, String fileName) throws IOException {
-
+    public static void fillPuml(PumlDiagram pumldiagram, String fileName, String choixDC) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         writeEntete(writer);
 
+        if (choixDC.equals("DCC")) {
+            drawDCC(pumldiagram, writer);
+        } else if (choixDC.equals("DCA")) {
+            drawDCA(pumldiagram, writer);
+        }
 
+
+        writeFin(writer);
+    }
+
+    private static void drawDCA(PumlDiagram pumldiagram, BufferedWriter writer) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
             writer.write("class " + classe.getNamePackage() + '.' + classe.getName() + "{\n");
             drawAttribut(classe, writer);
-            //drawMethode(classe, writer);
             writer.write("}\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
             writer.write("interface " + inter.getNamePackage() + '.' + inter.getName() + "<<interface>>{\n");
             drawAttribut(inter, writer);
-            //drawMethode(inter, writer);
             writer.write("}\n");
         }
         for (Enumerations enumeration : pumldiagram.getEnumerations()) {
@@ -93,8 +100,25 @@ public class PumlWriter {
             drawAttribut(enumeration, writer);
             writer.write("}\n");
         }
+    }
 
-
-        writeFin(writer);
+    private static void drawDCC(PumlDiagram pumldiagram, BufferedWriter writer) throws IOException {
+        for (Classe classe : pumldiagram.getClasses()) {
+            writer.write("class " + classe.getNamePackage() + '.' + classe.getName() + "{\n");
+            drawAttribut(classe, writer);
+            drawMethode(classe, writer);
+            writer.write("}\n");
+        }
+        for (Interface inter : pumldiagram.getInterfaces()) {
+            writer.write("interface " + inter.getNamePackage() + '.' + inter.getName() + "<<interface>>{\n");
+            drawAttribut(inter, writer);
+            drawMethode(inter, writer);
+            writer.write("}\n");
+        }
+        for (Enumerations enumeration : pumldiagram.getEnumerations()) {
+            writer.write("enum " + enumeration.getNamePackage() + '.' + enumeration.getName() + "<<enum>>{\n");
+            drawAttribut(enumeration, writer);
+            writer.write("}\n");
+        }
     }
 }
