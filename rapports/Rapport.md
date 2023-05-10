@@ -22,21 +22,24 @@ Prendre en main `javadoc`, les *doclets* et leurs options afin de générer dans
 
 ---
 
-## Semaine 2 : Java Language API et DCA sans associations
-### Objectif
+### Semaine 2 : Java Language API et DCA sans associations
+#### Objectif
 - Produire le DCA avec les associations :
 - les généralisations et les réalisations
 - les agrégations
 
-### Rendus
+#### Rendus
 - DCC de Java Language API
 - DCA et DCC API pumlFromJava
 - commande Java2Puml de production d'un DCA sans relations
 - rapport hebdomadaire
 
-### Bilan de la semaine
+#### Bilan de la semaine
 __Pour toutes nos options, il faut deux tirets,__ car nous voulons les séparer des options de 'bases' de javadoc.
 - Ajout de la classe CreateFic qui permet de créer le fichier. Avant tout était dans la même classe. Le puml est maintenant généré également dans une classe à part.
 - Nous avons ajouté les classes et les attributs de type primitif. Nous avons aussi terminé le fait de mettre les fonctions avec leur visibilité. Nous pouvons aussi afficher tous les attributs quelques soit leurs types. Nous n'avons pas considéré le type String comme un type primitif, car il est un objet. Nous avons aussi ajouté les classes, les interfaces et les enumeration.
 - L'option --help a été ajouté pour afficher l'aide. Nous avons aussi ajouté les options --out et --d. Pour afficher tout le diagramme, il faut enlever l'option --DCA.
+
+    ``Nous en sommes plus loin que la semaine 2``
+---
 
