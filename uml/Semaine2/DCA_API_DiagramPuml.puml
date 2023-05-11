@@ -65,4 +65,7 @@ pumlFromJava.PumlDoclet ..> pumlFromJava.classes.Classe : <<use>>
 pumlFromJava.PumlDoclet ..> pumlFromJava.classes.Interface : <<use>>
 pumlFromJava.PumlDoclet ..> pumlFromJava.classes.Enumerations : <<use>>
 
+pumlFromJava.Java2Puml ..> pumlFromJava.PumlDoclet : <<use>>
+pumlFromJava.Java2Puml ..> pumlFromJava.FirstDoclet : <<use>>
+
 @enduml
