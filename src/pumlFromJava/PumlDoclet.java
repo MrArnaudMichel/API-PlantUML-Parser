@@ -8,13 +8,11 @@ import pumlFromJava.classes.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import java.util.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class PumlDoclet implements Doclet {
-    private final CreateFic fileCreator = new CreateFic();
+    private final CreateFile fileCreator = new CreateFile();
 
     private final PumlDiagram pumlDiagram = new PumlDiagram();
     private String choixDc = "DCC";
@@ -130,7 +128,7 @@ public class PumlDoclet implements Doclet {
             throw new RuntimeException(ignored);
         }
 
-        for (Element element : environment.getSpecifiedElements())
+        for (Element element : environment.getIncludedElements())
         {
             dumpElement(element);
         }
@@ -146,10 +144,16 @@ public class PumlDoclet implements Doclet {
     private void dumpElement(Element element)
     {
         for (Element enclosedElement : element.getEnclosedElements()) {
-            SaveInfo.addelement(enclosedElement, pumlDiagram);
+            if (Objects.equals(enclosedElement.getKind().toString(), "ENUM")) {
+                pumlDiagram.addEnumeration(new Enumerations(enclosedElement));
+            } else if (enclosedElement.getKind().isClass()) {
+                pumlDiagram.addClasse(new Classe(enclosedElement));
+            } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
+                pumlDiagram.addInterface(new Interface(enclosedElement));
+            } else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
+                dumpElement(enclosedElement);
+            }
         }
     }
-
-
 }
 

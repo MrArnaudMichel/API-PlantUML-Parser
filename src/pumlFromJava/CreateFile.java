@@ -2,11 +2,8 @@ package pumlFromJava;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 
-import static java.nio.file.Files.createFile;
-
-public class CreateFic {
+public class CreateFile {
     public static final String DEFAULT_NAME = "fichier";
     public static final String DEFAULT_PATH = "./";
 

@@ -1,5 +1,6 @@
 package pumlFromJava.classes;
 
+import javax.lang.model.element.Element;
 import java.util.ArrayList;
 
 public class Enumerations {
@@ -7,7 +8,25 @@ public class Enumerations {
     private ArrayList<String> attributes = new ArrayList<String>();
     private String namePackage;
 
-    public Enumerations(){}
+    public Enumerations(Element element){
+        for (Element e : element.getEnclosedElements()) {
+            if (e.getKind().isField()) {
+                attributes.add(e.getSimpleName().toString());
+            }
+        }
+        setName(element.getSimpleName().toString());
+        setNamePackage(element.getEnclosingElement().getSimpleName().toString());
+    }
+
+    public String strDraw(){
+        StringBuilder str = new StringBuilder();
+        str.append("enum ").append(getNamePackage()).append(".").append(getName()).append("<<enumeration>>").append(" {\n");
+        for (String attribut : attributes) {
+            str.append(attribut).append("\n");
+        }
+        str.append("}\n");
+        return str.toString();
+    }
 
     public String getName() {
         return name;

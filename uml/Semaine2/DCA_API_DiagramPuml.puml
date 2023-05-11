@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+class pumlFromJava.PumlDiagram {
+}
+class pumlFromJava.CreateFile {
+}
+class pumlFromJava.PumlWriter {
+}
+class pumlFromJava.FirstDoclet {
+}
+class pumlFromJava.PumlDoclet {
+}
+class pumlFromJava.Java2Puml {
+}
+class classes.Instance {
+}
+class classes.Enumerations {
+}
+class classes.Interface {
+}
+class classes.Methode {
+}
+class classes.Attributs {
+}
+class classes.Classe {
+}
+class pumlFromJava.PumlDiagram {
+}
+class pumlFromJava.CreateFile {
+}
+class pumlFromJava.PumlWriter {
+}
+class pumlFromJava.FirstDoclet {
+}
+class pumlFromJava.PumlDoclet {
+}
+class pumlFromJava.Java2Puml {
+}
+class PumlDoclet.Option {
+- hasArg : boolean
+}
+interface classes.Type<<interface>> {
+}
+
+@enduml

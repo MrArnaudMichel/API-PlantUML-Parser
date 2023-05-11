@@ -36,10 +36,12 @@ Prendre en main `javadoc`, les *doclets* et leurs options afin de générer dans
 
 #### Bilan de la semaine
 __Pour toutes nos options, il faut deux tirets,__ car nous voulons les séparer des options de 'bases' de javadoc.
-- Ajout de la classe CreateFic qui permet de créer le fichier. Avant tout était dans la même classe. Le puml est maintenant généré également dans une classe à part.
-- Nous avons ajouté les classes et les attributs de type primitif. Nous avons aussi terminé le fait de mettre les fonctions avec leur visibilité. Nous pouvons aussi afficher tous les attributs quelques soit leurs types. Nous n'avons pas considéré le type String comme un type primitif, car il est un objet. Nous avons aussi ajouté les classes, les interfaces et les enumeration.
+- Les instances sont aussi créé dans le constructeur de l'instance. Par exemple pour créer une classe il faut faire Classe(element).
+- Ajout de la classe CreateFic qui permet de créer le fichier. Avant tout était dans la même classe. Le puml est maintenant généré également dans la classe respective du nom de l'instance. Par exemple le code pour générer le puml d'une classe est généré dans l'objet.
+- Nous avons ajouté les classes et les attributs de type primitif. Nous avons aussi terminé le fait de mettre les fonctions avec leur visibilité. Nous pouvons aussi afficher tous les attributs quelques soit leurs types. Nous n'avons pas considéré le type String comme un type primitif, car il est un objet. Nous avons aussi ajouté les classes, les interfaces et les enumeration. Les constructeurs sont également présents.
 - L'option --help a été ajouté pour afficher l'aide. Nous avons aussi ajouté les options --out et --d. Pour afficher tout le diagramme, il faut enlever l'option --DCA.
 
-    ``Nous en sommes plus loin que la semaine 2``
+En note d'amélioration, nous pourrons changer les types qui sont affichés sous cette forme: jdk.javadoc.doclet.Doclet.Option.
+Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis modifié. Et donc nous n'avons toujours pas considéré le type String comme un type primitif.
 ---
 
