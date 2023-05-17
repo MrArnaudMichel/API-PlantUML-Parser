@@ -23,6 +23,7 @@ public class Methode implements Type {
             parameters.add(tab);
         }
         //setIsOverride(e.getAnnotation(Override.class));
+
     }
 
     public String setArray(String type){
