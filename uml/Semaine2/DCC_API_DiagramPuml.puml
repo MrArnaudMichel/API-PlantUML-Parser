@@ -243,6 +243,6 @@ pumlFromJava.PumlDiagram --> "* \n classes" pumlFromJava.classes.Classe : classe
 pumlFromJava.PumlDiagram --> "* \n interfaces" pumlFromJava.classes.Interface : interfaces
 pumlFromJava.PumlDiagram --> "* \n enumerations" pumlFromJava.classes.Enumerations : enumerations
 
-pumlDiagram.PumlDoclet --> "* \n pumlDiagram" pumlFromJava.PumlDiagram : pumlDiagram
-pumlDiagram.PumlDoclet --> "* \n pumlDiagram" pumlFromJava.CreateFile : fileCreator
+pumlFromJava.PumlDoclet --> "* \n pumlDiagram" pumlFromJava.PumlDiagram : pumlDiagram
+pumlFromJava.PumlDoclet --> "* \n pumlDiagram" pumlFromJava.CreateFile : fileCreator
 @enduml

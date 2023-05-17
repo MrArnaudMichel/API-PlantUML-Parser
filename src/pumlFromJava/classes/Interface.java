@@ -1,6 +1,8 @@
 package pumlFromJava.classes;
 
 import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import java.util.Objects;
 
 public class Interface extends Instance {
 
@@ -11,6 +13,8 @@ public class Interface extends Instance {
                 }
             }
             setName(element.getSimpleName().toString());
+            setExtendsClasse(((TypeElement) element).getSuperclass().toString().split("\\.")[((TypeElement) element).getSuperclass().toString().split("\\.").length - 1]);
+            setImplementsInterface(((TypeElement) element).getInterfaces());
             setNamePackage(element.getEnclosingElement().getSimpleName().toString());
         }
 
@@ -26,4 +30,10 @@ public class Interface extends Instance {
             return str.toString();
         }
 
+    public String strRelation(){
+        if (!Objects.equals(getExtendsClasse(), "none")){
+            return getNamePackage() + "." + getName() + " <|-- " + getExtendsClasse() + "\n";
+        }
+        return "";
+    }
 }

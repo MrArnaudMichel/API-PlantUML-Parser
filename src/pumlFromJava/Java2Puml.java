@@ -11,7 +11,7 @@ public class Java2Puml
         System.out.println(toolProvider.name());
 
 /*
-    javadoc -private -sourcepath ../../P21/p21/P21_Western/src -doclet pumlFromJava.FirstDoclet -docletpath out/production/SAE21/ western  // FirstDoclet is the default doclet
+    javadoc -private -sourcepath ../../P21/p21/P21_Western/src -doclet pumlFromJava.FstDoclet -docletpath out/production/SAE21/ western  // FirstDoclet is the default doclet
     javadoc -private -sourcepath ../../P21/p21/P21_Western/src -doclet pumlFromJava.PumlDoclet -docletpath out/production/SAE21/ western // PumlDoclet is the default doclet
     javadoc -private -sourcepath ../../P21/p21/P21_Western/src -doclet pumlFromJava.PumlDoclet -docletpath out/production/SAE21/ western --out file --d uml
     javadoc -private -docletpath out/production/SAE21/ -doclet pumlFromJava.PumlDoclet -sourcepath ../../P21/p21/P21_Western/src western --out file --d uml --DCA

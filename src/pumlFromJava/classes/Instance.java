@@ -1,13 +1,15 @@
 package pumlFromJava.classes;
 
+import javax.lang.model.type.TypeMirror;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Instance {
     private String name;
 
     private ArrayList<Methode> methods = new ArrayList<Methode>();
-    private ArrayList<String> extendsClasses = new ArrayList<String>();
-    private ArrayList<String> implementsInterfaces = new ArrayList<String>();
+    private String extendsClasse;
+    private List<? extends TypeMirror> implementsInterface = new ArrayList<>();
     private String namePackage;
 
     public Instance(){}
@@ -29,20 +31,20 @@ public class Instance {
         this.methods = methods;
     }
 
-    public ArrayList<String> getExtendsClasses() {
-        return extendsClasses;
+    public String getExtendsClasse() {
+        return extendsClasse;
     }
 
-    public void setExtendsClasses(ArrayList<String> extendsClasses) {
-        this.extendsClasses = extendsClasses;
+    public void setExtendsClasse(String extendsClasse) {
+        this.extendsClasse = extendsClasse;
     }
 
-    public ArrayList<String> getImplementsInterfaces() {
-        return implementsInterfaces;
+    public List<? extends TypeMirror> getImplementsInterface() {
+        return implementsInterface;
     }
 
-    public void setImplementsInterfaces(ArrayList<String> implementsInterfaces) {
-        this.implementsInterfaces = implementsInterfaces;
+    public void setImplementsInterface(List<? extends TypeMirror> implementsInterface) {
+        this.implementsInterface = implementsInterface;
     }
 
     public String getNamePackage() {

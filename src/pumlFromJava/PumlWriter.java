@@ -1,9 +1,7 @@
 package pumlFromJava;
 
 import pumlFromJava.classes.*;
-import pumlFromJava.classes.Instance;
 
-import javax.lang.model.type.TypeKind;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,13 +33,26 @@ public class PumlWriter {
 
     private static void drawDC(PumlDiagram pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
-            writer.write(classe.strDraw(choixDC));
+            writer.write(classe.strDrawDiagram(choixDC));
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
             writer.write(inter.strDraw(choixDC));
         }
         for (Enumerations enumeration : pumldiagram.getEnumerations()) {
             writer.write(enumeration.strDraw());
+        }
+        drawLink(pumldiagram, writer, choixDC);
+    }
+
+    private static void drawLink(PumlDiagram pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
+        for (Classe classe : pumldiagram.getClasses()) {
+            writer.write(classe.strRelation(choixDC));
+        }
+        for (Interface inter : pumldiagram.getInterfaces()) {
+            writer.write(inter.strRelation());
+        }
+        for (Enumerations enumeration : pumldiagram.getEnumerations()) {
+            //writer.write(enumeration.strDraw());
         }
     }
 }

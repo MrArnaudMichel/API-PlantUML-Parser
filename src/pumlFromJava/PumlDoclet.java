@@ -150,9 +150,9 @@ public class PumlDoclet implements Doclet {
                 pumlDiagram.addClasse(new Classe(enclosedElement));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
                 pumlDiagram.addInterface(new Interface(enclosedElement));
-            } else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
+            } /*else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE") && element.getSimpleName()) {
                 dumpElement(enclosedElement);
-            }
+            }*/
         }
     }
 }
