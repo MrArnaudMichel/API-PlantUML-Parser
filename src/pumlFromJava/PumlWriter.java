@@ -34,12 +34,15 @@ public class PumlWriter {
     private static void drawDC(PumlDiagram pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
             writer.write(classe.strDrawDiagram(choixDC));
+            writer.write("\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
             writer.write(inter.strDraw(choixDC));
+            writer.write("\n");
         }
         for (Enumerations enumeration : pumldiagram.getEnumerations()) {
             writer.write(enumeration.strDraw());
+            writer.write("\n");
         }
         drawLink(pumldiagram, writer, choixDC);
     }
@@ -47,12 +50,11 @@ public class PumlWriter {
     private static void drawLink(PumlDiagram pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
             writer.write(classe.strRelation(choixDC));
+            writer.write("\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
             writer.write(inter.strRelation());
-        }
-        for (Enumerations enumeration : pumldiagram.getEnumerations()) {
-            //writer.write(enumeration.strDraw());
+            writer.write("\n");
         }
     }
 }

@@ -23,7 +23,7 @@ public class Interface extends Instance {
             str.append("interface ").append(getNamePackage()).append(".").append(getName()).append("<<interface>>").append(" {\n");;
             if (!nameDiagram.equals("DCA")){
                 for (Methode methode : getMethods()) {
-                    str.append(methode.strDraw()).append("\n");
+                    str.append("\t").append(methode.strDraw()).append("\n");
                 }
             }
             str.append("}\n");

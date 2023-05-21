@@ -22,7 +22,7 @@ public class Enumerations {
         StringBuilder str = new StringBuilder();
         str.append("enum ").append(getNamePackage()).append(".").append(getName()).append("<<enumeration>>").append(" {\n");
         for (String attribut : attributes) {
-            str.append(attribut).append("\n");
+            str.append("\t").append(attribut).append("\n");
         }
         str.append("}\n");
         return str.toString();

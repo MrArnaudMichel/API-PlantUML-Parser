@@ -37,15 +37,15 @@ public class Classe extends Instance implements Type {
         str.append("class ").append(getNamePackage()).append(getName()).append(" {\n");
         for (Attributs attribut : attributes) {
             if (nameDiagram.equals("DCA") && attribut.getType().getKind().isPrimitive()){
-                str.append(attribut.strDrawAttributs()).append("\n");
+                str.append("\t").append(attribut.strDrawAttributs()).append("\n");
             }
         }
         if (!nameDiagram.equals("DCA")){
             for (Contructor constructor : constructors) {
-                str.append(constructor.strDraw()).append("\n");
+                str.append("\t").append(constructor.strDraw()).append("\n");
             }
             for (Methode methode : getMethods()) {
-                str.append(methode.strDraw()).append("\n");
+                str.append("\t").append(methode.strDraw()).append("\n");
             }
         }
         str.append("}\n");
