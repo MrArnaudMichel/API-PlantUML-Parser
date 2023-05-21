@@ -1,5 +1,25 @@
 # Rapport SAE 21
 ## Projet PumlFromJava
+### Membres du groupe
+- __MORAWIEC__ Benjamin
+- __MICHEL__ Arnaud
+
+### Objectif
+Le but de ce projet est de créer un programme qui permet de générer un diagramme de classe à partir d'un package Java. Ce programme doit être utilisable en ligne de commande et doit pouvoir être utilisé avec `javadoc`.
+
+### Organisation
+Nous avons décidé de nous répartir le travail de la manière suivante :
+Pour la première semaine, nous avons décidé de travailler ensemble sur la compréhension de `javadoc` et des *doclets*.
+Pour la répartition :
+- __MORAWIEC__ Benjamin : Création du fichier, des options.
+- __MICHEL__ Arnaud : Création des classes, des interfaces, des énumérations, des méthodes et des attributs.
+- __MICHEL__ Arnaud : Création du DCA versions 1.
+- __MORAWIEC__ Benjamin et __MICHEL__ Arnaud : Création des associations.
+- __MORAWIEC__ Benjamin : Création des options --out et --d.
+- __MORAWIEC__ Benjamin : Amélioration des options.
+- __MICHEL__ Arnaud : Création du DCC et des relations avec les types primitifs / non primitifs.
+- __MORAWIEC__ Benjamin : Gestions des extends et des implements.
+
 ### Semaine 1 : les *doclets* de javadoc
 #### Objectif
 Prendre en main `javadoc`, les *doclets* et leurs options afin de générer dans un fichier `.puml` un diagramme énumérant les éléments sélectionnés.
@@ -41,7 +61,33 @@ __Pour toutes nos options, il faut deux tirets,__ car nous voulons les séparer 
 - Nous avons ajouté les classes et les attributs de type primitif. Nous avons aussi terminé le fait de mettre les fonctions avec leur visibilité. Nous pouvons aussi afficher tous les attributs quelques soit leurs types. Nous n'avons pas considéré le type String comme un type primitif, car il est un objet. Nous avons aussi ajouté les classes, les interfaces et les enumeration. Les constructeurs sont également présents.
 - L'option --help a été ajouté pour afficher l'aide. Nous avons aussi ajouté les options --out et --d. Pour afficher tout le diagramme, il faut enlever l'option --DCA.
 
-En note d'amélioration, nous pourrons changer les types qui sont affichés sous cette forme: jdk.javadoc.doclet.Doclet.Option.
+#### Notes d'amélioration
+Nous pourrons changer les types qui sont affichés sous cette forme: jdk.javadoc.doclet.Doclet.Option.
 Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis modifié. Et donc nous n'avons toujours pas considéré le type String comme un type primitif.
+---
+
+### Semaine 3 : DCA avec associations
+#### Objectif
+- Produire le DCA avec les associations :
+- les généralisations et les réalisations
+- les agrégations
+
+#### Rendus
+- DCA et DCC API pumlFromJava mis à jour
+- sources des classes
+- rapport hebdomadaire
+
+#### Bilan de la semaine
+- Tout d'abord, nous avons, du gérer les extends et les implements. Nous avons donc ajouté cette fonctionnalité dans nos fausses classes Classe et Interface. Nous avons ajouté le write de ces associations dans une fonction qui se fait appeler dans la classe PumlWriter.
+- Ensuite, nous avons dû ajouter le fait que nous ne considérons pas le type String comme un type primitif. Pour chaque parametre, nous avons donc regardé si le type est un String et si c'est le cas, nous créons une association vers le type java.lang.String.
+- Nous avons aussi ajouté les associations vers les autres types non-primitifs. Nous avons donc ajouté une fonction qui permet de créer une association vers un type non-primitif.
+- Il nous a aussi fallu différencier les liste et les elements simples. Si c'est une liste, on rajoute [*] avant le nom de l'élement. Sinon, on met 1.
+
+#### Notes d'amélioration
+- L'implémentation récursive des packages n'est pas encore présente. Nous ferons cela la semaine prochaine.
+- Rajouter une option pour définir le type String comme un type primitif.
+- Rajouter plusieurs options pour mettre/retirer les associations, les constructeurs, les méthodes, les attributs, les types primitifs, les types non-primitifs, les classes, les interfaces, les énumérations, les packages, les extends, les implements, les associations vers les types non-primitifs, les associations vers les types primitifs.
+- (Vérifier possibilité) Rajouter les <<use>>.
+
 ---
 

@@ -35,10 +35,10 @@ public class Methode implements Type {
                 type = "Integer";
             }else if (type.equals("boolean")) {
                 type = "Boolean";
-            }else if (type.equals("float")) {
-                type = "Float";
-            }else if (type.equals("double")) {
-                type = "Double";
+            }else if (type.equalsIgnoreCase("float")) {
+                type = "Reel";
+            }else if (type.equalsIgnoreCase("double")) {
+                type = "Reel";
             }
         }
         if (!type.equals("") && type.charAt(type.length() - 1) == '>') {
