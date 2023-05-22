@@ -34,7 +34,7 @@ public class Classe extends Instance implements Type {
 
     public String strDrawDiagram(String nameDiagram){
         StringBuilder str = new StringBuilder();
-        str.append("class ").append(getNamePackage()).append(getName()).append(" {\n");
+        str.append("class ").append(getName()).append(" {\n");
         for (Attributs attribut : attributes) {
             if (nameDiagram.equals("DCA") && attribut.getType().getKind().isPrimitive()){
                 str.append("\t").append(attribut.strDrawAttributs()).append("\n");
@@ -55,22 +55,22 @@ public class Classe extends Instance implements Type {
     public String strRelation(String nameDiagram){
         StringBuilder str = new StringBuilder();
         if (!getExtendsClasse().equals("Object")){
-            str.append(getNamePackage()).append(getExtendsClasse()).append("<|--").append(getNamePackage()).append(getName()).append("\n");
+            str.append(getExtendsClasse()).append("<|--").append(getName()).append("\n");
         }
         for (TypeMirror type : getImplementsInterface()) {
-            str.append(getNamePackage()).append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append("<|..").append(getNamePackage()).append(getName()).append("\n");
+            str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append("<|..").append(getName()).append("\n");
         }
         for (Attributs attribut : attributes) {
             if (!attribut.getType().getKind().isPrimitive()){
                 if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")){
                     String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
-                    str.append(getNamePackage()).append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append("<--* ").append(getNamePackage()).append(getName()).append("\n");
+                    str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append("<--* ").append(getName()).append("\n");
                 }
                 else {
                     if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String")){
-                        str.append("java.lang.String").append("\" 1 \\n").append(attribut.getName()).append("\"").append("<--* ").append(getNamePackage()).append(getName()).append("\n");
+                        str.append("java.lang.String").append("\" 1 \\n").append(attribut.getName()).append("\"").append("<--* ").append(getName()).append("\n");
                     }else{
-                        str.append(getNamePackage()).append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n").append(attribut.getName()).append("\"").append("<--* ").append(getNamePackage()).append(getName()).append("\n");
+                        str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n").append(attribut.getName()).append("\"").append("<--* ").append(getName()).append("\n");
                     }
                 }
             }

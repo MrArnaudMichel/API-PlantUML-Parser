@@ -20,7 +20,7 @@ public class Enumerations {
 
     public String strDraw(){
         StringBuilder str = new StringBuilder();
-        str.append("enum ").append(getNamePackage()).append(".").append(getName()).append("<<enumeration>>").append(" {\n");
+        str.append("enum ").append(".").append(getName()).append("<<enumeration>>").append(" {\n");
         for (String attribut : attributes) {
             str.append("\t").append(attribut).append("\n");
         }

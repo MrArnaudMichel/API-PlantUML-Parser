@@ -20,7 +20,7 @@ public class Interface extends Instance {
 
         public String strDraw(String nameDiagram){
             StringBuilder str = new StringBuilder();
-            str.append("interface ").append(getNamePackage()).append(".").append(getName()).append("<<interface>>").append(" {\n");;
+            str.append("interface ").append(".").append(getName()).append("<<interface>>").append(" {\n");;
             if (!nameDiagram.equals("DCA")){
                 for (Methode methode : getMethods()) {
                     str.append("\t").append(methode.strDraw()).append("\n");
@@ -32,7 +32,7 @@ public class Interface extends Instance {
 
     public String strRelation(){
         if (!Objects.equals(getExtendsClasse(), "none")){
-            return getNamePackage() + "." + getName() + " <|-- " + getExtendsClasse() + "\n";
+            return getName() + " <|-- " + getExtendsClasse() + "\n";
         }
         return "";
     }

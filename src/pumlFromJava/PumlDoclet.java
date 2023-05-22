@@ -14,7 +14,7 @@ import java.io.IOException;
 public class PumlDoclet implements Doclet {
     private final CreateFile fileCreator = new CreateFile();
 
-    private final PumlDiagram pumlDiagram = new PumlDiagram();
+    private final Package pumlDiagram = new Package();
     private String choixDc = "DCC";
     @Override
     public void init(Locale locale, Reporter reporter) {  }
@@ -150,10 +150,10 @@ public class PumlDoclet implements Doclet {
                 pumlDiagram.addClasse(new Classe(enclosedElement));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
                 pumlDiagram.addInterface(new Interface(enclosedElement));
-            } // Si l'objet est un package, on relance la fonction récurssivement
-            /*else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE") && element.getSimpleName()) {
-                dumpElement(enclosedElement);
-            }*/
+            }
+            else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
+                pumlDiagram.addPackage(new Package(enclosedElement));
+            }
         }
     }
 }

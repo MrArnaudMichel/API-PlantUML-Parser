@@ -23,7 +23,7 @@ public class PumlWriter {
     }
 
 
-    public static void fillPuml(PumlDiagram pumldiagram, String fileName, String choixDC) throws IOException {
+    public static void fillPuml(Package pumldiagram, String fileName, String choixDC) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         writeEntete(writer);
 
@@ -31,7 +31,7 @@ public class PumlWriter {
         writeFin(writer);
     }
 
-    private static void drawDC(PumlDiagram pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
+    private static void drawDC(Package pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
             writer.write(classe.strDrawDiagram(choixDC));
             writer.write("\n");
@@ -47,7 +47,7 @@ public class PumlWriter {
         drawLink(pumldiagram, writer, choixDC);
     }
 
-    private static void drawLink(PumlDiagram pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
+    private static void drawLink(Package pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
             writer.write(classe.strRelation(choixDC));
             writer.write("\n");
