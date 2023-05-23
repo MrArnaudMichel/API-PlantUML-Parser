@@ -24,18 +24,20 @@ public class Attributs implements Type {
     }
 
     private String writeType() {
+        StringBuilder str = new StringBuilder();
         if (this.isPublic(getVisibility())) {
-            return "+";
+            str.append("+");
         } else if (this.isPrivate(getVisibility())) {
-            return "-";
+            str.append("-");
         } else if (this.isProtected(getVisibility())) {
-            return "#";
-        } else if (this.isAbstract(getVisibility())) {
-            return "{abstract}";
-        } else if (this.isStatic(getVisibility())) {
-            return "{static}";
+            str.append("#");
         }
-        return "";
+        if (this.isAbstract(getVisibility())) {
+            str.append(" {abstract}");
+        } else if (this.isStatic(getVisibility())) {
+            str.append(" {static}");
+        }
+        return str.toString();
     }
 
     public String getName() {
