@@ -24,15 +24,20 @@ public class Interface extends Instance {
         StringBuilder str = new StringBuilder();
         str.append("interface ").append(getName()).append("<<interface>>").append(" {\n");
         if (!saveOption.getTypeDiagram().equals("DCA")) {
-            for (Methode methode : getMethods()) {
-                str.append("\t").append(methode.strDraw()).append("\n");
+            if (saveOption.getMethod()) {
+                for (Methode methode : getMethods()) {
+                    str.append("\t").append(methode.strDraw()).append("\n");
+                }
             }
         }
         str.append("}\n");
         return str.toString();
     }
 
-    public String strRelation() {
+    public String strRelation(SaveOption saveOption) {
+        if (!saveOption.getAssociation() && !saveOption.getDrawExtends()) {
+            return "";
+        }
         if (!Objects.equals(getExtendsClasse(), "none")) {
             return getName() + " <|-- " + getExtendsClasse() + "\n";
         }

@@ -37,18 +37,23 @@ public class Classe extends Instance implements Type {
     public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName()).append(" {\n");
-        for (Attributs attribut : attributes) {
-            if (attribut.getType().getKind().isPrimitive() ||
-                    (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")))) {
-                str.append("\t").append(attribut.strDrawAttributs()).append("\n");
+        if (saveOption.getField() && saveOption.getDrawPrimitive()) {
+            for (Attributs attribut : attributes) {
+                if (!attribut.getType().getKind().isPrimitive() || !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
+                    str.append("\t").append(attribut.strDrawAttributs()).append("\n");
+                }
             }
         }
         if (!saveOption.getTypeDiagram().equals("DCA")) {
-            for (Contructor constructor : constructors) {
-                str.append("\t").append(constructor.strDraw()).append("\n");
+            if (saveOption.getConstructor()) {
+                for (Contructor constructor : constructors) {
+                    str.append("\t").append(constructor.strDraw()).append("\n");
+                }
             }
-            for (Methode methode : getMethods()) {
-                str.append("\t").append(methode.strDraw()).append("\n");
+            if (saveOption.getMethod()){
+                for (Methode methode : getMethods()) {
+                    str.append("\t").append(methode.strDraw()).append("\n");
+                }
             }
         }
         str.append("}\n");
@@ -57,28 +62,32 @@ public class Classe extends Instance implements Type {
 
     public String strRelation(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
-        if (saveOption.getAssociation()){
-            if (!getExtendsClasse().equals("Object")) {
+        if (saveOption.getAssociation() || saveOption.getDrawExtends() || saveOption.getDrawImplements() || saveOption.getField()){
+            if (saveOption.getDrawExtends() && !Objects.equals(getExtendsClasse(), "Object")) {
                 str.append(getExtendsClasse()).append(" <|-- ").append(getName()).append("\n");
             }
-            for (TypeMirror type : getImplementsInterface()) {
-                str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
+            if (saveOption.getDrawImplements()){
+                for (TypeMirror type : getImplementsInterface()) {
+                    str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
+                }
             }
-            for (Attributs attribut : attributes) {
-                if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")))) {
-                    if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
-                        String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
-                        if (type.equals("String[]")) {
-                            type = "java.lang.String";
-                        }
-                        str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
-                    } else {
-                        if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
-                            str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+            if ((saveOption.getAssociation() || saveOption.getField()) && saveOption.getDrawUnPrimitive()) {
+                for (Attributs attribut : attributes) {
+                    if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
+                        if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
+                            String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
+                            if (type.equals("String[]")) {
+                                type = "java.lang.String";
+                            }
+                            str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
                         } else {
-                            str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
-                        }
+                            if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
+                                str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                            } else {
+                                str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                            }
 
+                        }
                     }
                 }
             }

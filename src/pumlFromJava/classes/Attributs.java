@@ -15,7 +15,7 @@ public class Attributs implements Type {
     }
 
     public String strDrawAttributs() {
-        if (type.toString().equals("java.util.ArrayList<java.lang.String>")) {
+        if (type.toString().equals("java.util.ArrayList<java.lang.String[]>")) {
             return writeType() + " " + name + " : String[*]";
         }else if (type.toString().equals("java.lang.String")){
             return writeType() + " " + name + " : String";

@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class PumlWriter {
+    /*
+     * @PumlDoclet test
+     * */
 
     private static void writeEntete(BufferedWriter writer) throws IOException {
         writer.write("@startuml\n" +
@@ -44,7 +47,7 @@ public class PumlWriter {
             writer.write("\n");
         }
         for (Enumerations enumeration : pumldiagram.getEnumerations()) {
-            writer.write(enumeration.strDraw());
+            writer.write(enumeration.strDraw(saveOption));
             writer.write("\n");
         }
         for (Package package1 : pumldiagram.getPackages()) {
@@ -60,7 +63,7 @@ public class PumlWriter {
             writer.write("\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
-            writer.write(inter.strRelation());
+            writer.write(inter.strRelation(saveOption));
             writer.write("\n");
         }
     }

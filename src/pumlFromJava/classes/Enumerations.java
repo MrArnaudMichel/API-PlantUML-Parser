@@ -1,5 +1,7 @@
 package pumlFromJava.classes;
 
+import pumlFromJava.SaveOption;
+
 import javax.lang.model.element.Element;
 import java.util.ArrayList;
 
@@ -18,11 +20,13 @@ public class Enumerations {
         setNamePackage(element.getEnclosingElement().getSimpleName().toString());
     }
 
-    public String strDraw() {
+    public String strDraw(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("enum ").append(getName()).append("<<enumeration>>").append(" {\n");
-        for (String attribut : attributes) {
-            str.append("\t").append(attribut).append("\n");
+        if (saveOption.getField()) {
+            for (String attribut : attributes) {
+                str.append("\t").append(attribut).append("\n");
+            }
         }
         str.append("}\n");
         return str.toString();
