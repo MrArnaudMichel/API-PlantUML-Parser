@@ -57,27 +57,29 @@ public class Classe extends Instance implements Type {
 
     public String strRelation(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
-        if (!getExtendsClasse().equals("Object")) {
-            str.append(getExtendsClasse()).append(" <|-- ").append(getName()).append("\n");
-        }
-        for (TypeMirror type : getImplementsInterface()) {
-            str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
-        }
-        for (Attributs attribut : attributes) {
-            if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")))) {
-                if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
-                    String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
-                    if (type.equals("String[]")) {
-                        type = "java.lang.String";
-                    }
-                    str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
-                } else {
-                    if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
-                        str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+        if (saveOption.getAssociation()){
+            if (!getExtendsClasse().equals("Object")) {
+                str.append(getExtendsClasse()).append(" <|-- ").append(getName()).append("\n");
+            }
+            for (TypeMirror type : getImplementsInterface()) {
+                str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
+            }
+            for (Attributs attribut : attributes) {
+                if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")))) {
+                    if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
+                        String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
+                        if (type.equals("String[]")) {
+                            type = "java.lang.String";
+                        }
+                        str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
                     } else {
-                        str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
-                    }
+                        if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
+                            str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                        } else {
+                            str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                        }
 
+                    }
                 }
             }
         }

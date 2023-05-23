@@ -1,8 +1,8 @@
 package pumlFromJava;
 
 public class SaveOption {
-    public String typeDiagram = "DCC";
-    public boolean strPrimitive = false;
+    public String typeDiagram = "DCC"; //Check
+    public boolean strPrimitive = false; //Check
     public boolean association = true;
     public boolean constructor = true;
     public boolean method = true;

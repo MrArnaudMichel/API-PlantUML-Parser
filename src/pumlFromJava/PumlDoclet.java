@@ -52,17 +52,24 @@ public class PumlDoclet implements Doclet {
                         return true;
                     }
                 },
-                new Option("--DCA", false, "Si l'option est précisée alors le programme produit un DCA.", "") {
+                new Option("--dca", false, "Si l'option est précisée alors le programme produit un DCA.", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
                         saveOption.setTypeDiagram("DCA");
                         return true;
                     }
                 },
-                new Option("--STR", false, "Considère le type String comme primitif.", "") {
+                new Option("--str", false, "Considère le type String comme primitif.", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
                         saveOption.setStrPrimitive(true);
+                        return true;
+                    }
+                },
+                new Option("--asc", false, "Désactive les associations", "") {
+                    @Override
+                    public boolean process(String option, List<String> arguments) {
+                        saveOption.setAssociation(false);
                         return true;
                     }
                 },
