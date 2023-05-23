@@ -64,6 +64,7 @@ __Pour toutes nos options, il faut deux tirets,__ car nous voulons les séparer 
 #### Notes d'amélioration
 Nous pourrons changer les types qui sont affichés sous cette forme: jdk.javadoc.doclet.Doclet.Option.
 Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis modifié. Et donc nous n'avons toujours pas considéré le type String comme un type primitif.
+
 ---
 
 ### Semaine 3 : DCA avec associations
