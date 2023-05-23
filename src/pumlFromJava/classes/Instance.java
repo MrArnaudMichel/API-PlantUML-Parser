@@ -12,7 +12,8 @@ public class Instance {
     private List<? extends TypeMirror> implementsInterface = new ArrayList<>();
     private String namePackage;
 
-    public Instance(){}
+    public Instance() {
+    }
 
     public String getName() {
         return name;

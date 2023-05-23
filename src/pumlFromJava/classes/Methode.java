@@ -1,16 +1,18 @@
 package pumlFromJava.classes;
 
-import javax.lang.model.element.*;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.VariableElement;
 import java.util.ArrayList;
 
 public class Methode implements Type {
+    private final ArrayList<String[]> parameters = new ArrayList<String[]>();
     private String name;
     private String returnType;
     private String visibility;
-    private final ArrayList<String[]> parameters = new ArrayList<String[]>();
     private String isOverride;
 
-    public Methode(Element e){
+    public Methode(Element e) {
         setName(e.getSimpleName().toString());
         String returnType = e.asType().toString().split("\\.")[e.asType().toString().split("\\.").length - 1];
         returnType = setArray(returnType);
@@ -26,18 +28,18 @@ public class Methode implements Type {
 
     }
 
-    public String setArray(String type){
-        if (type.contains(")")){
+    public String setArray(String type) {
+        if (type.contains(")")) {
             type = type.split("\\)")[1];
-            if (type.equals("void")){
+            if (type.equals("void")) {
                 type = "";
-            }else if (type.equals("int")){
+            } else if (type.equals("int")) {
                 type = "Integer";
-            }else if (type.equals("boolean")) {
+            } else if (type.equals("boolean")) {
                 type = "Boolean";
-            }else if (type.equalsIgnoreCase("float")) {
+            } else if (type.equalsIgnoreCase("float")) {
                 type = "Reel";
-            }else if (type.equalsIgnoreCase("double")) {
+            } else if (type.equalsIgnoreCase("double")) {
                 type = "Reel";
             }
         }
@@ -48,12 +50,12 @@ public class Methode implements Type {
         return type;
     }
 
-    public String strDraw(){
+    public String strDraw() {
         StringBuilder str = new StringBuilder();
         str.append(writeType()).append(" ").append(getName()).append("(");
         for (String[] parameter : parameters) {
             str.append(parameter[0]).append(" : ").append(parameter[1]);
-            if (parameters.indexOf(parameter) != parameters.size() - 1){
+            if (parameters.indexOf(parameter) != parameters.size() - 1) {
                 str.append(", ");
             }
         }
@@ -65,17 +67,16 @@ public class Methode implements Type {
         return str.toString();
     }
 
-    public String writeType(){
-        if (this.isPublic(getVisibility())){
+    public String writeType() {
+        if (this.isPublic(getVisibility())) {
             return "+";
-        }
-        else if (this.isPrivate(getVisibility())){
+        } else if (this.isPrivate(getVisibility())) {
             return "-";
-        } else if (this.isProtected(getVisibility())){
+        } else if (this.isProtected(getVisibility())) {
             return "#";
-        } else if (this.isAbstract(getVisibility())){
+        } else if (this.isAbstract(getVisibility())) {
             return "{abstract}";
-        } else if (this.isStatic(getVisibility())){
+        } else if (this.isStatic(getVisibility())) {
             return "{static}";
         }
         return "";

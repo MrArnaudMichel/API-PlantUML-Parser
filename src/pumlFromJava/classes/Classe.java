@@ -1,5 +1,7 @@
 package pumlFromJava.classes;
 
+import pumlFromJava.SaveOption;
+
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
@@ -10,7 +12,7 @@ public class Classe extends Instance implements Type {
     private ArrayList<Attributs> attributes = new ArrayList<Attributs>();
     private ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
-    public Classe(Element element){
+    public Classe(Element element) {
         setName(element.getSimpleName().toString());
         for (Element e : element.getEnclosedElements()) {
             if (e.getKind().isField()) {
@@ -24,7 +26,7 @@ public class Classe extends Instance implements Type {
         setExtendsClasse(((TypeElement) element).getSuperclass().toString().split("\\.")[((TypeElement) element).getSuperclass().toString().split("\\.").length - 1]);
         setImplementsInterface(((TypeElement) element).getInterfaces());
         StringBuilder packageName = new StringBuilder();
-        while (Objects.equals(element.getEnclosingElement().getKind().toString(), "PACKAGE")){
+        while (Objects.equals(element.getEnclosingElement().getKind().toString(), "PACKAGE")) {
             packageName.insert(0, element.getEnclosingElement().getSimpleName().toString() + ".");
             element = element.getEnclosingElement();
 
@@ -32,15 +34,16 @@ public class Classe extends Instance implements Type {
         setNamePackage(packageName.toString());
     }
 
-    public String strDrawDiagram(String nameDiagram){
+    public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName()).append(" {\n");
         for (Attributs attribut : attributes) {
-            if (nameDiagram.equals("DCA") && attribut.getType().getKind().isPrimitive()){
+            if (attribut.getType().getKind().isPrimitive() ||
+                    (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")))) {
                 str.append("\t").append(attribut.strDrawAttributs()).append("\n");
             }
         }
-        if (!nameDiagram.equals("DCA")){
+        if (!saveOption.getTypeDiagram().equals("DCA")) {
             for (Contructor constructor : constructors) {
                 str.append("\t").append(constructor.strDraw()).append("\n");
             }
@@ -52,26 +55,29 @@ public class Classe extends Instance implements Type {
         return str.toString();
     }
 
-    public String strRelation(String nameDiagram){
+    public String strRelation(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
-        if (!getExtendsClasse().equals("Object")){
-            str.append(getExtendsClasse()).append("<|--").append(getName()).append("\n");
+        if (!getExtendsClasse().equals("Object")) {
+            str.append(getExtendsClasse()).append(" <|-- ").append(getName()).append("\n");
         }
         for (TypeMirror type : getImplementsInterface()) {
-            str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append("<|..").append(getName()).append("\n");
+            str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
         }
         for (Attributs attribut : attributes) {
-            if (!attribut.getType().getKind().isPrimitive()){
-                if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")){
+            if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")))) {
+                if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
                     String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
-                    str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append("<--* ").append(getName()).append("\n");
-                }
-                else {
-                    if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String")){
-                        str.append("java.lang.String").append("\" 1 \\n").append(attribut.getName()).append("\"").append("<--* ").append(getName()).append("\n");
-                    }else{
-                        str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n").append(attribut.getName()).append("\"").append("<--* ").append(getName()).append("\n");
+                    if (type.equals("String[]")) {
+                        type = "java.lang.String";
                     }
+                    str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                } else {
+                    if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
+                        str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                    } else {
+                        str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                    }
+
                 }
             }
         }

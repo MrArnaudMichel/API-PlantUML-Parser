@@ -10,7 +10,7 @@ public class Contructor implements Type {
     private String visibility;
     private ArrayList<String[]> parameters = new ArrayList<String[]>();
 
-    public Contructor(Element e, String name){
+    public Contructor(Element e, String name) {
         setName(name);
         setVisibility(e.getModifiers().toString());
         String[] tab = new String[2];
@@ -21,25 +21,25 @@ public class Contructor implements Type {
         }
     }
 
-    public String strDraw(){
+    public String strDraw() {
         StringBuilder str = new StringBuilder();
         str.append(typeConstructor(getVisibility())).append("<<Create>>").append(" ").append(getName()).append("(");
         for (String[] parameter : parameters) {
             String type = parameter[1];
-            if (type.equals("int")){
+            if (type.equals("int")) {
                 type = "Integer";
-            }else if (type.equals("boolean")) {
+            } else if (type.equals("boolean")) {
                 type = "Boolean";
-            }else if (type.equals("float")) {
+            } else if (type.equals("float")) {
                 type = "Float";
-            }else if (type.equals("double")) {
+            } else if (type.equals("double")) {
                 type = "Double";
-            }else if (type.charAt(type.length() - 1) == '>') {
+            } else if (type.charAt(type.length() - 1) == '>') {
                 type = type.substring(0, type.length() - 1);
                 type += "[*]";
             }
             str.append(parameter[0]).append(" : ").append(type);
-            if (parameters.indexOf(parameter) != parameters.size() - 1){
+            if (parameters.indexOf(parameter) != parameters.size() - 1) {
                 str.append(", ");
             }
         }
@@ -47,13 +47,12 @@ public class Contructor implements Type {
         return str.toString();
     }
 
-    private String typeConstructor(String visibility){
-        if (this.isPublic(visibility)){
+    private String typeConstructor(String visibility) {
+        if (this.isPublic(visibility)) {
             return "+";
-        }
-        else if (this.isPrivate(visibility)){
+        } else if (this.isPrivate(visibility)) {
             return "-";
-        } else if (this.isProtected(visibility)){
+        } else if (this.isProtected(visibility)) {
             return "#";
         }
         return "";

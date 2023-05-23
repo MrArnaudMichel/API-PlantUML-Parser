@@ -1,6 +1,8 @@
 package pumlFromJava;
 
-import pumlFromJava.classes.*;
+import pumlFromJava.classes.Classe;
+import pumlFromJava.classes.Enumerations;
+import pumlFromJava.classes.Interface;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,33 +25,38 @@ public class PumlWriter {
     }
 
 
-    public static void fillPuml(Package pumldiagram, String fileName, String choixDC) throws IOException {
+    public static void fillPuml(Package pumldiagram, String fileName, SaveOption saveOption) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         writeEntete(writer);
 
-        drawDC(pumldiagram, writer, choixDC);
+        drawDC(pumldiagram, writer, saveOption);
         writeFin(writer);
     }
 
-    private static void drawDC(Package pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
+    private static void drawDC(Package pumldiagram, BufferedWriter writer, SaveOption saveOption) throws IOException {
+        writer.write("package " + pumldiagram.getName() + " {\n");
         for (Classe classe : pumldiagram.getClasses()) {
-            writer.write(classe.strDrawDiagram(choixDC));
+            writer.write(classe.strDrawDiagram(saveOption));
             writer.write("\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {
-            writer.write(inter.strDraw(choixDC));
+            writer.write(inter.strDraw(saveOption));
             writer.write("\n");
         }
         for (Enumerations enumeration : pumldiagram.getEnumerations()) {
             writer.write(enumeration.strDraw());
             writer.write("\n");
         }
-        drawLink(pumldiagram, writer, choixDC);
+        for (Package package1 : pumldiagram.getPackages()) {
+            drawDC(package1, writer, saveOption);
+        }
+        drawLink(pumldiagram, writer, saveOption);
+        writer.write("}\n");
     }
 
-    private static void drawLink(Package pumldiagram, BufferedWriter writer, String choixDC) throws IOException {
+    private static void drawLink(Package pumldiagram, BufferedWriter writer, SaveOption saveOption) throws IOException {
         for (Classe classe : pumldiagram.getClasses()) {
-            writer.write(classe.strRelation(choixDC));
+            writer.write(classe.strRelation(saveOption));
             writer.write("\n");
         }
         for (Interface inter : pumldiagram.getInterfaces()) {

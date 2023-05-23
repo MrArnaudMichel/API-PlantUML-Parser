@@ -9,23 +9,18 @@ public class CreateFile {
 
     private String outFileName = null;
     private String outFilePath = null;
+
     public String creationFichier() throws IOException {
         System.out.println("outFileName = " + outFileName);
         System.out.println("outFilePath = " + outFilePath);
-        if (outFileName == null)
-        {
+        if (outFileName == null) {
             outFileName = DEFAULT_NAME;
-        }
-        else if (!outFileName.endsWith(".puml"))
-        {
+        } else if (!outFileName.endsWith(".puml")) {
             outFileName += ".puml";
         }
-        if (outFilePath == null)
-        {
+        if (outFilePath == null) {
             outFilePath = DEFAULT_PATH;
-        }
-        else if (!outFilePath.endsWith("/"))
-        {
+        } else if (!outFilePath.endsWith("/")) {
             outFilePath += "/";
         }
         String out = outFilePath + outFileName;
@@ -34,8 +29,7 @@ public class CreateFile {
         return out;
     }
 
-    public void createFile(String fileName)
-    {
+    public void createFile(String fileName) {
         try {
             File myObj = new File(fileName);
             if (myObj.createNewFile()) {

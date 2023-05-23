@@ -9,14 +9,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Package {
-    private ArrayList<Classe> classes=new ArrayList<Classe>();
-    private ArrayList<Interface> interfaces  = new ArrayList<Interface>();
+    private String name;
+    private ArrayList<Classe> classes = new ArrayList<Classe>();
+    private ArrayList<Interface> interfaces = new ArrayList<Interface>();
     private ArrayList<Enumerations> enumerations = new ArrayList<Enumerations>();
     private ArrayList<Package> packages = new ArrayList<Package>();
 
-    public Package(){}
+    public Package() {
+    }
 
     public Package(Element element) {
+        setName(element.getSimpleName().toString());
         for (Element enclosedElement : element.getEnclosedElements()) {
             if (Objects.equals(enclosedElement.getKind().toString(), "ENUM")) {
                 this.addEnumeration(new Enumerations(enclosedElement));
@@ -24,8 +27,7 @@ public class Package {
                 this.addClasse(new Classe(enclosedElement));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
                 this.addInterface(new Interface(enclosedElement));
-            }
-            else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
+            } else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
                 this.addPackage(new Package(enclosedElement));
             }
         }
@@ -78,5 +80,13 @@ public class Package {
 
     public void addPackage(Package package1) {
         this.packages.add(package1);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

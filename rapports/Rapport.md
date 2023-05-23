@@ -86,7 +86,7 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 #### Notes d'amélioration
 - L'implémentation récursive des packages n'est pas encore présente. Nous ferons cela la semaine prochaine.
 - Rajouter une option pour définir le type String comme un type primitif.
-- Rajouter plusieurs options pour mettre/retirer les associations, les constructeurs, les méthodes, les attributs, les types primitifs, les types non-primitifs, les classes, les interfaces, les énumérations, les packages, les extends, les implements, les associations vers les types non-primitifs, les associations vers les types primitifs.
+- Rajouter plusieurs options pour mettre/retirer les associations, les constructeurs, les méthodes, les attributs, les types primitifs, les types non-primitifs, les classes, les interfaces, les énumérations, les packages, les extends, les implements.
 - (Vérifier possibilité) Rajouter les <<use>>.
 
 ---

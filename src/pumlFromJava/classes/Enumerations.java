@@ -8,7 +8,7 @@ public class Enumerations {
     private ArrayList<String> attributes = new ArrayList<String>();
     private String namePackage;
 
-    public Enumerations(Element element){
+    public Enumerations(Element element) {
         for (Element e : element.getEnclosedElements()) {
             if (e.getKind().isField()) {
                 attributes.add(e.getSimpleName().toString());
@@ -18,9 +18,9 @@ public class Enumerations {
         setNamePackage(element.getEnclosingElement().getSimpleName().toString());
     }
 
-    public String strDraw(){
+    public String strDraw() {
         StringBuilder str = new StringBuilder();
-        str.append("enum ").append(".").append(getName()).append("<<enumeration>>").append(" {\n");
+        str.append("enum ").append(getName()).append("<<enumeration>>").append(" {\n");
         for (String attribut : attributes) {
             str.append("\t").append(attribut).append("\n");
         }
