@@ -92,3 +92,19 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 
 ---
 
+### Semaine 4 : Production d'un premier DCC
+
+#### Objectif
+- Produire un DCC sans les associations.
+- Ajouter au doclet une option --dca pour demander la production du DCA .
+- Par défaut, le diagramme produit sera le DCC.
+
+#### Rendus
+- DCA et DCC API pumlFromJava mis à jour
+- sources des classes
+- rapport hebdomadaire
+
+#### Bilan de la semaine
+- Nous avons finis la gestion des packages. Pour cela nous avons modifié nos classes afin d'avoir une classe Package. Cela permet d'avoir des packages dans des packages.
+- Nous avons aussi ajouté les associations vers les packages. 
+- Nous avons également rajouté l'option --STR qui permet de considérer le type String comme un type primitif.
