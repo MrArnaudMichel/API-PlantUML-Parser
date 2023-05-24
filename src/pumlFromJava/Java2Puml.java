@@ -1,7 +1,11 @@
 package pumlFromJava;
 
+import jdk.jfr.Description;
+
 import java.util.spi.ToolProvider;
 
+@Description("" +
+        "use: PumlDoclet;")
 public class Java2Puml {
 
     public static void main(String[] args) {
@@ -25,8 +29,8 @@ public class Java2Puml {
             "  --constructor               Deactivates constructors.\n" +
             "  --method                    Deactivates methods.\n" +
             "  --field                     Deactivates attributes.\n" +
-            "  --drawprimitive             Deactivates primitive types.\n" +
-            "  --unprimitive               Deactivates non-primitive types.\n" +
+            "  --primitive             Deactivates primitive types.\n" +
+            "  --UnPrimitive               Deactivates non-primitive types.\n" +
             "  --extends                   Deactivates extends.\n" +
             "  --implements                Deactivates implements.\n" +
             "  --help                      Print a synopsis of nonstandard options and exit.\n");

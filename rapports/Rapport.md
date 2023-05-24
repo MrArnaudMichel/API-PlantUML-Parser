@@ -59,7 +59,7 @@ __Pour toutes nos options, il faut deux tirets,__ car nous voulons les séparer 
 - Les instances sont aussi créé dans le constructeur de l'instance. Par exemple pour créer une classe il faut faire Classe(element).
 - Ajout de la classe CreateFic qui permet de créer le fichier. Avant tout était dans la même classe. Le puml est maintenant généré également dans la classe respective du nom de l'instance. Par exemple le code pour générer le puml d'une classe est généré dans l'objet.
 - Nous avons ajouté les classes et les attributs de type primitif. Nous avons aussi terminé le fait de mettre les fonctions avec leur visibilité. Nous pouvons aussi afficher tous les attributs quelques soit leurs types. Nous n'avons pas considéré le type String comme un type primitif, car il est un objet. Nous avons aussi ajouté les classes, les interfaces et les enumeration. Les constructeurs sont également présents.
-- L'option --help a été ajouté pour afficher l'aide. Nous avons aussi ajouté les options --out et --d. Pour afficher tout le diagramme, il faut enlever l'option --DCA.
+- L'option --help a été ajouté pour afficher l'aide. Nous avons aussi ajouté les options --out et --d. Pour afficher tout le diagramme, il faut enlever l'option --dca.
 
 #### Notes d'amélioration
 Nous pourrons changer les types qui sont affichés sous cette forme: jdk.javadoc.doclet.Doclet.Option.
@@ -105,6 +105,8 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 - rapport hebdomadaire
 
 #### Bilan de la semaine
-- Nous avons finis la gestion des packages. Pour cela nous avons modifié nos classes afin d'avoir une classe Package. Cela permet d'avoir des packages dans des packages.
+- Nous avons finis la gestion des packages. Pour cela, nous avons modifié nos classes afin d'avoir une classe Package. Cela permet d'avoir des packages dans des packages.
 - Nous avons aussi ajouté les associations vers les packages. 
-- Nous avons également rajouté l'option --STR qui permet de considérer le type String comme un type primitif.
+- Nous avons également rajouté l'option --str qui permet de considérer le type String comme un type primitif.
+- Nous avons aussi rajouté toutes les options de SaveOption qui permettre une plus grande flexibilité de l'API dans la création du diagram.
+- Il est également possible de rajouter des descriptions aux classes tel que 'use' pour spécifier toutes les classes que la classe use et 'author' pour spécifier les auteurs de la classe. Il faut mettre un ';' entre chaque option types et ',' entre chaque valeur.

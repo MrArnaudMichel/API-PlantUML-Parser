@@ -6,7 +6,6 @@ public class SaveOption {
     public boolean association = true;
     public boolean constructor = true;
     public boolean method = true;
-    public boolean field = true;
     public boolean drawPrimitive = true;
     public boolean drawUnPrimitive = true;
     public boolean drawExtends = true;
@@ -53,14 +52,6 @@ public class SaveOption {
 
     public void setMethod(boolean method) {
         this.method = method;
-    }
-
-    public boolean getField() {
-        return field;
-    }
-
-    public void setField(boolean field) {
-        this.field = field;
     }
 
     public boolean getDrawPrimitive() {

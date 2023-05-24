@@ -19,8 +19,10 @@ public class Attributs implements Type {
             return writeType() + " " + name + " : String[*]";
         }else if (type.toString().equals("java.lang.String")){
             return writeType() + " " + name + " : String";
+        }else if (type.toString().equals("java.util.ArrayList<java.lang.String>")) {
+            return writeType() + " " + name + " : String[*]";
         }
-        return writeType() + " " + name + " : " + type.toString();
+        return writeType() + " " + name + " : " + Methode.setArray(type.toString());
     }
 
     private String writeType() {

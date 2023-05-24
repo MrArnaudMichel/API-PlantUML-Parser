@@ -21,14 +21,15 @@ public class Methode implements Type {
         String[] tab = new String[2];
         for (VariableElement parameter : ((ExecutableElement) e).getParameters()) {
             tab[0] = parameter.getSimpleName().toString();
-            tab[1] = setArray(parameter.asType().toString().split("\\.")[parameter.asType().toString().split("\\.").length - 1]);
+            tab[1] = setArray(parameter.asType().toString());
             parameters.add(tab);
         }
         //setIsOverride(e.getAnnotation(Override.class));
 
     }
 
-    public String setArray(String type) {
+    public static String setArray(String type) {
+        type = type.split("\\.")[type.split("\\.").length - 1];
         if (type.contains(")")) {
             type = type.split("\\)")[1];
             if (type.equals("void")) {

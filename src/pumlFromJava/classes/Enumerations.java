@@ -23,7 +23,7 @@ public class Enumerations {
     public String strDraw(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("enum ").append(getName()).append("<<enumeration>>").append(" {\n");
-        if (saveOption.getField()) {
+        if (saveOption.getDrawPrimitive()) {
             for (String attribut : attributes) {
                 str.append("\t").append(attribut).append("\n");
             }

@@ -3,6 +3,7 @@ package pumlFromJava;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
+import jdk.jfr.Description;
 import pumlFromJava.classes.Classe;
 import pumlFromJava.classes.Enumerations;
 import pumlFromJava.classes.Interface;
@@ -16,6 +17,7 @@ import java.util.Objects;
 import java.util.Set;
 
 
+@Description("use: PumlWriter, Option")
 public class PumlDoclet implements Doclet {
     private final CreateFile fileCreator = new CreateFile();
     private final SaveOption saveOption = new SaveOption();
@@ -90,11 +92,12 @@ public class PumlDoclet implements Doclet {
                 new Option("--field", false, "Deactivates attributes", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setField(false);
+                        saveOption.setDrawPrimitive(false);
+                        saveOption.setDrawUnPrimitive(false);
                         return true;
                     }
                 },
-                new Option("--drawPrimitive", false, "Deactivates primitive types", "") {
+                new Option("--primitive", false, "Deactivates primitive types", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
                         saveOption.setDrawPrimitive(false);
@@ -136,7 +139,7 @@ public class PumlDoclet implements Doclet {
                                         "  --constructor               Deactivates constructors.\n" +
                                         "  --method                    Deactivates methods.\n" +
                                         "  --field                     Deactivates attributes.\n" +
-                                        "  --drawPrimitive             Deactivates primitive types.\n" +
+                                        "  --primitive             Deactivates primitive types.\n" +
                                         "  --UnPrimitive               Deactivates non-primitive types.\n" +
                                         "  --extends                   Deactivates extends.\n" +
                                         "  --implements                Deactivates implements.\n" +

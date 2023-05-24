@@ -1,0 +1,138 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package pumlFromJava {
+class CreateFile {
+	+ {static} DEFAULT_NAME : String
+	+ {static} DEFAULT_PATH : String
+	- outFileName : String
+	- outFilePath : String
+}
+
+class SaveOption {
+	+ typeDiagram : String
+	+ strPrimitive : boolean
+	+ association : boolean
+	+ constructor : boolean
+	+ method : boolean
+	+ drawPrimitive : boolean
+	+ drawUnPrimitive : boolean
+	+ drawExtends : boolean
+	+ drawImplements : boolean
+}
+
+class Package {
+	- name : String
+}
+
+class PumlWriter {
+}
+
+class FirstDoclet {
+}
+
+class PumlDoclet {
+}
+
+class Java2Puml {
+}
+
+class Option {
+	- name : String
+	- hasArg : boolean
+	- description : String
+	- parameters : String
+}
+
+package classes {
+class Contructor {
+	- name : String
+	- visibility : String
+	- parameters : String[*]
+}
+
+class Instance {
+	- name : String
+	- extendsClasse : String
+	- namePackage : String
+}
+
+class Enumerations {
+	- name : String
+	- attributes : String[*]
+	- namePackage : String
+}
+
+class Interface {
+}
+
+class Methode {
+	- parameters : String[*]
+	- name : String
+	- returnType : String
+	- visibility : String
+	- isOverride : String
+}
+
+class Attributs {
+	- name : String
+	- visibility : String
+}
+
+class Classe <<author: Arnaud Benjamin >> {
+	- usedClasses : String[*]
+	- author : String[*]
+}
+
+interface Type<<interface>> {
+}
+
+Type <|.. Contructor
+
+Methode" [*] \n methods" <--* Instance
+TypeMirror" [*] \n implementsInterface" <--* Instance
+
+
+Instance <|-- Interface
+
+Type <|.. Methode
+
+Type <|.. Attributs
+TypeMirror" 1 \n type" <--* Attributs
+
+Instance <|-- Classe
+Type <|.. Classe
+Attributs" [*] \n attributes" <--* Classe
+Contructor" [*] \n constructors" <--* Classe
+Classe ..>  "<<use>>" SaveOption
+
+
+}
+
+
+Classe" [*] \n classes" <--* Package
+Interface" [*] \n interfaces" <--* Package
+Enumerations" [*] \n enumerations" <--* Package
+Package" [*] \n packages" <--* Package
+
+
+Doclet <|.. FirstDoclet
+
+Doclet <|.. PumlDoclet
+CreateFile" 1 \n fileCreator" <--* PumlDoclet
+SaveOption" 1 \n saveOption" <--* PumlDoclet
+Package" 1 \n pumlDiagram" <--* PumlDoclet
+PumlDoclet ..>  "<<use>>" PumlWriter
+PumlDoclet ..>  "<<use>>" Option
+
+Java2Puml ..>  "<<use>>" PumlDoclet
+
+Option <|.. Option
+
+}
+
+@enduml
