@@ -6,8 +6,43 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import java.util.Objects;
 
+/**
+ * Classe Interface
+ * <p>
+ *     Classe qui permet de créer une interface
+ *     d'une classe
+ *     <br>
+ *     Elle possède les méthodes :
+ *     <ul>
+ *         <li>strDraw</li>
+ *         <li>getName</li>
+ *         <li>setName</li>
+ *         <li>getNamePackage</li>
+ *         <li>setNamePackage</li>
+ *         <li>getMethods</li>
+ *         <li>setMethods</li>
+ *         <li>getExtendsClasse</li>
+ *         <li>setExtendsClasse</li>
+ *         <li>getImplementsInterface</li>
+ *         <li>setImplementsInterface</li>
+ *    </ul>
+ *    <br>
+ *    Elle possède les attributs :
+ *    <ul>
+ *        <li>name</li>
+ *        <li>methods</li>
+ *        <li>extendsClasse</li>
+ *        <li>implementsInterface</li>
+ *        <li>namePackage</li>
+ *   </ul>
+ */
 public class Interface extends Instance {
 
+
+    /**
+     * Constructeur de la classe Interface
+     * @param element
+     */
     public Interface(Element element) {
         for (Element e : element.getEnclosedElements()) {
             if (e.getKind().toString().equals("METHOD")) {
@@ -20,6 +55,11 @@ public class Interface extends Instance {
         setNamePackage(element.getEnclosingElement().getSimpleName().toString());
     }
 
+    /**
+     *
+     * @param saveOption SaveOption
+     * @return String
+     */
     public String strDraw(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("interface ").append(getName()).append("<<interface>>").append(" {\n");
@@ -34,6 +74,11 @@ public class Interface extends Instance {
         return str.toString();
     }
 
+    /**
+     *
+     * @param saveOption SaveOption
+     * @return String
+     */
     public String strRelation(SaveOption saveOption) {
         if (!saveOption.getAssociation() && !saveOption.getDrawExtends()) {
             return "";

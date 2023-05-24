@@ -5,6 +5,7 @@ import pumlFromJava.SaveOption;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -40,22 +41,24 @@ import java.util.Objects;
  *     <li>usedClasses</li>
  *     <li>author</li>
  * </ul>
+ * @tag test
  */
 @Description(
         "use: SaveOption;" +
         "author: Arnaud, Benjamin;"
 )
 public class Classe extends Instance implements Type {
-    private ArrayList<Attributs> attributes = new ArrayList<Attributs>();
-    private ArrayList<Contructor> constructors = new ArrayList<Contructor>();
+    private final ArrayList<Attributs> attributes = new ArrayList<Attributs>();
+    private final ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
-    private ArrayList<String> usedClasses = new ArrayList<String>();
-    private ArrayList<String> author = new ArrayList<String>();
+    private final ArrayList<String> usedClasses = new ArrayList<String>();
+    private final ArrayList<String> author = new ArrayList<String>();
 
     /**
      * @param element Element
      */
     public Classe(Element element) {
+
         try {
             String[] split = element.getAnnotation(Description.class).toString().split(";");
             for (String s : split) {
@@ -109,6 +112,7 @@ public class Classe extends Instance implements Type {
      * @param saveOption SaveOption
      * @return String
      */
+
     public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName());
