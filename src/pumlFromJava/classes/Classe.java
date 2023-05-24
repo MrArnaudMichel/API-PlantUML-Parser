@@ -12,7 +12,7 @@ import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Objects;
 
-@Description("" +
+@Description(
         "use: SaveOption;" +
         "author: Arnaud, Benjamin;"
 )
@@ -121,7 +121,6 @@ public class Classe extends Instance implements Type {
             if (saveOption.getAssociation() && saveOption.getDrawUnPrimitive()) {
                 for (Attributs attribut : attributes) {
                     if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
-                        //System.out.println(attribut.getType().toString());
                         if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
                             String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
                             if (type.equals("String[]")) {
@@ -144,44 +143,5 @@ public class Classe extends Instance implements Type {
             }
         }
         return str.toString();
-    }
-
-    public ArrayList<Contructor> getConstructors() {
-        return constructors;
-    }
-
-    public void setConstructors(ArrayList<Contructor> constructors) {
-        this.constructors = constructors;
-    }
-
-    public ArrayList<Attributs> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(ArrayList<Attributs> attributes) {
-        this.attributes = attributes;
-    }
-
-    public ArrayList<String> getUsedClasses() {
-        return usedClasses;
-    }
-
-    public void addUsedClasses(String usedClass) {
-        this.usedClasses.add(usedClass);
-    }
-
-    public void setUsedClasses(ArrayList<String> usedClasses) {
-        this.usedClasses = usedClasses;
-    }
-
-    public void addAuthor(String author) {
-        this.author.add(author);
-    }
-    public ArrayList<String> getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(ArrayList<String> author) {
-        this.author = author;
     }
 }

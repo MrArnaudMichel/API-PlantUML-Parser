@@ -1,5 +1,6 @@
 package pumlFromJava.classes;
 
+import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
 
 import javax.lang.model.element.Element;
