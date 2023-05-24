@@ -4,14 +4,43 @@ import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
 
 import javax.lang.model.element.Element;
-import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
-import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Classe qui permet de créer une classe à partir d'un élément
+ * <br>
+ * Elle implémente l'interface Type
+ * <br>
+ * Elle possède les méthodes :
+ * <ul>
+ *     <li>strDraw</li>
+ *     <li>strDrawAttributs</li>
+ *     <li>strDrawConstructors</li>
+ *     <li>strDrawMethods</li>
+ *     <li>writeType</li>
+ *     <li>getName</li>
+ *     <li>getType</li>
+ *     <li>getVisibility</li>
+ *     <li>setName</li>
+ *     <li>setType</li>
+ *     <li>setVisibility</li>
+ * </ul>
+ * <br>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>name</li>
+ *     <li>type</li>
+ *     <li>visibility</li>
+ *     <li>attributes</li>
+ *     <li>constructors</li>
+ *     <li>methods</li>
+ *     <li>usedClasses</li>
+ *     <li>author</li>
+ * </ul>
+ */
 @Description(
         "use: SaveOption;" +
         "author: Arnaud, Benjamin;"
@@ -23,6 +52,9 @@ public class Classe extends Instance implements Type {
     private ArrayList<String> usedClasses = new ArrayList<String>();
     private ArrayList<String> author = new ArrayList<String>();
 
+    /**
+     * @param element Element
+     */
     public Classe(Element element) {
         try {
             String[] split = element.getAnnotation(Description.class).toString().split(";");
@@ -72,6 +104,11 @@ public class Classe extends Instance implements Type {
         setNamePackage(packageName.toString());
     }
 
+    /**
+     *
+     * @param saveOption SaveOption
+     * @return String
+     */
     public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName());
@@ -107,6 +144,11 @@ public class Classe extends Instance implements Type {
     }
 
 
+    /**
+     *
+     * @param saveOption SaveOption
+     * @return String
+     */
     public String strRelation(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         if (saveOption.getAssociation()){
