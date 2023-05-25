@@ -43,7 +43,6 @@ import java.util.Objects;
  * @tag test
  */
 @Description(
-        "use: SaveOption;" +
         "author: Arnaud, Benjamin;"
 )
 public class Classe extends Instance implements Type {
@@ -114,12 +113,17 @@ public class Classe extends Instance implements Type {
     public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName());
-        if (author.size() < 0) {
-            str.append(" <<author: ");
-            for (String s : author) {
-                str.append(s).append(" ");
+        if (author.size() > 0){
+            str.append("<< ");
+        }
+        for (String s : author) {
+            str.append(s);
+            if (author.indexOf(s) != author.size() - 1){
+                str.append(", ");
             }
-            str.append(">>");
+            else {
+                str.append(" >>");
+            }
         }
         str.append(" {\n");
         if (saveOption.getDrawPrimitive()) {
@@ -197,7 +201,6 @@ public class Classe extends Instance implements Type {
     }
 
     private void drawUse() {
-        // Fonction qui regarde tout les types de parametres et tout les types de retour des methodes et des constructeurs et si aucun attribut n'est de ce type alors on ajoute le type dans la liste des usedClasses
         ArrayList<String> typeMethod = new ArrayList<>();
         ArrayList<String> primitive = new ArrayList<>(){
             {
