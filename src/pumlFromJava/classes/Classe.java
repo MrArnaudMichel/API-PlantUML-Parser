@@ -1,11 +1,15 @@
 package pumlFromJava.classes;
 
+import com.sun.source.util.DocTrees;
 import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
 
+import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -46,6 +50,9 @@ import java.util.Objects;
         "author: Arnaud, Benjamin;"
 )
 public class Classe extends Instance implements Type {
+    /**
+     * @pumlDiagram contient
+     */
     private final ArrayList<Attributs> attributes = new ArrayList<Attributs>();
     private final ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
@@ -62,17 +69,7 @@ public class Classe extends Instance implements Type {
         try {
             String[] split = element.getAnnotation(Description.class).toString().split(";");
             for (String s : split) {
-                if (s.contains("use:")) {
-                    String[] split1 = s.split(":");
-                    String[] split2 = split1[1].split(",");
-                    for (String s1 : split2) {
-                        if (s1.trim().endsWith(")")) {
-                            usedClasses.add(s1.trim().substring(0, s1.trim().length() - 2));
-                        } else {
-                            usedClasses.add(s1.trim());
-                        }
-                    }
-                } else if (s.contains("author:")) {
+                if (s.contains("author:")) {
                     String[] split1 = s.split(":");
                     String[] split2 = split1[1].split(",");
                     for (String s1 : split2) {
