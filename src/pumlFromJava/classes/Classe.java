@@ -167,7 +167,7 @@ public class Classe extends Instance implements Type {
                     usedClasses.remove(type.toString().split("\\.")[type.toString().split("\\.").length - 1]);
                 }
             }
-            if (saveOption.getAssociation() && saveOption.getDrawUnPrimitive()) {
+            if (!saveOption.getTypeDiagram().equals("DCA") && saveOption.getAssociation() && saveOption.getDrawUnPrimitive()) {
                 for (Attributs attribut : attributes) {
                     if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                         if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
@@ -189,9 +189,9 @@ public class Classe extends Instance implements Type {
                         }
                     }
                 }
-            }
-            for (String usedClass : usedClasses) {
-                str.append(getName()).append(" ..> ").append(" \"<<use>>\" ").append(usedClass).append("\n");
+                for (String usedClass : usedClasses) {
+                    str.append(getName()).append(" ..> ").append(" \"<<use>>\" ").append(usedClass).append("\n");
+                }
             }
         }
         return str.toString();
