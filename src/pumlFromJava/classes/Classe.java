@@ -153,18 +153,20 @@ public class Classe extends Instance implements Type {
      * @return String
      */
     public String strRelation(SaveOption saveOption) {
+        drawUse();
         StringBuilder str = new StringBuilder();
         if (saveOption.getAssociation()) {
             if (saveOption.getDrawExtends() && !Objects.equals(getExtendsClasse(), "Object")) {
                 str.append(getExtendsClasse()).append(" <|-- ").append(getName()).append("\n");
+                usedClasses.remove(getExtendsClasse());
             }
             if (saveOption.getDrawImplements()) {
                 for (TypeMirror type : getImplementsInterface()) {
                     str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
+                    usedClasses.remove(type.toString().split("\\.")[type.toString().split("\\.").length - 1]);
                 }
             }
             if (saveOption.getAssociation() && saveOption.getDrawUnPrimitive()) {
-                drawUse();
                 for (Attributs attribut : attributes) {
                     if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                         if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
