@@ -17,16 +17,53 @@ import java.util.Objects;
 import java.util.Set;
 
 
+/**
+ * Classe PumlDoclet
+ * <p>
+ *     Classe qui permet de créer un doclet
+ * </p>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>fileCreator</li>
+ *     <li>saveOption</li>
+ *     <li>pumlDiagram</li>
+ * </ul>
+ * <br>
+ *    Elle possède les méthodes :
+ *    <ul>
+ *        <li>init</li>
+ *        <li>getName</li>
+ *        <li>getSupportedOptions</li>
+ *        <li>getSourceVersion</li>
+ *        <li>run</li>
+ *        <li>dumpElement</li>
+ *    </ul>
+ */
 @Description("use: PumlWriter, Option")
 public class PumlDoclet implements Doclet {
     private final CreateFile fileCreator = new CreateFile();
     private final SaveOption saveOption = new SaveOption();
     private final Package pumlDiagram = new Package();
 
+    /**
+     * Méthode init
+     * <p>
+     *     Méthode qui permet d'initialiser le doclet
+     * </p>
+     * @param locale Locale
+     * @param reporter Reporter
+     */
     @Override
     public void init(Locale locale, Reporter reporter) {
     }
 
+    /**
+     * Méthode getName
+     * <p>
+     *     Méthode qui permet de retourner le nom du doclet
+     * </p>
+     * @return String
+     */
     @Override
     public String getName() {
         // For this doclet, the name of the doclet is just the
@@ -36,6 +73,13 @@ public class PumlDoclet implements Doclet {
         return getClass().getSimpleName();
     }
 
+    /**
+     * Méthode getSourceVersion
+     * <p>
+     *     Méthode qui permet de retourner la version de la source
+     * </p>
+     * @return SourceVersion
+     */
     @Override
     public Set<? extends Option> getSupportedOptions() {
         return Set.of(
@@ -150,6 +194,13 @@ public class PumlDoclet implements Doclet {
         );
     }
 
+    /**
+     * Méthode getSourceVersion
+     * <p>
+     *     Méthode qui permet de retourner la version de la source
+     * </p>
+     * @return SourceVersion
+     */
     @Override
     public SourceVersion getSupportedSourceVersion() {
         // This doclet supports all source versions.
@@ -160,6 +211,14 @@ public class PumlDoclet implements Doclet {
         return SourceVersion.latest();
     }
 
+    /**
+     * Méthode run
+     * <p>
+     *     Méthode qui permet de lancer le programme
+     * </p>
+     * @param environment
+     * @return boolean
+     */
     @Override
     public boolean run(DocletEnvironment environment) {
         String out = null;
@@ -185,6 +244,13 @@ public class PumlDoclet implements Doclet {
         return true;
     }
 
+    /**
+     * Méthode dumpElement
+     * <p>
+     *     Méthode qui permet de récupérer les éléments du diagramme
+     * </p>
+     * @param element
+     */
     private void dumpElement(Element element) {
         for (Element enclosedElement : element.getEnclosedElements()) {
             if (Objects.equals(enclosedElement.getKind().toString(), "ENUM")) {
@@ -199,6 +265,17 @@ public class PumlDoclet implements Doclet {
         }
     }
 
+    /**
+     * Classe abstraite Option
+     * <p>
+     *     Classe qui permet de créer des options
+     *     pour le programme
+     *     Elle hérite de Doclet.Option
+     * </p>
+     * @see Doclet.Option
+     * @see Option
+     * @see DocletEnvironment
+     */
     abstract static class Option implements Doclet.Option {
         private final String name;
         private final boolean hasArg;

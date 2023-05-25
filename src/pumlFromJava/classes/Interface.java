@@ -56,7 +56,7 @@ public class Interface extends Instance {
     }
 
     /**
-     *
+     * Constructeur de la classe Interface
      * @param saveOption SaveOption
      * @return String
      */
@@ -75,7 +75,7 @@ public class Interface extends Instance {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer le nom de l'interface
      * @param saveOption SaveOption
      * @return String
      */

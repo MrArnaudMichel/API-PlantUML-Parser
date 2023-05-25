@@ -38,7 +38,7 @@ public class Contructor implements Type {
     private ArrayList<String[]> parameters = new ArrayList<String[]>();
 
     /**
-     *
+     * Constructeur de la classe Contructor
      * @param e Element
      * @param name String
      */
@@ -54,7 +54,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de dessiner le constructeur
      * @return String
      */
     public String strDraw() {
@@ -84,7 +84,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de définir le type du constructeur
      * @param visibility String
      * @return String
      */
@@ -100,7 +100,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer le nom du constructeur
      * @return String
      */
     public String getName() {
@@ -108,7 +108,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de définir le nom du constructeur
      * @param name String
      */
     public void setName(String name) {
@@ -116,7 +116,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer la visibilité du constructeur
      * @return String
      */
     public String getVisibility() {
@@ -124,7 +124,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de définir la visibilité du constructeur
      * @param visibility String
      */
     public void setVisibility(String visibility) {
@@ -132,7 +132,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer les paramètres du constructeur
      * @return ArrayList<String[]>
      */
     public ArrayList<String[]> getParameters() {
@@ -140,7 +140,7 @@ public class Contructor implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de définir les paramètres du constructeur
      * @param parameters ArrayList<String[]>
      */
     public void setParameters(ArrayList<String[]> parameters) {

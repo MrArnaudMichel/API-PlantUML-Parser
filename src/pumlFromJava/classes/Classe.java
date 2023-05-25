@@ -5,7 +5,6 @@ import pumlFromJava.SaveOption;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -55,6 +54,8 @@ public class Classe extends Instance implements Type {
     private final ArrayList<String> author = new ArrayList<String>();
 
     /**
+     * Constructeur de la classe Classe
+     *
      * @param element Element
      */
     public Classe(Element element) {
@@ -68,13 +69,11 @@ public class Classe extends Instance implements Type {
                     for (String s1 : split2) {
                         if (s1.trim().endsWith(")")) {
                             usedClasses.add(s1.trim().substring(0, s1.trim().length() - 2));
-                        }
-                        else {
+                        } else {
                             usedClasses.add(s1.trim());
                         }
                     }
-                }
-                else if (s.contains("author:")) {
+                } else if (s.contains("author:")) {
                     String[] split1 = s.split(":");
                     String[] split2 = split1[1].split(",");
                     for (String s1 : split2) {
@@ -82,8 +81,7 @@ public class Classe extends Instance implements Type {
                     }
                 }
             }
-        }
-        catch (NullPointerException ignored) {
+        } catch (NullPointerException ignored) {
         }
         setName(element.getSimpleName().toString());
         for (Element e : element.getEnclosedElements()) {
@@ -108,15 +106,15 @@ public class Classe extends Instance implements Type {
     }
 
     /**
+     * Méthode qui permet de dessiner une classe
      *
      * @param saveOption SaveOption
      * @return String
      */
-
     public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName());
-        if (author.size() > 0){
+        if (author.size() < 0) {
             str.append(" <<author: ");
             for (String s : author) {
                 str.append(s).append(" ");
@@ -124,7 +122,7 @@ public class Classe extends Instance implements Type {
             str.append(">>");
         }
         str.append(" {\n");
-        if (saveOption.getDrawPrimitive()){
+        if (saveOption.getDrawPrimitive()) {
             for (Attributs attribut : attributes) {
                 if (attribut.getType().getKind().isPrimitive() || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                     str.append("\t").append(attribut.strDrawAttributs()).append("\n");
@@ -137,7 +135,7 @@ public class Classe extends Instance implements Type {
                     str.append("\t").append(constructor.strDraw()).append("\n");
                 }
             }
-            if (saveOption.getMethod()){
+            if (saveOption.getMethod()) {
                 for (Methode methode : getMethods()) {
                     str.append("\t").append(methode.strDraw()).append("\n");
                 }
@@ -149,22 +147,24 @@ public class Classe extends Instance implements Type {
 
 
     /**
+     * Méthode qui permet de dessiner les attributs d'une classe
      *
      * @param saveOption SaveOption
      * @return String
      */
     public String strRelation(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
-        if (saveOption.getAssociation()){
+        if (saveOption.getAssociation()) {
             if (saveOption.getDrawExtends() && !Objects.equals(getExtendsClasse(), "Object")) {
                 str.append(getExtendsClasse()).append(" <|-- ").append(getName()).append("\n");
             }
-            if (saveOption.getDrawImplements()){
+            if (saveOption.getDrawImplements()) {
                 for (TypeMirror type : getImplementsInterface()) {
                     str.append(type.toString().split("\\.")[type.toString().split("\\.").length - 1]).append(" <|.. ").append(getName()).append("\n");
                 }
             }
             if (saveOption.getAssociation() && saveOption.getDrawUnPrimitive()) {
+                drawUse();
                 for (Attributs attribut : attributes) {
                     if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                         if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
@@ -173,11 +173,14 @@ public class Classe extends Instance implements Type {
                                 type = "java.lang.String";
                             }
                             str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                            usedClasses.remove(type);
                         } else {
                             if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
                                 str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                                usedClasses.remove("String");
                             } else {
                                 str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                                usedClasses.remove(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]);
                             }
 
                         }
@@ -189,5 +192,44 @@ public class Classe extends Instance implements Type {
             }
         }
         return str.toString();
+    }
+
+    private void drawUse() {
+        // Fonction qui regarde tout les types de parametres et tout les types de retour des methodes et des constructeurs et si aucun attribut n'est de ce type alors on ajoute le type dans la liste des usedClasses
+        ArrayList<String> typeMethod = new ArrayList<>();
+        ArrayList<String> primitive = new ArrayList<>(){
+            {
+                add("Integer");
+                add("Reel");
+                add("Boolean");
+                add("Char");
+                add("String");
+                add("boolean");
+            }
+        };
+        for (Methode methode: getMethods()){
+            if (!primitive.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !typeMethod.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !methode.getReturnType().equals("") && !methode.getReturnType().contains("String")){
+                typeMethod.add(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]);
+            }
+            for (String[] type: methode.getParameters()){
+                if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")){
+                    typeMethod.add(type[1].split("\\[")[type[1].split("\\.").length - 1]);
+                }
+            }
+        }
+        for (Contructor constructor: constructors){
+            for (String[] type: constructor.getParameters()){
+                if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")){
+                    typeMethod.add(type[1].split("\\[")[type[1].split("\\[").length - 1]);
+                }
+            }
+        }
+        for (String type:typeMethod){
+            if (type.equals("*]")){
+                typeMethod.remove(type);
+                break;
+            }
+        }
+        usedClasses.addAll(typeMethod);
     }
 }

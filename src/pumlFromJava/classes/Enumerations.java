@@ -37,6 +37,7 @@ public class Enumerations {
     private String namePackage;
 
     /**
+     * Constructeur de la classe Enumerations
      * @param element Element
      */
     public Enumerations(Element element) {
@@ -50,6 +51,7 @@ public class Enumerations {
     }
 
     /**
+     * Méthode qui permet de dessiner une énumération
      * @param saveOption SaveOption
      * @return String
      */
@@ -66,6 +68,7 @@ public class Enumerations {
     }
 
     /**
+     * Méthode qui permet de récupérer le nom de l'énumération
      * @return String
      */
     public String getName() {
@@ -73,6 +76,7 @@ public class Enumerations {
     }
 
     /**
+     * Procédure qui permet de modifier le nom de l'énumération
      * @param name String
      */
     public void setName(String name) {
@@ -80,6 +84,7 @@ public class Enumerations {
     }
 
     /**
+     * Méthode qui permet de récupérer le nom du package
      * @return ArrayList<String>
      */
     public ArrayList<String> getAttributes() {
@@ -87,6 +92,7 @@ public class Enumerations {
     }
 
     /**
+     * Procédure qui permet de modifier le nom du package
      * @param attributes ArrayList<String>
      */
     public void setAttributes(ArrayList<String> attributes) {
@@ -94,6 +100,7 @@ public class Enumerations {
     }
 
     /**
+     * Méthode qui permet de récupérer le nom du package
      * @return String
      */
     public String getNamePackage() {
@@ -101,6 +108,7 @@ public class Enumerations {
     }
 
     /**
+     * Procédure qui permet de modifier le nom du package
      * @param namePackage String
      */
     public void setNamePackage(String namePackage) {

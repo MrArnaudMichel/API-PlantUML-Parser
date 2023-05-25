@@ -19,7 +19,7 @@ package pumlFromJava.classes;
 public interface Type {
 
     /**
-     *
+     * Méthode qui permet de savoir si la méthode est public
      * @param parameters String
      * @return boolean
      */
@@ -28,7 +28,7 @@ public interface Type {
     }
 
     /**
-     *
+     * Méthode qui permet de savoir si la méthode est private
      * @param parameters String
      * @return boolean
      */
@@ -37,7 +37,7 @@ public interface Type {
     }
 
     /**
-     *
+     * Méthode qui permet de savoir si la méthode est protected
      * @param parameters String
      * @return boolean
      */
@@ -46,7 +46,7 @@ public interface Type {
     }
 
     /**
-     *
+     * Méthode qui permet de savoir si la méthode est abstract
      * @param parameters String
      * @return boolean
      */
@@ -55,7 +55,7 @@ public interface Type {
     }
 
     /**
-     *
+     * Méthode qui permet de savoir si la méthode est static
      * @param parameters String
      * @return boolean
      */
@@ -64,7 +64,7 @@ public interface Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer la visibilité
      * @return String
      */
     default String getVisibility() {

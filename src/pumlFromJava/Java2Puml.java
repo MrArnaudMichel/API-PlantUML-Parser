@@ -4,10 +4,31 @@ import jdk.jfr.Description;
 
 import java.util.spi.ToolProvider;
 
+/**
+ * Classe Java2Puml
+ * <p>
+ *     Classe qui permet de créer un fichier puml
+ *     à partir d'un package java
+ * </p>
+ * <br>
+ *    Elle possède les méthodes :
+ *    <ul>
+ *        <li>main</li>
+ *   </ul>
+ *   <br>
+ *   Elle possède les attributs :
+ *   <ul>
+ *       <li>toolProvider</li>
+ *   </ul>
+ */
 @Description("" +
         "use: PumlDoclet;")
 public class Java2Puml {
 
+    /**
+     * Méthode main
+     * @param args String[]
+     */
     public static void main(String[] args) {
         ToolProvider toolProvider = ToolProvider.findFirst("javadoc").get();
         System.out.println(toolProvider.name());
@@ -29,7 +50,7 @@ public class Java2Puml {
             "  --constructor               Deactivates constructors.\n" +
             "  --method                    Deactivates methods.\n" +
             "  --field                     Deactivates attributes.\n" +
-            "  --primitive             Deactivates primitive types.\n" +
+            "  --primitive                 Deactivates primitive types.\n" +
             "  --UnPrimitive               Deactivates non-primitive types.\n" +
             "  --extends                   Deactivates extends.\n" +
             "  --implements                Deactivates implements.\n" +

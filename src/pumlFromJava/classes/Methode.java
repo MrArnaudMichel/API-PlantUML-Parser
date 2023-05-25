@@ -44,7 +44,7 @@ public class Methode implements Type {
     private String isOverride;
 
     /**
-     *
+     * Constructeur de la classe Methode
      * @param e Element
      */
     public Methode(Element e) {
@@ -64,7 +64,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Constructeur de la classe Methode
      * @param type String
      * @return String
      */
@@ -92,7 +92,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de dessiner une méthode
      * @return String
      */
     public String strDraw() {
@@ -109,16 +109,11 @@ public class Methode implements Type {
             str.append(" : ");
             str.append(getReturnType());
         }
-        try {
-            System.out.println("yg");
-        }catch (Exception e){
-            System.out.println("yg");
-        }
         return str.toString();
     }
 
     /**
-     *
+     * Méthode qui permet de mettre le type de la méthode sous forme uml
      * @return String
      */
     private String writeType() {
@@ -139,7 +134,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet renvoie True si la méthode est Override
      * @return String
      */
     public String getIsOverride() {
@@ -147,7 +142,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de mettre la méthode Override
      * @param isOverride String
      */
     public void setIsOverride(String isOverride) {
@@ -155,7 +150,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer les parameters d'une méthode
      * @return String
      */
     public ArrayList<String[]> getParameters() {
@@ -163,7 +158,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer le nom d'une méthode
      * @return String
      */
     public String getName() {
@@ -171,7 +166,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Procédure qui permet de mettre le nom d'une méthode
      * @param name String
      */
     public void setName(String name) {
@@ -179,7 +174,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer le type de retour d'une méthode
      * @return String
      */
     public String getReturnType() {
@@ -187,7 +182,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Procédure qui permet de mettre le type de retour d'une méthode
      * @param returnType String
      */
     public void setReturnType(String returnType) {
@@ -195,7 +190,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de récupérer la visibilité d'une méthode
      * @return String
      */
     @Override
@@ -204,7 +199,7 @@ public class Methode implements Type {
     }
 
     /**
-     *
+     * Procédure qui permet de mettre la visibilité d'une méthode
      * @param visibility String
      */
     public void setVisibility(String visibility) {

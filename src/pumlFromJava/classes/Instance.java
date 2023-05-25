@@ -49,7 +49,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de récupérer le nom de l'instance
      * @return String
      */
     public String getName() {
@@ -57,7 +57,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de modifier le nom de l'instance
      * @param name String
      */
     public void setName(String name) {
@@ -66,7 +66,7 @@ public class Instance {
 
 
     /**
-     *
+     * Methode qui permet de récupérer les méthodes de l'instance
      * @return ArrayList<Methode>
      */
     public ArrayList<Methode> getMethods() {
@@ -74,7 +74,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de modifier les méthodes de l'instance
      * @param methods ArrayList<Methode>
      */
     public void setMethods(ArrayList<Methode> methods) {
@@ -82,7 +82,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de récupérer la classe dont l'instance hérite
      * @return String
      */
     public String getExtendsClasse() {
@@ -90,7 +90,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de modifier la classe dont l'instance hérite
      * @param extendsClasse String
      */
     public void setExtendsClasse(String extendsClasse) {
@@ -98,7 +98,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de récupérer les interfaces que l'instance implémente
      * @return List<? extends TypeMirror>
      */
     public List<? extends TypeMirror> getImplementsInterface() {
@@ -106,7 +106,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de modifier les interfaces que l'instance implémente
      * @param implementsInterface List<? extends TypeMirror>
      */
     public void setImplementsInterface(List<? extends TypeMirror> implementsInterface) {
@@ -114,7 +114,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de récupérer le nom du package de l'instance
      * @return String
      */
     public String getNamePackage() {
@@ -122,7 +122,7 @@ public class Instance {
     }
 
     /**
-     *
+     * Methode qui permet de modifier le nom du package de l'instance
      * @param namePackage String
      */
     public void setNamePackage(String namePackage) {

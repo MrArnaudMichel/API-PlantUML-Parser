@@ -3,6 +3,34 @@ package pumlFromJava;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Classe CreateFile
+ * <p>
+ *     Classe qui permet de créer un fichier
+ * </p>
+ * <br>
+ *    Elle possède les méthodes :
+ *    <ul>
+ *        <li>creationFichier</li>
+ *        <li>createFile</li>
+ *        <li>getOutFileName</li>
+ *        <li>setOutFileName</li>
+ *        <li>getOutFilePath</li>
+ *        <li>setOutFilePath</li>
+ *   </ul>
+ *   <br>
+ *   Elle possède les attributs :
+ *   <ul>
+ *       <li>outFileName</li>
+ *       <li>outFilePath</li>
+ *   </ul>
+ *   <br>
+ *   Elle possède les constantes :
+ *   <ul>
+ *       <li>DEFAULT_NAME</li>
+ *       <li>DEFAULT_PATH</li>
+ *  </ul>
+ */
 public class CreateFile {
     public static final String DEFAULT_NAME = "fichier";
     public static final String DEFAULT_PATH = "./";
@@ -10,6 +38,11 @@ public class CreateFile {
     private String outFileName = null;
     private String outFilePath = null;
 
+    /**
+     * Méthode qui permet de créer un fichier
+     * @return String
+     * @throws IOException IOException
+     */
     public String creationFichier() throws IOException {
         System.out.println("outFileName = " + outFileName);
         System.out.println("outFilePath = " + outFilePath);
@@ -29,6 +62,10 @@ public class CreateFile {
         return out;
     }
 
+    /**
+     * Méthode qui permet de créer un fichier
+     * @param fileName String
+     */
     public void createFile(String fileName) {
         try {
             File myObj = new File(fileName);
@@ -43,18 +80,34 @@ public class CreateFile {
         }
     }
 
+    /**
+     * Méthode qui permet de récupérer le nom du fichier
+     * @return String
+     */
     public String getOutFileName() {
         return outFileName;
     }
 
+    /**
+     * Méthode qui permet de modifier le nom du fichier
+     * @param outFileName String
+     */
     public void setOutFileName(String outFileName) {
         this.outFileName = outFileName;
     }
 
+    /**
+     * Méthode qui permet de récupérer le chemin du fichier
+     * @return String
+     */
     public String getOutFilePath() {
         return outFilePath;
     }
 
+    /**
+     * Méthode qui permet de modifier le chemin du fichier
+     * @param outFilePath String
+     */
     public void setOutFilePath(String outFilePath) {
         this.outFilePath = outFilePath;
     }

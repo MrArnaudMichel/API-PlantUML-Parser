@@ -19,9 +19,7 @@ import java.util.Set;
  * it is not limited to that purpose, and can run any user-supplied doclet,
  * which can use the Language Model API and Compiler Tree API to analyze the packages,
  * classes and files specified on the command line.
- */
-
-/**
+ * <br>
  * A minimal doclet that just prints out the names of the
  * selected elements.
  */

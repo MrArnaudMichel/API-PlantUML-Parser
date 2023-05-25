@@ -38,6 +38,7 @@ public class Attributs implements Type {
     private String visibility;
 
     /**
+     * Constructeur de la classe Attributs
      * @param element Element
      */
     public Attributs(Element element) {
@@ -47,6 +48,7 @@ public class Attributs implements Type {
     }
 
     /**
+     * Méthode qui permet de dessiner un attribut
      * @return String
      */
     public String strDrawAttributs() {
@@ -61,6 +63,7 @@ public class Attributs implements Type {
     }
 
     /**
+     * Méthode qui renvoie le type d'un attribut sous forme puml
      * @return String
      */
     private String writeType() {
@@ -81,7 +84,7 @@ public class Attributs implements Type {
     }
 
     /**
-     *
+     * Méthode qui renvoie le nom d'un attribut
      * @return String
      */
     public String getName() {
@@ -89,7 +92,7 @@ public class Attributs implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de modifier le nom d'un attribut
      * @param name String
      */
     public void setName(String name) {
@@ -97,7 +100,7 @@ public class Attributs implements Type {
     }
 
     /**
-     *
+     * Méthode qui renvoie le type d'un attribut
      * @return TypeMirror
      */
     public TypeMirror getType() {
@@ -105,7 +108,7 @@ public class Attributs implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de modifier le type d'un attribut
      * @param type TypeMirror
      */
     public void setType(TypeMirror type) {
@@ -113,7 +116,7 @@ public class Attributs implements Type {
     }
 
     /**
-     *
+     * Méthode qui renvoie la visibilité d'un attribut
      * @return String
      */
     public String getVisibility() {
@@ -121,7 +124,7 @@ public class Attributs implements Type {
     }
 
     /**
-     *
+     * Méthode qui permet de modifier la visibilité d'un attribut
      * @param visibility String
      */
     public void setVisibility(String visibility) {
