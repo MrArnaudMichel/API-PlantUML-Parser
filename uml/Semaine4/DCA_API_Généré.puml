@@ -1,0 +1,134 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package pumlFromJava {
+class CreateFile {
+	+ {static} DEFAULT_NAME : String
+	+ {static} DEFAULT_PATH : String
+	- outFileName : String
+	- outFilePath : String
+}
+
+class SaveOption {
+	+ typeDiagram : String
+	+ strPrimitive : boolean
+	+ association : boolean
+	+ constructor : boolean
+	+ method : boolean
+	+ drawPrimitive : boolean
+	+ drawUnPrimitive : boolean
+	+ drawExtends : boolean
+	+ drawImplements : boolean
+}
+
+class Package {
+	- name : String
+}
+
+class PumlWriter {
+}
+
+class FirstDoclet {
+}
+
+class PumlDoclet {
+}
+
+class Java2Puml {
+}
+
+class Option {
+	- name : String
+	- hasArg : boolean
+	- description : String
+	- parameters : String
+}
+
+package classes {
+class Contructor {
+	- name : String
+	- visibility : String
+	- parameters : String[*]
+}
+
+class Instance {
+	- name : String
+	- extendsClasse : String
+	- namePackage : String
+}
+
+class Enumerations {
+	- name : String
+	- attributes : String[*]
+	- namePackage : String
+}
+
+class Interface {
+}
+
+class Methode {
+	- parameters : String[*]
+	- name : String
+	- returnType : String
+	- visibility : String
+	- isOverride : String
+}
+
+class Attributs {
+	- name : String
+	- visibility : String
+}
+
+class Classe<< Arnaud, Benjamin >> {
+	- usedClasses : String[*]
+	- author : String[*]
+}
+
+interface Type<<interface>> {
+}
+
+Type <|.. Contructor
+
+Methode" [*] \n " <--* Instance
+TypeMirror" [*] \n " <--* Instance
+
+
+Instance <|-- Interface
+
+Type <|.. Methode
+
+Type <|.. Attributs
+TypeMirror" 1 \n " <--* Attributs
+
+Instance <|-- Classe
+Type <|.. Classe
+Attributs" [*] \n " <--* Classe
+Contructor" [*] \n " <--* Classe
+
+
+}
+
+
+Classe" [*] \n " <--* Package
+Interface" [*] \n " <--* Package
+Enumerations" [*] \n " <--* Package
+Package" [*] \n " <--* Package
+
+
+Doclet <|.. FirstDoclet
+
+Doclet <|.. PumlDoclet
+CreateFile" 1 \n " <--* PumlDoclet
+SaveOption" 1 \n " <--* PumlDoclet
+Package" 1 \n " <--* PumlDoclet
+
+
+Option <|.. Option
+
+}
+
+@enduml
