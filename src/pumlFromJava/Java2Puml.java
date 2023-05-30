@@ -7,26 +7,26 @@ import java.util.spi.ToolProvider;
 /**
  * Classe Java2Puml
  * <p>
- *     Classe qui permet de créer un fichier puml
- *     à partir d'un package java
+ * Classe qui permet de créer un fichier puml
+ * à partir d'un package java
  * </p>
  * <br>
- *    Elle possède les méthodes :
- *    <ul>
- *        <li>main</li>
- *   </ul>
- *   <br>
- *   Elle possède les attributs :
- *   <ul>
- *       <li>toolProvider</li>
- *   </ul>
+ * Elle possède les méthodes :
+ *  <ul>
+ *      <li>main</li>
+ * </ul>
+ * <br>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>toolProvider</li>
+ * </ul>
  */
-@Description("" +
-        "use: PumlDoclet;")
+@Description("use: PumlDoclet;")
 public class Java2Puml {
 
     /**
      * Méthode main
+     *
      * @param args String[]
      */
     public static void main(String[] args) {

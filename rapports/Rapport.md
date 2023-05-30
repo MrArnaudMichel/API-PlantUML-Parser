@@ -19,6 +19,8 @@ Pour la répartition :
 - __MORAWIEC__ Benjamin : Amélioration des options.
 - __MICHEL__ Arnaud : Création du DCC et des relations avec les types primitifs / non primitifs.
 - __MORAWIEC__ Benjamin : Gestions des extends et des implements.
+- __MORAWIEC__ Benjamin : Amélioration des options.
+- __MICHEL__ Arnaud : Ajout des nouvelles options.
 
 ### Semaine 1 : les *doclets* de javadoc
 #### Objectif
@@ -42,7 +44,7 @@ Prendre en main `javadoc`, les *doclets* et leurs options afin de générer dans
 
 ---
 
-### Semaine 2 : Java Language API et DCA sans associations
+### Semaine 2 : Java Langage API et DCA sans associations
 #### Objectif
 - Produire le DCA avec les associations :
 - les généralisations et les réalisations
@@ -105,8 +107,11 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 - rapport hebdomadaire
 
 #### Bilan de la semaine
-- Nous avons finis la gestion des packages. Pour cela, nous avons modifié nos classes afin d'avoir une classe Package. Cela permet d'avoir des packages dans des packages.
+- Nous avons fini la gestion des packages. Pour cela, nous avons modifié nos classes afin d'avoir une classe Package. Cela permet d'avoir des packages dans des packages.
 - Nous avons aussi ajouté les associations vers les packages. 
 - Nous avons également rajouté l'option --str qui permet de considérer le type String comme un type primitif.
 - Nous avons aussi rajouté toutes les options de SaveOption qui permettre une plus grande flexibilité de l'API dans la création du diagram.
 - Il est également possible de rajouter des descriptions aux classes tel que 'use' pour spécifier toutes les classes que la classe use et 'author' pour spécifier les auteurs de la classe. Il faut mettre un ';' entre chaque option types et ',' entre chaque valeur.
+
+---
+

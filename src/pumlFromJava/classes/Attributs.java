@@ -6,39 +6,44 @@ import javax.lang.model.type.TypeMirror;
 /**
  * Classe Attributs
  * <p>
- *     Classe qui permet de créer un attribut
- *     d'une classe
- *     <br>
- *     Elle implémente l'interface Type
- *     <br>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>strDrawAttributs</li>
- *         <li>writeType</li>
- *         <li>getName</li>
- *         <li>getType</li>
- *         <li>getVisibility</li>
- *         <li>setName</li>
- *         <li>setType</li>
- *         <li>setVisibility</li>
- *         <li>toString</li>
- *         <li>strDraw</li>
- *     </ul>
- *     <br>
- *     Elle possède les attributs :
- *     <ul>
- *         <li>name</li>
- *         <li>type</li>
- *         <li>visibility</li>
- *     </ul>
+ * Classe qui permet de créer un attribut
+ * d'une classe
+ * <br>
+ * Elle implémente l'interface Type
+ * <br>
+ * Elle possède les méthodes :
+ * <ul>
+ *     <li>strDrawAttributs</li>
+ *     <li>writeType</li>
+ *     <li>getName</li>
+ *     <li>getType</li>
+ *     <li>getVisibility</li>
+ *     <li>setName</li>
+ *     <li>setType</li>
+ *     <li>setVisibility</li>
+ *     <li>toString</li>
+ *     <li>strDraw</li>
+ * </ul>
+ * <br>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>name</li>
+ *     <li>type</li>
+ *     <li>visibility</li>
+ * </ul>
  */
 public class Attributs implements Type {
     private String name;
+
+    /**
+     * est
+     */
     private TypeMirror type;
     private String visibility;
 
     /**
      * Constructeur de la classe Attributs
+     *
      * @param element Element
      */
     public Attributs(Element element) {
@@ -49,14 +54,15 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui permet de dessiner un attribut
-     * @return String
+     *
+     * @return String string
      */
     public String strDrawAttributs() {
         if (type.toString().equals("java.util.ArrayList<java.lang.String[]>")) {
             return writeType() + " " + name + " : String[*]";
-        }else if (type.toString().equals("java.lang.String")){
+        } else if (type.toString().equals("java.lang.String")) {
             return writeType() + " " + name + " : String";
-        }else if (type.toString().equals("java.util.ArrayList<java.lang.String>")) {
+        } else if (type.toString().equals("java.util.ArrayList<java.lang.String>")) {
             return writeType() + " " + name + " : String[*]";
         }
         return writeType() + " " + name + " : " + Methode.setArray(type.toString());
@@ -64,6 +70,7 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui renvoie le type d'un attribut sous forme puml
+     *
      * @return String
      */
     private String writeType() {
@@ -85,7 +92,8 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui renvoie le nom d'un attribut
-     * @return String
+     *
+     * @return String name
      */
     public String getName() {
         return name;
@@ -93,6 +101,7 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui permet de modifier le nom d'un attribut
+     *
      * @param name String
      */
     public void setName(String name) {
@@ -101,7 +110,8 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui renvoie le type d'un attribut
-     * @return TypeMirror
+     *
+     * @return TypeMirror type
      */
     public TypeMirror getType() {
         return type;
@@ -109,6 +119,7 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui permet de modifier le type d'un attribut
+     *
      * @param type TypeMirror
      */
     public void setType(TypeMirror type) {
@@ -117,6 +128,7 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui renvoie la visibilité d'un attribut
+     *
      * @return String
      */
     public String getVisibility() {
@@ -125,6 +137,7 @@ public class Attributs implements Type {
 
     /**
      * Méthode qui permet de modifier la visibilité d'un attribut
+     *
      * @param visibility String
      */
     public void setVisibility(String visibility) {

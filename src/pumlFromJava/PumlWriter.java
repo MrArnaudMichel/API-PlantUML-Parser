@@ -11,16 +11,16 @@ import java.io.IOException;
 /**
  * Classe PumlWriter
  * <p>
- *     Classe qui permet d'écrire dans un fichier .puml
- *     <br>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>writeEntete</li>
- *         <li>writeFin</li>
- *         <li>fillPuml</li>
- *         <li>drawDC</li>
- *         <li>drawLink</li>
- *    </ul>
+ * Classe qui permet d'écrire dans un fichier .puml
+ * <br>
+ * Elle possède les méthodes :
+ *  <ul>
+ *      <li>writeEntete</li>
+ *      <li>writeFin</li>
+ *      <li>fillPuml</li>
+ *      <li>drawDC</li>
+ *      <li>drawLink</li>
+ * </ul>
  */
 public class PumlWriter {
     /*
@@ -29,6 +29,7 @@ public class PumlWriter {
 
     /**
      * Méthode qui permet d'écrire l'entête du fichier .puml
+     *
      * @param writer BufferedWriter
      * @throws IOException Exception
      */
@@ -43,6 +44,7 @@ public class PumlWriter {
 
     /**
      * Méthode qui permet d'écrire la fin du fichier .puml
+     *
      * @param writer BufferedWriter
      * @throws IOException Exception
      */
@@ -54,9 +56,10 @@ public class PumlWriter {
 
     /**
      * Méthode qui permet de remplir le fichier .puml
+     *
      * @param pumldiagram Package
-     * @param fileName String
-     * @param saveOption SaveOption
+     * @param fileName    String
+     * @param saveOption  SaveOption
      * @throws IOException Exception
      */
     public static void fillPuml(Package pumldiagram, String fileName, SaveOption saveOption) throws IOException {
@@ -69,9 +72,10 @@ public class PumlWriter {
 
     /**
      * Méthode qui permet de dessiner les classes, les interfaces et les énumérations
+     *
      * @param pumldiagram Package
-     * @param writer BufferedWriter
-     * @param saveOption SaveOption
+     * @param writer      BufferedWriter
+     * @param saveOption  SaveOption
      * @throws IOException Exception
      */
     private static void drawDC(Package pumldiagram, BufferedWriter writer, SaveOption saveOption) throws IOException {
@@ -97,9 +101,10 @@ public class PumlWriter {
 
     /**
      * Méthode qui permet de dessiner les liens entre les classes, les interfaces et les énumérations
+     *
      * @param pumldiagram Package
-     * @param writer BufferedWriter
-     * @param saveOption SaveOption
+     * @param writer      BufferedWriter
+     * @param saveOption  SaveOption
      * @throws IOException Exception
      */
     private static void drawLink(Package pumldiagram, BufferedWriter writer, SaveOption saveOption) throws IOException {

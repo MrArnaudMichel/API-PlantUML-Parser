@@ -8,33 +8,33 @@ import java.util.ArrayList;
 /**
  * Classe Methode
  * <p>
- *     Classe qui permet de créer une méthode
- *     d'une classe
- *     <br>
- *     Elle implémente l'interface Type
- *     <br>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>strDraw</li>
- *         <li>setArray</li>
- *         <li>getName</li>
- *         <li>getReturnType</li>
- *         <li>getVisibility</li>
- *         <li>getParameters</li>
- *         <li>setName</li>
- *         <li>setReturnType</li>
- *         <li>setVisibility</li>
- *         <li>setParameters</li>
- *         <li>toString</li>
- *     </ul>
- *     <br>
- *     Elle possède les attributs :
- *     <ul>
- *         <li>name</li>
- *         <li>returnType</li>
- *         <li>visibility</li>
- *         <li>parameters</li>
- *     </ul>
+ * Classe qui permet de créer une méthode
+ * d'une classe
+ * <br>
+ * Elle implémente l'interface Type
+ * <br>
+ * Elle possède les méthodes :
+ * <ul>
+ *     <li>strDraw</li>
+ *     <li>setArray</li>
+ *     <li>getName</li>
+ *     <li>getReturnType</li>
+ *     <li>getVisibility</li>
+ *     <li>getParameters</li>
+ *     <li>setName</li>
+ *     <li>setReturnType</li>
+ *     <li>setVisibility</li>
+ *     <li>setParameters</li>
+ *     <li>toString</li>
+ * </ul>
+ * <br>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>name</li>
+ *     <li>returnType</li>
+ *     <li>visibility</li>
+ *     <li>parameters</li>
+ * </ul>
  */
 public class Methode implements Type {
     private final ArrayList<String[]> parameters = new ArrayList<String[]>();
@@ -45,6 +45,7 @@ public class Methode implements Type {
 
     /**
      * Constructeur de la classe Methode
+     *
      * @param e Element
      */
     public Methode(Element e) {
@@ -65,8 +66,9 @@ public class Methode implements Type {
 
     /**
      * Constructeur de la classe Methode
+     *
      * @param type String
-     * @return String
+     * @return String array
      */
     public static String setArray(String type) {
         type = type.split("\\.")[type.split("\\.").length - 1];
@@ -93,7 +95,8 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de dessiner une méthode
-     * @return String
+     *
+     * @return String string
      */
     public String strDraw() {
         StringBuilder str = new StringBuilder();
@@ -114,6 +117,7 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de mettre le type de la méthode sous forme uml
+     *
      * @return String
      */
     private String writeType() {
@@ -135,7 +139,8 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet renvoie True si la méthode est Override
-     * @return String
+     *
+     * @return String is override
      */
     public String getIsOverride() {
         return isOverride;
@@ -143,6 +148,7 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de mettre la méthode Override
+     *
      * @param isOverride String
      */
     public void setIsOverride(String isOverride) {
@@ -151,7 +157,8 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de récupérer les parameters d'une méthode
-     * @return String
+     *
+     * @return String parameters
      */
     public ArrayList<String[]> getParameters() {
         return parameters;
@@ -159,7 +166,8 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de récupérer le nom d'une méthode
-     * @return String
+     *
+     * @return String name
      */
     public String getName() {
         return name;
@@ -167,6 +175,7 @@ public class Methode implements Type {
 
     /**
      * Procédure qui permet de mettre le nom d'une méthode
+     *
      * @param name String
      */
     public void setName(String name) {
@@ -175,7 +184,8 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de récupérer le type de retour d'une méthode
-     * @return String
+     *
+     * @return String return type
      */
     public String getReturnType() {
         return returnType;
@@ -183,6 +193,7 @@ public class Methode implements Type {
 
     /**
      * Procédure qui permet de mettre le type de retour d'une méthode
+     *
      * @param returnType String
      */
     public void setReturnType(String returnType) {
@@ -191,6 +202,7 @@ public class Methode implements Type {
 
     /**
      * Méthode qui permet de récupérer la visibilité d'une méthode
+     *
      * @return String
      */
     @Override
@@ -200,6 +212,7 @@ public class Methode implements Type {
 
     /**
      * Procédure qui permet de mettre la visibilité d'une méthode
+     *
      * @param visibility String
      */
     public void setVisibility(String visibility) {

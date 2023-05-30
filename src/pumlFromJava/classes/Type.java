@@ -3,23 +3,24 @@ package pumlFromJava.classes;
 /**
  * Interface Type
  * <p>
- *     Interface qui permet de créer une méthode
- *     d'une classe
- *     <br>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>isPublic</li>
- *         <li>isPrivate</li>
- *         <li>isProtected</li>
- *         <li>isAbstract</li>
- *         <li>isStatic</li>
- *         <li>getVisibility</li>
- *     </ul>
+ * Interface qui permet de créer une méthode
+ * d'une classe
+ * <br>
+ * Elle possède les méthodes :
+ * <ul>
+ *     <li>isPublic</li>
+ *     <li>isPrivate</li>
+ *     <li>isProtected</li>
+ *     <li>isAbstract</li>
+ *     <li>isStatic</li>
+ *     <li>getVisibility</li>
+ * </ul>
  */
 public interface Type {
 
     /**
      * Méthode qui permet de savoir si la méthode est public
+     *
      * @param parameters String
      * @return boolean
      */
@@ -29,6 +30,7 @@ public interface Type {
 
     /**
      * Méthode qui permet de savoir si la méthode est private
+     *
      * @param parameters String
      * @return boolean
      */
@@ -38,6 +40,7 @@ public interface Type {
 
     /**
      * Méthode qui permet de savoir si la méthode est protected
+     *
      * @param parameters String
      * @return boolean
      */
@@ -47,6 +50,7 @@ public interface Type {
 
     /**
      * Méthode qui permet de savoir si la méthode est abstract
+     *
      * @param parameters String
      * @return boolean
      */
@@ -56,6 +60,7 @@ public interface Type {
 
     /**
      * Méthode qui permet de savoir si la méthode est static
+     *
      * @param parameters String
      * @return boolean
      */
@@ -65,7 +70,8 @@ public interface Type {
 
     /**
      * Méthode qui permet de récupérer la visibilité
-     * @return String
+     *
+     * @return String visibility
      */
     default String getVisibility() {
         return "";

@@ -6,33 +6,39 @@ import java.io.IOException;
 /**
  * Classe CreateFile
  * <p>
- *     Classe qui permet de créer un fichier
+ * Classe qui permet de créer un fichier
  * </p>
  * <br>
- *    Elle possède les méthodes :
- *    <ul>
- *        <li>creationFichier</li>
- *        <li>createFile</li>
- *        <li>getOutFileName</li>
- *        <li>setOutFileName</li>
- *        <li>getOutFilePath</li>
- *        <li>setOutFilePath</li>
- *   </ul>
- *   <br>
- *   Elle possède les attributs :
+ * Elle possède les méthodes :
  *   <ul>
- *       <li>outFileName</li>
- *       <li>outFilePath</li>
- *   </ul>
- *   <br>
- *   Elle possède les constantes :
- *   <ul>
- *       <li>DEFAULT_NAME</li>
- *       <li>DEFAULT_PATH</li>
+ *       <li>creationFichier</li>
+ *       <li>createFile</li>
+ *       <li>getOutFileName</li>
+ *       <li>setOutFileName</li>
+ *       <li>getOutFilePath</li>
+ *       <li>setOutFilePath</li>
  *  </ul>
+ *  <br>
+ *  Elle possède les attributs :
+ *  <ul>
+ *      <li>outFileName</li>
+ *      <li>outFilePath</li>
+ *  </ul>
+ *  <br>
+ *  Elle possède les constantes :
+ *  <ul>
+ *      <li>DEFAULT_NAME</li>
+ *      <li>DEFAULT_PATH</li>
+ * </ul>
  */
 public class CreateFile {
+    /**
+     * The constant DEFAULT_NAME.
+     */
     public static final String DEFAULT_NAME = "fichier";
+    /**
+     * The constant DEFAULT_PATH.
+     */
     public static final String DEFAULT_PATH = "./";
 
     private String outFileName = null;
@@ -40,7 +46,8 @@ public class CreateFile {
 
     /**
      * Méthode qui permet de créer un fichier
-     * @return String
+     *
+     * @return String string
      * @throws IOException IOException
      */
     public String creationFichier() throws IOException {
@@ -64,6 +71,7 @@ public class CreateFile {
 
     /**
      * Méthode qui permet de créer un fichier
+     *
      * @param fileName String
      */
     public void createFile(String fileName) {
@@ -82,7 +90,8 @@ public class CreateFile {
 
     /**
      * Méthode qui permet de récupérer le nom du fichier
-     * @return String
+     *
+     * @return String out file name
      */
     public String getOutFileName() {
         return outFileName;
@@ -90,6 +99,7 @@ public class CreateFile {
 
     /**
      * Méthode qui permet de modifier le nom du fichier
+     *
      * @param outFileName String
      */
     public void setOutFileName(String outFileName) {
@@ -98,7 +108,8 @@ public class CreateFile {
 
     /**
      * Méthode qui permet de récupérer le chemin du fichier
-     * @return String
+     *
+     * @return String out file path
      */
     public String getOutFilePath() {
         return outFilePath;
@@ -106,6 +117,7 @@ public class CreateFile {
 
     /**
      * Méthode qui permet de modifier le chemin du fichier
+     *
      * @param outFilePath String
      */
     public void setOutFilePath(String outFilePath) {

@@ -8,36 +8,41 @@ import java.util.ArrayList;
 /**
  * Classe Enumerations
  * <p>
- *     Classe qui permet de créer une énumération
- *     d'une classe
- *     <br>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>strDraw</li>
- *         <li>getName</li>
- *         <li>setName</li>
- *         <li>getNamePackage</li>
- *         <li>setNamePackage</li>
- *         <li>getAttributes</li>
- *         <li>setAttributes</li>
- *    </ul>
- *    <br>
- *    Elle possède les attributs :
- *    <ul>
- *        <li>name</li>
- *        <li>attributes</li>
- *        <li>namePackage</li>
- *        <li>saveOption</li>
- *        <li>str</li>
- *   </ul>
+ * Classe qui permet de créer une énumération
+ * d'une classe
+ * <br>
+ * Elle possède les méthodes :
+ *   <ul>
+ *       <li>strDraw</li>
+ *       <li>getName</li>
+ *       <li>setName</li>
+ *       <li>getNamePackage</li>
+ *       <li>setNamePackage</li>
+ *       <li>getAttributes</li>
+ *       <li>setAttributes</li>
+ *  </ul>
+ *  <br>
+ *  Elle possède les attributs :
+ *  <ul>
+ *      <li>name</li>
+ *      <li>attributes</li>
+ *      <li>namePackage</li>
+ *      <li>saveOption</li>
+ *      <li>str</li>
+ * </ul>
  */
 public class Enumerations {
     private String name;
+
+    /**
+     * contient
+     */
     private ArrayList<String> attributes = new ArrayList<String>();
     private String namePackage;
 
     /**
      * Constructeur de la classe Enumerations
+     *
      * @param element Element
      */
     public Enumerations(Element element) {
@@ -52,8 +57,9 @@ public class Enumerations {
 
     /**
      * Méthode qui permet de dessiner une énumération
+     *
      * @param saveOption SaveOption
-     * @return String
+     * @return String string
      */
     public String strDraw(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
@@ -69,7 +75,8 @@ public class Enumerations {
 
     /**
      * Méthode qui permet de récupérer le nom de l'énumération
-     * @return String
+     *
+     * @return String name
      */
     public String getName() {
         return name;
@@ -77,6 +84,7 @@ public class Enumerations {
 
     /**
      * Procédure qui permet de modifier le nom de l'énumération
+     *
      * @param name String
      */
     public void setName(String name) {
@@ -85,7 +93,8 @@ public class Enumerations {
 
     /**
      * Méthode qui permet de récupérer le nom du package
-     * @return ArrayList<String>
+     *
+     * @return ArrayList<String> attributes
      */
     public ArrayList<String> getAttributes() {
         return attributes;
@@ -93,6 +102,7 @@ public class Enumerations {
 
     /**
      * Procédure qui permet de modifier le nom du package
+     *
      * @param attributes ArrayList<String>
      */
     public void setAttributes(ArrayList<String> attributes) {
@@ -101,7 +111,8 @@ public class Enumerations {
 
     /**
      * Méthode qui permet de récupérer le nom du package
-     * @return String
+     *
+     * @return String name package
      */
     public String getNamePackage() {
         return namePackage;
@@ -109,6 +120,7 @@ public class Enumerations {
 
     /**
      * Procédure qui permet de modifier le nom du package
+     *
      * @param namePackage String
      */
     public void setNamePackage(String namePackage) {

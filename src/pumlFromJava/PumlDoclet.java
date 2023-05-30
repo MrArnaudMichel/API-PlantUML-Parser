@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * Classe PumlDoclet
  * <p>
- *     Classe qui permet de créer un doclet
+ * Classe qui permet de créer un doclet
  * </p>
  * Elle possède les attributs :
  * <ul>
@@ -41,16 +41,29 @@ import java.util.Set;
  */
 @Description("use: PumlWriter, Option")
 public class PumlDoclet implements Doclet {
+
+    /**
+     * a
+     */
     private final CreateFile fileCreator = new CreateFile();
+
+    /**
+     * a
+     */
     private final SaveOption saveOption = new SaveOption();
+
+    /**
+     * a
+     */
     private final Package pumlDiagram = new Package();
 
     /**
      * Méthode init
      * <p>
-     *     Méthode qui permet d'initialiser le doclet
+     * Méthode qui permet d'initialiser le doclet
      * </p>
-     * @param locale Locale
+     *
+     * @param locale   Locale
      * @param reporter Reporter
      */
     @Override
@@ -60,8 +73,9 @@ public class PumlDoclet implements Doclet {
     /**
      * Méthode getName
      * <p>
-     *     Méthode qui permet de retourner le nom du doclet
+     * Méthode qui permet de retourner le nom du doclet
      * </p>
+     *
      * @return String
      */
     @Override
@@ -76,8 +90,9 @@ public class PumlDoclet implements Doclet {
     /**
      * Méthode getSourceVersion
      * <p>
-     *     Méthode qui permet de retourner la version de la source
+     * Méthode qui permet de retourner la version de la source
      * </p>
+     *
      * @return SourceVersion
      */
     @Override
@@ -197,8 +212,9 @@ public class PumlDoclet implements Doclet {
     /**
      * Méthode getSourceVersion
      * <p>
-     *     Méthode qui permet de retourner la version de la source
+     * Méthode qui permet de retourner la version de la source
      * </p>
+     *
      * @return SourceVersion
      */
     @Override
@@ -214,8 +230,9 @@ public class PumlDoclet implements Doclet {
     /**
      * Méthode run
      * <p>
-     *     Méthode qui permet de lancer le programme
+     * Méthode qui permet de lancer le programme
      * </p>
+     *
      * @param environment
      * @return boolean
      */
@@ -247,8 +264,9 @@ public class PumlDoclet implements Doclet {
     /**
      * Méthode dumpElement
      * <p>
-     *     Méthode qui permet de récupérer les éléments du diagramme
+     * Méthode qui permet de récupérer les éléments du diagramme
      * </p>
+     *
      * @param element
      */
     private void dumpElement(Element element) {
@@ -268,10 +286,11 @@ public class PumlDoclet implements Doclet {
     /**
      * Classe abstraite Option
      * <p>
-     *     Classe qui permet de créer des options
-     *     pour le programme
-     *     Elle hérite de Doclet.Option
+     * Classe qui permet de créer des options
+     * pour le programme
+     * Elle hérite de Doclet.Option
      * </p>
+     *
      * @see Doclet.Option
      * @see Option
      * @see DocletEnvironment
@@ -282,6 +301,14 @@ public class PumlDoclet implements Doclet {
         private final String description;
         private final String parameters;
 
+        /**
+         * Instantiates a new Option.
+         *
+         * @param name        the name
+         * @param hasArg      the has arg
+         * @param description the description
+         * @param parameters  the parameters
+         */
         Option(String name, boolean hasArg,
                String description, String parameters) {
             this.name = name;

@@ -8,38 +8,43 @@ import java.util.ArrayList;
 /**
  * Classe Contructor
  * <p>
- *     Classe qui permet de créer un constructeur
- *     d'une classe
- *     <br>
- *     Elle implémente l'interface Type
- *     <br>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>strDraw</li>
- *         <li>typeConstructor</li>
- *         <li>getName</li>
- *         <li>getVisibility</li>
- *         <li>setName</li>
- *         <li>setVisibility</li>
- *         <li>getParameters</li>
- *         <li>setParameters</li>
- *    </ul>
- *    <br>
- *    Elle possède les attributs :
- *    <ul>
- *        <li>name</li>
- *        <li>visibility</li>
- *        <li>parameters</li>
- *    </ul>
+ * Classe qui permet de créer un constructeur
+ * d'une classe
+ * <br>
+ * Elle implémente l'interface Type
+ * <br>
+ * Elle possède les méthodes :
+ *  <ul>
+ *      <li>strDraw</li>
+ *      <li>typeConstructor</li>
+ *      <li>getName</li>
+ *      <li>getVisibility</li>
+ *      <li>setName</li>
+ *      <li>setVisibility</li>
+ *      <li>getParameters</li>
+ *      <li>setParameters</li>
+ * </ul>
+ * <br>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>name</li>
+ *     <li>visibility</li>
+ *     <li>parameters</li>
+ * </ul>
  */
 public class Contructor implements Type {
     private String name;
     private String visibility;
+
+    /**
+     * est fait de
+     */
     private ArrayList<String[]> parameters = new ArrayList<String[]>();
 
     /**
      * Constructeur de la classe Contructor
-     * @param e Element
+     *
+     * @param e    Element
      * @param name String
      */
     public Contructor(Element e, String name) {
@@ -55,7 +60,8 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de dessiner le constructeur
-     * @return String
+     *
+     * @return String string
      */
     public String strDraw() {
         StringBuilder str = new StringBuilder();
@@ -85,6 +91,7 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de définir le type du constructeur
+     *
      * @param visibility String
      * @return String
      */
@@ -101,7 +108,8 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de récupérer le nom du constructeur
-     * @return String
+     *
+     * @return String name
      */
     public String getName() {
         return name;
@@ -109,6 +117,7 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de définir le nom du constructeur
+     *
      * @param name String
      */
     public void setName(String name) {
@@ -117,6 +126,7 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de récupérer la visibilité du constructeur
+     *
      * @return String
      */
     public String getVisibility() {
@@ -125,6 +135,7 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de définir la visibilité du constructeur
+     *
      * @param visibility String
      */
     public void setVisibility(String visibility) {
@@ -133,7 +144,8 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de récupérer les paramètres du constructeur
-     * @return ArrayList<String[]>
+     *
+     * @return ArrayList<String [ ]> parameters
      */
     public ArrayList<String[]> getParameters() {
         return parameters;
@@ -141,6 +153,7 @@ public class Contructor implements Type {
 
     /**
      * Méthode qui permet de définir les paramètres du constructeur
+     *
      * @param parameters ArrayList<String[]>
      */
     public void setParameters(ArrayList<String[]> parameters) {

@@ -3,59 +3,86 @@ package pumlFromJava;
 /**
  * Classe SaveOption
  * <p>
- *     Classe qui permet de créer une option de sauvegarde
- *     d'un diagramme
- *     <br>
- *    Elle possède les attributs :
- *    <ul>
- *        <li>typeDiagram</li>
- *        <li>strPrimitive</li>
- *        <li>association</li>
- *        <li>constructor</li>
- *        <li>method</li>
- *        <li>drawPrimitive</li>
- *        <li>drawUnPrimitive</li>
- *        <li>drawExtends</li>
- *        <li>drawImplements</li>
- *    </ul>
- *     Elle possède les méthodes :
- *     <ul>
- *         <li>getTypeDiagram</li>
- *         <li>setTypeDiagram</li>
- *         <li>getStrPrimitive</li>
- *         <li>setStrPrimitive</li>
- *         <li>getAssociation</li>
- *         <li>setAssociation</li>
- *         <li>getConstructor</li>
- *         <li>setConstructor</li>
- *         <li>getMethod</li>
- *         <li>setMethod</li>
- *         <li>getDrawPrimitive</li>
- *         <li>setDrawPrimitive</li>
- *         <li>getDrawUnPrimitive</li>
- *         <li>setDrawUnPrimitive</li>
- *         <li>getDrawExtends</li>
- *         <li>setDrawExtends</li>
- *         <li>getDrawImplements</li>
- *         <li>setDrawImplements</li>
- *    </ul>
+ * Classe qui permet de créer une option de sauvegarde
+ * d'un diagramme
+ * <br>
+ * Elle possède les attributs :
+ * <ul>
+ *     <li>typeDiagram</li>
+ *     <li>strPrimitive</li>
+ *     <li>association</li>
+ *     <li>constructor</li>
+ *     <li>method</li>
+ *     <li>drawPrimitive</li>
+ *     <li>drawUnPrimitive</li>
+ *     <li>drawExtends</li>
+ *     <li>drawImplements</li>
+ * </ul>
+ *  Elle possède les méthodes :
+ *  <ul>
+ *      <li>getTypeDiagram</li>
+ *      <li>setTypeDiagram</li>
+ *      <li>getStrPrimitive</li>
+ *      <li>setStrPrimitive</li>
+ *      <li>getAssociation</li>
+ *      <li>setAssociation</li>
+ *      <li>getConstructor</li>
+ *      <li>setConstructor</li>
+ *      <li>getMethod</li>
+ *      <li>setMethod</li>
+ *      <li>getDrawPrimitive</li>
+ *      <li>setDrawPrimitive</li>
+ *      <li>getDrawUnPrimitive</li>
+ *      <li>setDrawUnPrimitive</li>
+ *      <li>getDrawExtends</li>
+ *      <li>setDrawExtends</li>
+ *      <li>getDrawImplements</li>
+ *      <li>setDrawImplements</li>
+ * </ul>
  */
 public class SaveOption {
+    /**
+     * The Type diagram.
+     */
     public String typeDiagram = "DCC"; //Check
+    /**
+     * The Str primitive.
+     */
     public boolean strPrimitive = true; //Check
+    /**
+     * The Association.
+     */
     public boolean association = true;
+    /**
+     * The Constructor.
+     */
     public boolean constructor = true;
+    /**
+     * The Method.
+     */
     public boolean method = true;
+    /**
+     * The Draw primitive.
+     */
     public boolean drawPrimitive = true;
+    /**
+     * The Draw un primitive.
+     */
     public boolean drawUnPrimitive = true;
+    /**
+     * The Draw extends.
+     */
     public boolean drawExtends = true;
+    /**
+     * The Draw implements.
+     */
     public boolean drawImplements = true;
 
     /**
      * Constructeur SaveOption
      * <p>
-     *     Constructeur qui permet de créer une option de sauvegarde
-     *     d'un diagramme
+     * Constructeur qui permet de créer une option de sauvegarde
+     * d'un diagramme
      * </p>
      */
     public SaveOption() {
@@ -63,7 +90,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer le type de diagramme
-     * @return String
+     *
+     * @return String type diagram
      */
     public String getTypeDiagram() {
         return typeDiagram;
@@ -71,6 +99,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier le type de diagramme
+     *
      * @param typeDiagram String
      */
     public void setTypeDiagram(String typeDiagram) {
@@ -79,7 +108,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les primitives
-     * @return boolean
+     *
+     * @return boolean str primitive
      */
     public boolean getStrPrimitive() {
         return strPrimitive;
@@ -87,6 +117,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les primitives
+     *
      * @param strPrimitive boolean
      */
     public void setStrPrimitive(boolean strPrimitive) {
@@ -95,7 +126,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les associations
-     * @return boolean
+     *
+     * @return boolean association
      */
     public boolean getAssociation() {
         return association;
@@ -103,6 +135,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les associations
+     *
      * @param association boolean
      */
     public void setAssociation(boolean association) {
@@ -111,7 +144,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les constructeurs
-     * @return boolean
+     *
+     * @return boolean constructor
      */
     public boolean getConstructor() {
         return constructor;
@@ -119,6 +153,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les constructeurs
+     *
      * @param constructor boolean
      */
     public void setConstructor(boolean constructor) {
@@ -127,7 +162,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les méthodes
-     * @return boolean
+     *
+     * @return boolean method
      */
     public boolean getMethod() {
         return method;
@@ -135,6 +171,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les méthodes
+     *
      * @param method boolean
      */
     public void setMethod(boolean method) {
@@ -143,7 +180,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les primitives
-     * @return boolean
+     *
+     * @return boolean draw primitive
      */
     public boolean getDrawPrimitive() {
         return drawPrimitive;
@@ -151,6 +189,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les primitives
+     *
      * @param drawPrimitive boolean
      */
     public void setDrawPrimitive(boolean drawPrimitive) {
@@ -159,7 +198,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les primitives
-     * @return boolean
+     *
+     * @return boolean draw un primitive
      */
     public boolean getDrawUnPrimitive() {
         return drawUnPrimitive;
@@ -167,6 +207,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les primitives
+     *
      * @param drawUnPrimitive boolean
      */
     public void setDrawUnPrimitive(boolean drawUnPrimitive) {
@@ -175,7 +216,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les extends
-     * @return boolean
+     *
+     * @return boolean draw extends
      */
     public boolean getDrawExtends() {
         return drawExtends;
@@ -183,6 +225,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les extends
+     *
      * @param drawExtends boolean
      */
     public void setDrawExtends(boolean drawExtends) {
@@ -191,7 +234,8 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de récupérer si on veut afficher les implements
-     * @return boolean
+     *
+     * @return boolean draw implements
      */
     public boolean getDrawImplements() {
         return drawImplements;
@@ -199,6 +243,7 @@ public class SaveOption {
 
     /**
      * Méthode qui permet de modifier si on veut afficher les implements
+     *
      * @param drawImplements boolean
      */
     public void setDrawImplements(boolean drawImplements) {

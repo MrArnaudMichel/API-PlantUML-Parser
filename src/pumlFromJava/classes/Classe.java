@@ -1,15 +1,11 @@
 package pumlFromJava.classes;
 
-import com.sun.source.util.DocTrees;
 import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
 
-import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
-import javax.tools.JavaCompiler;
-import javax.tools.ToolProvider;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -44,6 +40,7 @@ import java.util.Objects;
  *     <li>usedClasses</li>
  *     <li>author</li>
  * </ul>
+ *
  * @tag test
  */
 @Description(
@@ -54,9 +51,19 @@ public class Classe extends Instance implements Type {
      * @pumlDiagram contient
      */
     private final ArrayList<Attributs> attributes = new ArrayList<Attributs>();
+    /**
+     * @pumlDiagram contient
+     */
     private final ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
+    /**
+     * @pumlDiagram contient
+     */
     private final ArrayList<String> usedClasses = new ArrayList<String>();
+
+    /**
+     * @pumlDiagram contient
+     */
     private final ArrayList<String> author = new ArrayList<String>();
 
     /**
@@ -105,20 +112,19 @@ public class Classe extends Instance implements Type {
      * Méthode qui permet de dessiner une classe
      *
      * @param saveOption SaveOption
-     * @return String
+     * @return String string
      */
     public String strDrawDiagram(SaveOption saveOption) {
         StringBuilder str = new StringBuilder();
         str.append("class ").append(getName());
-        if (author.size() > 0){
+        if (author.size() > 0) {
             str.append("<< ");
         }
         for (String s : author) {
             str.append(s);
-            if (author.indexOf(s) != author.size() - 1){
+            if (author.indexOf(s) != author.size() - 1) {
                 str.append(", ");
-            }
-            else {
+            } else {
                 str.append(" >>");
             }
         }
@@ -151,7 +157,7 @@ public class Classe extends Instance implements Type {
      * Méthode qui permet de dessiner les attributs d'une classe
      *
      * @param saveOption SaveOption
-     * @return String
+     * @return String string
      */
     public String strRelation(SaveOption saveOption) {
         drawUse();
@@ -169,7 +175,7 @@ public class Classe extends Instance implements Type {
             }
             if (saveOption.getAssociation() && saveOption.getDrawUnPrimitive()) {
                 for (Attributs attribut : attributes) {
-                    if (saveOption.getTypeDiagram().equals("DCA")){
+                    if (saveOption.getTypeDiagram().equals("DCA")) {
                         attribut.setName("");
                     }
                     if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
@@ -204,7 +210,7 @@ public class Classe extends Instance implements Type {
 
     private void drawUse() {
         ArrayList<String> typeMethod = new ArrayList<>();
-        ArrayList<String> primitive = new ArrayList<>(){
+        ArrayList<String> primitive = new ArrayList<>() {
             {
                 add("Integer");
                 add("Reel");
@@ -214,25 +220,25 @@ public class Classe extends Instance implements Type {
                 add("boolean");
             }
         };
-        for (Methode methode: getMethods()){
-            if (!primitive.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !typeMethod.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !methode.getReturnType().equals("") && !methode.getReturnType().contains("String")){
+        for (Methode methode : getMethods()) {
+            if (!primitive.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !typeMethod.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !methode.getReturnType().equals("") && !methode.getReturnType().contains("String")) {
                 typeMethod.add(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]);
             }
-            for (String[] type: methode.getParameters()){
-                if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")){
+            for (String[] type : methode.getParameters()) {
+                if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")) {
                     typeMethod.add(type[1].split("\\[")[type[1].split("\\.").length - 1]);
                 }
             }
         }
-        for (Contructor constructor: constructors){
-            for (String[] type: constructor.getParameters()){
-                if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")){
+        for (Contructor constructor : constructors) {
+            for (String[] type : constructor.getParameters()) {
+                if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")) {
                     typeMethod.add(type[1].split("\\[")[type[1].split("\\[").length - 1]);
                 }
             }
         }
-        for (String type:typeMethod){
-            if (type.equals("*]")){
+        for (String type : typeMethod) {
+            if (type.equals("*]")) {
                 typeMethod.remove(type);
                 break;
             }
