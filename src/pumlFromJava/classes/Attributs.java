@@ -41,7 +41,11 @@ public class Attributs implements Type {
      * @pumlNameAssociation à un
      */
     private TypeMirror type;
+
+    private String typeAssociation = "o ";
     private String visibility;
+
+    private String pumlMultiplicity = "[*]";
 
     private String nameAssociation = "";
 
@@ -64,6 +68,10 @@ public class Attributs implements Type {
                             this.nameAssociation += s + " ";
                         }
                     }
+                } else if (comment.toString().contains("@pumlAgregation")) {
+                    this.typeAssociation = "* ";
+                } else if (comment.toString().contains("@pumlMultiplicity")) {
+                    this.pumlMultiplicity = "[" + comment.toString().split(" ")[1] + "] ";
                 }
             }
         }
@@ -170,4 +178,21 @@ public class Attributs implements Type {
         return nameAssociation;
     }
 
+    /**
+     * Méthode qui renvoie le type d'une association
+     *
+     * @return String
+     */
+    public String getTypeAssociation() {
+        return typeAssociation;
+    }
+
+    /**
+     * Méthode qui renvoie la multiplicité d'une association
+     *
+     * @return String
+     */
+    public String getPumlMultiplicity() {
+        return pumlMultiplicity;
+    }
 }

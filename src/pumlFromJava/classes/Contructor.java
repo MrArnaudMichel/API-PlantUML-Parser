@@ -38,6 +38,7 @@ public class Contructor implements Type {
 
     /**
      * @pumlNameAssociation est fait de
+     * @pumlAgregation
      */
     private ArrayList<String[]> parameters = new ArrayList<String[]>();
 

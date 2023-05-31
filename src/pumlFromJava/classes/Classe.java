@@ -51,20 +51,24 @@ import java.util.Objects;
 public class Classe extends Instance implements Type {
     /**
      * @pumlNameAssociation contient
+     * @pumlAgregation
      */
     private final ArrayList<Attributs> attributes = new ArrayList<Attributs>();
     /**
      * @pumlNameAssociation contient
+     * @pumlAgregation
      */
     private final ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
     /**
      * @pumlNameAssociation contient
+     * @pumlAgregation
      */
     private final ArrayList<String> usedClasses = new ArrayList<String>();
 
     /**
      * @pumlNameAssociation contient
+     * @pumlAgregation
      */
     private final ArrayList<String> author = new ArrayList<String>();
 
@@ -75,8 +79,16 @@ public class Classe extends Instance implements Type {
      */
     public Classe(Element element, DocTrees docTrees) {
         DocCommentTree docCommentTree = docTrees.getDocCommentTree(element);
-        if (docCommentTree != null) {
-            //System.out.println(docCommentTree.toString());
+        if (docTrees.getDocCommentTree(element) != null) {
+            for (var comment : docTrees.getDocCommentTree(element).getBlockTags()) {
+                if (comment.toString().contains("@pumlUse")) {
+                    for (String s : comment.toString().split(" ")) {
+                        if (!s.equals("@pumlUse")) {
+                            usedClasses.add(s);
+                        }
+                    }
+                }
+            }
         }
 
         try {
@@ -184,13 +196,19 @@ public class Classe extends Instance implements Type {
                     if (saveOption.getTypeDiagram().equals("DCA")) {
                         attribut.setName("");
                     }
-                    if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
+                    if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() &&
+                            (attribut.getType().toString().equals("java.lang.String")
+                                    || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>")
+                                    || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                         if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains(">")) {
                             String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split(">")[0];
                             if (type.equals("String[]")) {
                                 type = "java.lang.String";
                             }
-                            str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName());
+                            str.append(type).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
+                                    .append(attribut.getName()).append("\"")
+                                    .append(" <--").append(attribut.getTypeAssociation())
+                                    .append(getName());
                             if (!Objects.equals(attribut.getNameAssociation(), "")) {
                                 str.append(": < ").append(attribut.getNameAssociation());
                             }
@@ -198,14 +216,18 @@ public class Classe extends Instance implements Type {
                             usedClasses.remove(type);
                         } else {
                             if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
-                                str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName());
+                                str.append("java.lang.String").append("\" 1 \\n ")
+                                        .append(attribut.getName()).append("\"").append(" <--").append(attribut.getTypeAssociation()).append(getName());
                                 if (!Objects.equals(attribut.getNameAssociation(), "")) {
                                     str.append(": < ").append(attribut.getNameAssociation());
                                 }
                                 str.append("\n");
                                 usedClasses.remove("String");
                             } else {
-                                str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName());
+                                str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1])
+                                        .append("\" 1 \\n ").append(attribut.getName()).append("\"").
+                                        append(" <--").append(attribut.getTypeAssociation()).
+                                        append(getName());
                                 if (!Objects.equals(attribut.getNameAssociation(), "")) {
                                     str.append(": < ").append(attribut.getNameAssociation());
                                 }

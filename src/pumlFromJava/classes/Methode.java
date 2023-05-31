@@ -37,6 +37,11 @@ import java.util.ArrayList;
  * </ul>
  */
 public class Methode implements Type {
+
+    /**
+     * @pumlNameAssociation est fait de
+     * @pumlAgregation
+     */
     private final ArrayList<String[]> parameters = new ArrayList<String[]>();
     private String name;
     private String returnType;

@@ -38,27 +38,41 @@ import java.util.Set;
  *        <li>run</li>
  *        <li>dumpElement</li>
  *    </ul>
+ * @pumlUse CreateFile
+ * @pumlUse Config
  */
 public class PumlDoclet implements Doclet {
 
     /**
      * @pumlNameAssociation Créer
+     * @pumlAgregation
      */
     private final CreateFile fileCreator = new CreateFile();
+
     /**
      * @pumlNameAssociation Créer
+     * @pumlAgregation
      */
     private final SaveOption saveOption = new SaveOption();
+
     /**
      * @pumlNameAssociation Créer
+     * @pumlAgregation
      */
 
     private boolean config = false;
-    private final Package pumlDiagram = new Package();
+
     /**
      * @pumlNameAssociation Créer
+     * @pumlAgregation
      */
-    DocTrees dt;
+    private final Package pumlDiagram = new Package();
+
+    /**
+     * @pumlNameAssociation Créer
+     * @pumlAgregation
+     */
+    private DocTrees dt;
 
     /**
      * Méthode init

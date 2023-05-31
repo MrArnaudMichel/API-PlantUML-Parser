@@ -128,4 +128,5 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 #### Bilan de la semaine
 - Nous avons finalisé de commenter toute l'API avec la javadoc.
 - Nous avons également rajouté l'option --use qui permet d'activer ou pas les dépendances.
-- Et nous avons ajouté les Doctree à l'API pour prendre en compte les commentaires. Ils peuvent notamment servir pour le nommage des associations. Pur cela, on peut ajouter le tag @pumlNameAssociation
+- Et nous avons ajouté les Doctree à l'API pour prendre en compte les commentaires. Ils peuvent notamment servir pour le nommage des associations. Pur cela, on peut ajouter le tag @pumlNameAssociation @pumlUse
+- Ajout de l'option --config aui prend en paramètre un fichier de config afin de mettre directement les paramètres dans un fichier de configuration. Tout est géré dans la methode static setConfig de la classe Config.

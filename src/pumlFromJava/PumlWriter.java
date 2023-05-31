@@ -95,8 +95,8 @@ public class PumlWriter {
         for (Package package1 : pumldiagram.getPackages()) {
             drawDC(package1, writer, saveOption);
         }
-        drawLink(pumldiagram, writer, saveOption);
         writer.write("}\n");
+        drawLink(pumldiagram, writer, saveOption);
     }
 
     /**
