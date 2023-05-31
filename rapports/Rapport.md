@@ -98,7 +98,7 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 
 #### Objectif
 - Produire un DCC sans les associations.
-- Ajouter au doclet une option --dca pour demander la production du DCA .
+- Ajouter au doclet une option --dca pour demander la production du DCA.
 - Par défaut, le diagramme produit sera le DCC.
 
 #### Rendus
