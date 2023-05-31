@@ -55,36 +55,36 @@ public class SaveOption {
     /**
      * The Association.
      */
-    private boolean association = true;
+    private boolean association = true; //Check
     /**
      * The Constructor.
      */
-    private boolean constructor = true;
+    private boolean constructor = true; //Check
     /**
      * The Method.
      */
-    private boolean method = true;
+    private boolean method = true; //Check
     /**
      * The Draw primitive.
      */
-    private boolean drawPrimitive = true;
+    private boolean drawPrimitive = true; //Check
     /**
      * The Draw un primitive.
      */
-    private boolean drawUnPrimitive = true;
+    private boolean drawUnPrimitive = true; //Check
     /**
      * The Draw extends.
      */
-    private boolean drawExtends = true;
+    private boolean drawExtends = true; //Check
     /**
      * The Draw implements.
      */
-    private boolean drawImplements = true;
+    private boolean drawImplements = true; //Check
 
     /**
      * The Draw use.
      */
-    private boolean drawUse = true;
+    private boolean drawUse = true; //Check
 
     /**
      * Constructeur SaveOption

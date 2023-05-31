@@ -52,6 +52,8 @@ public class PumlDoclet implements Doclet {
     /**
      * @pumlNameAssociation Créer
      */
+
+    private boolean config = false;
     private final Package pumlDiagram = new Package();
     /**
      * @pumlNameAssociation Créer
@@ -114,81 +116,101 @@ public class PumlDoclet implements Doclet {
                         return true;
                     }
                 },
+                new Option("--config", true, "Specify a configuration file", "<string>") {
+                    @Override
+                    public boolean process(String option, List<String> arguments) {
+                        Config.setConfig(arguments.get(0), saveOption);
+                        config = true;
+                        return true;
+                    }
+                },
                 new Option("--dca", false, "If the option is specified then the program produces a DCA", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setTypeDiagram("DCA");
+                        if (!config)
+                            saveOption.setTypeDiagram("DCA");
                         return true;
                     }
                 },
                 new Option("--str", false, "Considers the String type as primitive", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setStrPrimitive(false);
+                        if (!config)
+                            saveOption.setStrPrimitive(false);
                         return true;
                     }
                 },
                 new Option("--association", false, "Deactivates associations", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setAssociation(false);
+                        if (!config)
+                            saveOption.setAssociation(false);
                         return true;
                     }
                 },
                 new Option("--constructor", false, "Deactivates constructors", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setConstructor(false);
+                        if (!config)
+                            saveOption.setConstructor(false);
                         return true;
                     }
                 },
                 new Option("--method", false, "Deactivates methods", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setMethod(false);
+                        if (!config)
+                            saveOption.setMethod(false);
                         return true;
                     }
                 },
                 new Option("--field", false, "Deactivates attributes", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setDrawPrimitive(false);
-                        saveOption.setDrawUnPrimitive(false);
+                        if (!config){
+                            saveOption.setDrawPrimitive(false);
+                            saveOption.setDrawUnPrimitive(false);
+                        }
                         return true;
                     }
                 },
                 new Option("--primitive", false, "Deactivates primitive types", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setDrawPrimitive(false);
+                        if (!config)
+                            saveOption.setDrawPrimitive(false);
                         return true;
                     }
                 },
                 new Option("--UnPrimitive", false, "Deactivates non-primitive types", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setDrawUnPrimitive(false);
+                        if (!config)
+                            saveOption.setDrawUnPrimitive(false);
                         return true;
                     }
                 },
                 new Option("--extends", false, "Deactivates extends", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setDrawExtends(false);
+                        if (!config)
+                            saveOption.setDrawExtends(false);
                         return true;
                     }
                 },
                 new Option("--implements", false, "Deactivates implements", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setDrawImplements(false);
+                        if (!config)
+                            saveOption.setDrawImplements(false);
                         return true;
                     }
                 },
                 new Option("--use", false, "Deactivates use", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        saveOption.setDrawUse(false);
+                        if (!config)
+                            saveOption.setDrawUse(false);
                         return true;
                     }
                 },

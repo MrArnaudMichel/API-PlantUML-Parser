@@ -1,0 +1,10 @@
+typeDiagram: DCC
+strPrimite: true
+association: true
+constructor: true
+method: true
+drawPrimitive: true
+drawUnPrimitive: true
+drawExtends: true
+drawImplements: true
+drawUses: true
