@@ -41,7 +41,7 @@ import java.util.Objects;
  *     <li>author</li>
  * </ul>
  *
- * @tag test
+ * @see Type
  */
 @Description(
         "author: Arnaud, Benjamin;"
