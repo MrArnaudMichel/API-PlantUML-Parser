@@ -17,6 +17,7 @@ package pumlFromJava;
  *     <li>drawUnPrimitive</li>
  *     <li>drawExtends</li>
  *     <li>drawImplements</li>
+ *     <li>drawUse</li>
  * </ul>
  *  Elle possède les méthodes :
  *  <ul>
@@ -38,45 +39,52 @@ package pumlFromJava;
  *      <li>setDrawExtends</li>
  *      <li>getDrawImplements</li>
  *      <li>setDrawImplements</li>
+ *      <li>getDrawUse</li>
+ *      <li>setDrawUse</li>
  * </ul>
  */
 public class SaveOption {
     /**
      * The Type diagram.
      */
-    public String typeDiagram = "DCC"; //Check
+    private String typeDiagram = "DCC"; //Check
     /**
      * The Str primitive.
      */
-    public boolean strPrimitive = true; //Check
+    private boolean strPrimitive = true; //Check
     /**
      * The Association.
      */
-    public boolean association = true;
+    private boolean association = true;
     /**
      * The Constructor.
      */
-    public boolean constructor = true;
+    private boolean constructor = true;
     /**
      * The Method.
      */
-    public boolean method = true;
+    private boolean method = true;
     /**
      * The Draw primitive.
      */
-    public boolean drawPrimitive = true;
+    private boolean drawPrimitive = true;
     /**
      * The Draw un primitive.
      */
-    public boolean drawUnPrimitive = true;
+    private boolean drawUnPrimitive = true;
     /**
      * The Draw extends.
      */
-    public boolean drawExtends = true;
+    private boolean drawExtends = true;
     /**
      * The Draw implements.
      */
-    public boolean drawImplements = true;
+    private boolean drawImplements = true;
+
+    /**
+     * The Draw use.
+     */
+    private boolean drawUse = true;
 
     /**
      * Constructeur SaveOption
@@ -248,5 +256,23 @@ public class SaveOption {
      */
     public void setDrawImplements(boolean drawImplements) {
         this.drawImplements = drawImplements;
+    }
+
+    /**
+     * Méthode qui permet de récupérer si on veut afficher les use
+     *
+     * @return boolean draw use
+     */
+    public boolean isDrawUse() {
+        return drawUse;
+    }
+
+    /**
+     * Méthode qui permet de modifier si on veut afficher les use
+     *
+     * @param drawUse boolean
+     */
+    public void setDrawUse(boolean drawUse) {
+        this.drawUse = drawUse;
     }
 }

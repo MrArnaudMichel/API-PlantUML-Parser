@@ -217,7 +217,7 @@ public class Classe extends Instance implements Type {
                         }
                     }
                 }
-                if (!saveOption.getTypeDiagram().equals("DCA")) {
+                if (!saveOption.getTypeDiagram().equals("DCA") && saveOption.isDrawUse()) {
                     for (String usedClass : usedClasses) {
                         str.append(getName()).append(" ..> ").append(" \"<<use>>\" ").append(usedClass).append("\n");
                     }

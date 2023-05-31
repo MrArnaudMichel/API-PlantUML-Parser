@@ -190,6 +190,13 @@ public class PumlDoclet implements Doclet {
                         return true;
                     }
                 },
+                new Option("--use", false, "Deactivates use", "") {
+                    @Override
+                    public boolean process(String option, List<String> arguments) {
+                        saveOption.setDrawUse(false);
+                        return true;
+                    }
+                },
                 new Option("--help", false, "Print a synopsis of nonstandard options and exit", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
