@@ -43,28 +43,24 @@ public class Package {
 
     /**
      * @pumlNameAssociation Contient
-     * @pumlAgregation
      * @pumlMultiplicity 0..*
      */
     private ArrayList<Classe> classes = new ArrayList<Classe>();
 
     /**
      * @pumlNameAssociation Contient
-     * @pumlAgregation
      * @pumlMultiplicity 0..*
      */
     private ArrayList<Interface> interfaces = new ArrayList<Interface>();
 
     /**
      * @pumlNameAssociation Contient
-     * @pumlAgregation
      * @pumlMultiplicity 0..*
      */
     private ArrayList<Enumerations> enumerations = new ArrayList<Enumerations>();
 
     /**
      * @pumlNameAssociation Contient
-     * @pumlAgregation
      * @pumlMultiplicity 0..*
      */
     private ArrayList<Package> packages = new ArrayList<Package>();

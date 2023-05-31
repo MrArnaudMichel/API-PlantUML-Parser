@@ -40,7 +40,6 @@ public class Methode implements Type {
 
     /**
      * @pumlNameAssociation est fait de
-     * @pumlAgregation
      */
     private final ArrayList<String[]> parameters = new ArrayList<String[]>();
     private String name;

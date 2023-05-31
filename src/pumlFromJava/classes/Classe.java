@@ -51,24 +51,20 @@ import java.util.Objects;
 public class Classe extends Instance implements Type {
     /**
      * @pumlNameAssociation contient
-     * @pumlAgregation
      */
     private final ArrayList<Attributs> attributes = new ArrayList<Attributs>();
     /**
      * @pumlNameAssociation contient
-     * @pumlAgregation
      */
     private final ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
     /**
      * @pumlNameAssociation contient
-     * @pumlAgregation
      */
     private final ArrayList<String> usedClasses = new ArrayList<String>();
 
     /**
      * @pumlNameAssociation contient
-     * @pumlAgregation
      */
     private final ArrayList<String> author = new ArrayList<String>();
 

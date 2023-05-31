@@ -36,7 +36,6 @@ public class Enumerations {
 
     /**
      * @pumlNameAssociation Contient
-     * @pumlAgregation
      */
     private ArrayList<String> attributes = new ArrayList<String>();
     private String namePackage;

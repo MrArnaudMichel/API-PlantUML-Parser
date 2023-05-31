@@ -39,14 +39,12 @@ public class Instance {
 
     /**
      * @pumlNameAssociation Contient
-     * @pumlAgregation
      */
     private ArrayList<Methode> methods = new ArrayList<Methode>();
     private String extendsClasse;
 
     /**
      * implémente
-     * @pumlAgregation
      */
     private List<? extends TypeMirror> implementsInterface = new ArrayList<>();
     private String namePackage;

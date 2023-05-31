@@ -42,7 +42,7 @@ public class Attributs implements Type {
      */
     private TypeMirror type;
 
-    private String typeAssociation = "o ";
+    private String typeAssociation = "* ";
     private String visibility;
 
     private String pumlMultiplicity = "[*]";
@@ -68,8 +68,8 @@ public class Attributs implements Type {
                             this.nameAssociation += s + " ";
                         }
                     }
-                } else if (comment.toString().contains("@pumlAgregation")) {
-                    this.typeAssociation = "* ";
+                } else if (comment.toString().contains("@pumlComposition")) {
+                    this.typeAssociation = "o ";
                 } else if (comment.toString().contains("@pumlMultiplicity")) {
                     this.pumlMultiplicity = "[" + comment.toString().split(" ")[1] + "] ";
                 }

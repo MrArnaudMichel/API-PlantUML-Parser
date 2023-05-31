@@ -45,32 +45,27 @@ public class PumlDoclet implements Doclet {
 
     /**
      * @pumlNameAssociation Créer
-     * @pumlAgregation
      */
     private final CreateFile fileCreator = new CreateFile();
 
     /**
      * @pumlNameAssociation Créer
-     * @pumlAgregation
      */
     private final SaveOption saveOption = new SaveOption();
 
     /**
      * @pumlNameAssociation Créer
-     * @pumlAgregation
      */
 
     private boolean config = false;
 
     /**
      * @pumlNameAssociation Créer
-     * @pumlAgregation
      */
     private final Package pumlDiagram = new Package();
 
     /**
      * @pumlNameAssociation Créer
-     * @pumlAgregation
      */
     private DocTrees dt;
 
