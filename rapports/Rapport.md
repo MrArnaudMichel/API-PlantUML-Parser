@@ -21,6 +21,10 @@ Pour la répartition :
 - __MORAWIEC__ Benjamin : Gestions des extends et des implements.
 - __MORAWIEC__ Benjamin : Amélioration des options.
 - __MICHEL__ Arnaud : Ajout des nouvelles options.
+- __MORAWIEC__ Benjamin : Finalisation des commentaires.
+- __MICHEL__ Arnaud : Ajout de l'option --use et de tout le système de configuration.
+- __MORAWIEC__ Benjamin : Ajout des @Override dans le diagramme.
+- __MICHEL__ Arnaud et __MORAWIEC__ Benjamin : Obtention des commentaires javadoc pour les intégrer au diagramme.
 
 ### Semaine 1 : les *doclets* de javadoc
 #### Objectif
