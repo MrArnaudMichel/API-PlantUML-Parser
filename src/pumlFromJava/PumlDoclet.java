@@ -4,7 +4,6 @@ import com.sun.source.util.DocTrees;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
-import jdk.jfr.Description;
 import pumlFromJava.classes.Classe;
 import pumlFromJava.classes.Enumerations;
 import pumlFromJava.classes.Interface;
@@ -40,28 +39,24 @@ import java.util.Set;
  *        <li>dumpElement</li>
  *    </ul>
  */
-@Description("use: PumlWriter, Option")
 public class PumlDoclet implements Doclet {
 
     /**
      * @pumlNameAssociation Créer
      */
-    DocTrees dt;
-
-    /**
-     * @pumlNameAssociation Créer
-     */
     private final CreateFile fileCreator = new CreateFile();
-
     /**
      * @pumlNameAssociation Créer
      */
     private final SaveOption saveOption = new SaveOption();
-
     /**
      * @pumlNameAssociation Créer
      */
     private final Package pumlDiagram = new Package();
+    /**
+     * @pumlNameAssociation Créer
+     */
+    DocTrees dt;
 
     /**
      * Méthode init

@@ -103,10 +103,9 @@ public class Methode implements Type {
     public String strDraw() {
         StringBuilder str = new StringBuilder();
         str.append(writeType()).append(" ").append(getName()).append("(");
-        if (getIsOverride()){
+        if (getIsOverride()) {
             str.append("Override");
-        }
-        else {
+        } else {
             for (String[] parameter : parameters) {
                 str.append(parameter[0]).append(" : ").append(parameter[1]);
                 if (parameters.indexOf(parameter) != parameters.size() - 1 && parameters.indexOf(parameter) != parameters.size()) {
