@@ -1,5 +1,6 @@
 package pumlFromJava;
 
+import com.sun.source.util.DocTrees;
 import jdk.javadoc.doclet.Doclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.Reporter;
@@ -43,17 +44,22 @@ import java.util.Set;
 public class PumlDoclet implements Doclet {
 
     /**
-     * a
+     * @pumlNameAssociation Créer
+     */
+    DocTrees dt;
+
+    /**
+     * @pumlNameAssociation Créer
      */
     private final CreateFile fileCreator = new CreateFile();
 
     /**
-     * a
+     * @pumlNameAssociation Créer
      */
     private final SaveOption saveOption = new SaveOption();
 
     /**
-     * a
+     * @pumlNameAssociation Créer
      */
     private final Package pumlDiagram = new Package();
 
@@ -245,6 +251,7 @@ public class PumlDoclet implements Doclet {
             throw new RuntimeException(ignored);
         }
         boolean first = true;
+        dt = environment.getDocTrees();
         for (Element element : environment.getIncludedElements()) {
             if (first) {
                 pumlDiagram.setName(element.getEnclosedElements().toString().split("\\.")[0].split(",")[0]);
@@ -274,11 +281,11 @@ public class PumlDoclet implements Doclet {
             if (Objects.equals(enclosedElement.getKind().toString(), "ENUM")) {
                 pumlDiagram.addEnumeration(new Enumerations(enclosedElement));
             } else if (enclosedElement.getKind().isClass()) {
-                pumlDiagram.addClasse(new Classe(enclosedElement));
+                pumlDiagram.addClasse(new Classe(enclosedElement, dt));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
                 pumlDiagram.addInterface(new Interface(enclosedElement));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE") && !Objects.equals(enclosedElement.getSimpleName().toString(), pumlDiagram.getName())) {
-                pumlDiagram.addPackage(new Package(enclosedElement));
+                pumlDiagram.addPackage(new Package(enclosedElement, dt));
             }
         }
     }

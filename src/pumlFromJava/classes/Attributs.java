@@ -1,5 +1,7 @@
 package pumlFromJava.classes;
 
+import com.sun.source.util.DocTrees;
+
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
 
@@ -36,20 +38,35 @@ public class Attributs implements Type {
     private String name;
 
     /**
-     * est
+     * @pumlNameAssociation à un
      */
     private TypeMirror type;
     private String visibility;
+
+    private String nameAssociation = "";
 
     /**
      * Constructeur de la classe Attributs
      *
      * @param element Element
      */
-    public Attributs(Element element) {
+    public Attributs(Element element, DocTrees docTrees) {
         setName(element.getSimpleName().toString());
         setType(element.asType());
         setVisibility(element.getModifiers().toString());
+        //Pour chaque commentiare si le tag est @pumlDiagram alors afficher valeur
+        //Sinon afficher ""
+        if (docTrees.getDocCommentTree(element) != null) {
+            for (var comment : docTrees.getDocCommentTree(element).getBlockTags()) {
+                if (comment.toString().contains("@pumlNameAssociation")) {
+                    for (String s : comment.toString().split(" ")) {
+                        if (!s.equals("@pumlNameAssociation")) {
+                            this.nameAssociation += s + " ";
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -142,6 +159,15 @@ public class Attributs implements Type {
      */
     public void setVisibility(String visibility) {
         this.visibility = visibility;
+    }
+
+    /**
+     * Méthode qui renvoie le nom d'une association
+     *
+     * @return String
+     */
+    public String getNameAssociation() {
+        return nameAssociation;
     }
 
 }

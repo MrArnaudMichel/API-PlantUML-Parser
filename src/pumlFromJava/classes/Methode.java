@@ -41,7 +41,7 @@ public class Methode implements Type {
     private String name;
     private String returnType;
     private String visibility;
-    private String isOverride;
+    private boolean isOverride;
 
     /**
      * Constructeur de la classe Methode
@@ -58,9 +58,11 @@ public class Methode implements Type {
         for (VariableElement parameter : ((ExecutableElement) e).getParameters()) {
             tab[0] = parameter.getSimpleName().toString();
             tab[1] = setArray(parameter.asType().toString());
-            parameters.add(tab);
+            parameters.add(tab.clone());
+            tab[0] = "";
+            tab[1] = "";
         }
-        //setIsOverride(e.getAnnotation(Override.class));
+        setIsOverride(e.getAnnotation(Override.class) != null);
 
     }
 
@@ -101,10 +103,15 @@ public class Methode implements Type {
     public String strDraw() {
         StringBuilder str = new StringBuilder();
         str.append(writeType()).append(" ").append(getName()).append("(");
-        for (String[] parameter : parameters) {
-            str.append(parameter[0]).append(" : ").append(parameter[1]);
-            if (parameters.indexOf(parameter) != parameters.size() - 1) {
-                str.append(", ");
+        if (getIsOverride()){
+            str.append("Override");
+        }
+        else {
+            for (String[] parameter : parameters) {
+                str.append(parameter[0]).append(" : ").append(parameter[1]);
+                if (parameters.indexOf(parameter) != parameters.size() - 1 && parameters.indexOf(parameter) != parameters.size()) {
+                    str.append(", ");
+                }
             }
         }
         str.append(")");
@@ -142,7 +149,7 @@ public class Methode implements Type {
      *
      * @return String is override
      */
-    public String getIsOverride() {
+    public boolean getIsOverride() {
         return isOverride;
     }
 
@@ -151,7 +158,7 @@ public class Methode implements Type {
      *
      * @param isOverride String
      */
-    public void setIsOverride(String isOverride) {
+    public void setIsOverride(boolean isOverride) {
         this.isOverride = isOverride;
     }
 

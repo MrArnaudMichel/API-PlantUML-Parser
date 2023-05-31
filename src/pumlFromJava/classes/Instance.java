@@ -38,7 +38,7 @@ public class Instance {
     private String name;
 
     /**
-     * contient
+     * @pumlNameAssociation Contient
      */
     private ArrayList<Methode> methods = new ArrayList<Methode>();
     private String extendsClasse;

@@ -1,5 +1,6 @@
 package pumlFromJava;
 
+import com.sun.source.util.DocTrees;
 import pumlFromJava.classes.Classe;
 import pumlFromJava.classes.Enumerations;
 import pumlFromJava.classes.Interface;
@@ -41,22 +42,22 @@ public class Package {
     private String name;
 
     /**
-     * contient
+     * @pumlNameAssociation Contient
      */
     private ArrayList<Classe> classes = new ArrayList<Classe>();
 
     /**
-     * contient
+     * @pumlNameAssociation Contient
      */
     private ArrayList<Interface> interfaces = new ArrayList<Interface>();
 
     /**
-     * contient
+     * @pumlNameAssociation Contient
      */
     private ArrayList<Enumerations> enumerations = new ArrayList<Enumerations>();
 
     /**
-     * contient
+     * @pumlNameAssociation Contient
      */
     private ArrayList<Package> packages = new ArrayList<Package>();
 
@@ -71,17 +72,17 @@ public class Package {
      *
      * @param element Element
      */
-    public Package(Element element) {
+    public Package(Element element, DocTrees dt) {
         setName(element.getSimpleName().toString());
         for (Element enclosedElement : element.getEnclosedElements()) {
             if (Objects.equals(enclosedElement.getKind().toString(), "ENUM")) {
                 this.addEnumeration(new Enumerations(enclosedElement));
             } else if (enclosedElement.getKind().isClass()) {
-                this.addClasse(new Classe(enclosedElement));
+                this.addClasse(new Classe(enclosedElement, dt));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
                 this.addInterface(new Interface(enclosedElement));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
-                this.addPackage(new Package(enclosedElement));
+                this.addPackage(new Package(enclosedElement, dt));
             }
         }
     }

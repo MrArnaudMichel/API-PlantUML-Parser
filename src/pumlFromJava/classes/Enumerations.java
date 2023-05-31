@@ -35,7 +35,7 @@ public class Enumerations {
     private String name;
 
     /**
-     * contient
+     * @pumlNameAssociation Contient
      */
     private ArrayList<String> attributes = new ArrayList<String>();
     private String namePackage;

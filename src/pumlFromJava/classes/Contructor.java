@@ -37,7 +37,7 @@ public class Contructor implements Type {
     private String visibility;
 
     /**
-     * est fait de
+     * @pumlNameAssociation est fait de
      */
     private ArrayList<String[]> parameters = new ArrayList<String[]>();
 
@@ -54,7 +54,7 @@ public class Contructor implements Type {
         for (VariableElement parameter : ((ExecutableElement) e).getParameters()) {
             tab[0] = parameter.getSimpleName().toString();
             tab[1] = parameter.asType().toString().split("\\.")[parameter.asType().toString().split("\\.").length - 1];
-            parameters.add(tab);
+            parameters.add(tab.clone());
         }
     }
 

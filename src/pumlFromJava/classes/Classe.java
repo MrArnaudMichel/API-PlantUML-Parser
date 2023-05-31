@@ -1,11 +1,14 @@
 package pumlFromJava.classes;
 
+import com.sun.source.doctree.DocCommentTree;
+import com.sun.source.util.DocTrees;
 import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeMirror;
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -48,21 +51,21 @@ import java.util.Objects;
 )
 public class Classe extends Instance implements Type {
     /**
-     * @pumlDiagram contient
+     * @pumlNameAssociation contient
      */
     private final ArrayList<Attributs> attributes = new ArrayList<Attributs>();
     /**
-     * @pumlDiagram contient
+     * @pumlNameAssociation contient
      */
     private final ArrayList<Contructor> constructors = new ArrayList<Contructor>();
 
     /**
-     * @pumlDiagram contient
+     * @pumlNameAssociation contient
      */
     private final ArrayList<String> usedClasses = new ArrayList<String>();
 
     /**
-     * @pumlDiagram contient
+     * @pumlNameAssociation contient
      */
     private final ArrayList<String> author = new ArrayList<String>();
 
@@ -71,7 +74,11 @@ public class Classe extends Instance implements Type {
      *
      * @param element Element
      */
-    public Classe(Element element) {
+    public Classe(Element element, DocTrees docTrees) {
+        DocCommentTree docCommentTree = docTrees.getDocCommentTree(element);
+        if (docCommentTree != null) {
+            //System.out.println(docCommentTree.toString());
+        }
 
         try {
             String[] split = element.getAnnotation(Description.class).toString().split(";");
@@ -89,7 +96,7 @@ public class Classe extends Instance implements Type {
         setName(element.getSimpleName().toString());
         for (Element e : element.getEnclosedElements()) {
             if (e.getKind().isField()) {
-                attributes.add(new Attributs(e));
+                attributes.add(new Attributs(e, docTrees));
             } else if (Objects.equals(e.getKind().toString(), "METHOD")) {
                 getMethods().add(new Methode(e));
 
@@ -184,14 +191,26 @@ public class Classe extends Instance implements Type {
                             if (type.equals("String[]")) {
                                 type = "java.lang.String";
                             }
-                            str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                            str.append(type).append("\" [*] \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName());
+                            if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                str.append(": < ").append(attribut.getNameAssociation());
+                            }
+                            str.append("\n");
                             usedClasses.remove(type);
                         } else {
                             if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
-                                str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                                str.append("java.lang.String").append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName());
+                                if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                    str.append(": < ").append(attribut.getNameAssociation());
+                                }
+                                str.append("\n");
                                 usedClasses.remove("String");
                             } else {
-                                str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName()).append("\n");
+                                str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]).append("\" 1 \\n ").append(attribut.getName()).append("\"").append(" <--* ").append(getName());
+                                if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                    str.append(": < ").append(attribut.getNameAssociation());
+                                }
+                                str.append("\n");
                                 usedClasses.remove(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]);
                             }
 
