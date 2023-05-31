@@ -208,6 +208,10 @@ public class Classe extends Instance implements Type {
         return str.toString();
     }
 
+    /**
+     * Méthode qui permet de dessiner les associations de type <<use>> d'une classe
+     */
+
     private void drawUse() {
         ArrayList<String> typeMethod = new ArrayList<>();
         ArrayList<String> primitive = new ArrayList<>() {
