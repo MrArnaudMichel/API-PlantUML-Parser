@@ -115,3 +115,17 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 
 ---
 
+### Semaine 5 : Associations et dépendances
+
+#### Objectif
+- Produire le DCA et le DCC avec toutes les associations et les dépendances.
+
+#### Rendus
+- DCA et DCC API pumlFromJava mis à jour
+- sources des classes
+- rapport hebdomadaire
+
+#### Bilan de la semaine
+- Nous avons finalisé de commenter toute l'API avec la javadoc.
+- Nous avons également rajouté l'option --use qui permet d'activer ou pas les dépendances.
+- Et nous avons ajouté les Doctree à l'API pour prendre en compte les commentaires. Ils peuvent notamment servir pour le nommage des associations. Pur cela, on peut ajouter le tag @pumlNameAssociation
