@@ -135,3 +135,11 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 - Et nous avons ajouté les Doctree à l'API pour prendre en compte les commentaires. Ils peuvent notamment servir pour le nommage des associations. Pur cela, on peut ajouter le tag @pumlNameAssociation @pumlUse @pumlMultiplicity @pumlAgregation (par default) @pumlComposition 
 - Ajout de l'option --config aui prend en paramètre un fichier de config afin de mettre directement les paramètres dans un fichier de configuration. Tout est géré dans la methode static setConfig de la classe Config.
 - __Ajout du dossier javadocs qui contient la javadoc de l'API.__
+
+---
+
+## Conclusion
+
+Nous avons réussi à produire un DCA et un DCC avec toutes les associations et les dépendances.
+Nos plus grandes difficultés ont été de comprendre comment fonctionnait l'API de javadoc et de la réutiliser pour produire notre diagramme.
+Nous avons aussi eu du mal à comprendre comment créer un DocTree car nous n'avion pas vu que DocletEnvironment avait une méthode pour cela.
