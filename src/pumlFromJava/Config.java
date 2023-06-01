@@ -2,7 +2,16 @@ package pumlFromJava;
 
 import java.io.FileReader;
 
+/**
+ * The type Config.
+ */
 public class Config {
+    /**
+     * Sets config.
+     *
+     * @param path       the path
+     * @param saveOption the save option
+     */
     public static void setConfig(String path, SaveOption saveOption) {
         try {
             FileReader reader = new FileReader(path);

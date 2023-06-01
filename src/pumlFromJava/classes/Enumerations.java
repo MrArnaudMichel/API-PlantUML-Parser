@@ -94,7 +94,7 @@ public class Enumerations {
     /**
      * Méthode qui permet de récupérer le nom du package
      *
-     * @return ArrayList<String> attributes
+     * @return ArrayList<String>   attributes
      */
     public ArrayList<String> getAttributes() {
         return attributes;

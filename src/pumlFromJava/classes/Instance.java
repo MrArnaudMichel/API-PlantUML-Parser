@@ -77,7 +77,7 @@ public class Instance {
     /**
      * Methode qui permet de récupérer les méthodes de l'instance
      *
-     * @return ArrayList<Methode> methods
+     * @return ArrayList<Methode>   methods
      */
     public ArrayList<Methode> getMethods() {
         return methods;
@@ -113,7 +113,7 @@ public class Instance {
     /**
      * Methode qui permet de récupérer les interfaces que l'instance implémente
      *
-     * @return List<? extends TypeMirror> implements interface
+     * @return List<? extends TypeMirror>   implements interface
      */
     public List<? extends TypeMirror> getImplementsInterface() {
         return implementsInterface;

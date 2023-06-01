@@ -75,6 +75,7 @@ public class Package {
      * Constructeur de la classe Package
      *
      * @param element Element
+     * @param dt      the dt
      */
     public Package(Element element, DocTrees dt) {
         setName(element.getSimpleName().toString());
@@ -94,7 +95,7 @@ public class Package {
     /**
      * Méthode getName qui permet de récupérer les classes du package
      *
-     * @return ArrayList<Classe> classes
+     * @return ArrayList<Classe>   classes
      */
     public ArrayList<Classe> getClasses() {
         return classes;
@@ -122,7 +123,7 @@ public class Package {
     /**
      * Méthode getInterfaces qui permet de récupérer les interfaces du package
      *
-     * @return ArrayList<Interface> interfaces
+     * @return ArrayList<Interface>   interfaces
      */
     public ArrayList<Interface> getInterfaces() {
         return interfaces;
@@ -149,7 +150,7 @@ public class Package {
     /**
      * Méthode getEnumerations qui permet de récupérer les énumérations du package
      *
-     * @return ArrayList<Enumerations> enumerations
+     * @return ArrayList<Enumerations>   enumerations
      */
     public ArrayList<Enumerations> getEnumerations() {
         return enumerations;
@@ -176,7 +177,7 @@ public class Package {
     /**
      * Méthode getPackages qui permet de récupérer les packages du package
      *
-     * @return ArrayList<Package> packages
+     * @return ArrayList<Package>   packages
      */
     public ArrayList<Package> getPackages() {
         return packages;

@@ -52,7 +52,8 @@ public class Attributs implements Type {
     /**
      * Constructeur de la classe Attributs
      *
-     * @param element Element
+     * @param element  Element
+     * @param docTrees the doc trees
      */
     public Attributs(Element element, DocTrees docTrees) {
         setName(element.getSimpleName().toString());
@@ -172,7 +173,7 @@ public class Attributs implements Type {
     /**
      * Méthode qui renvoie le nom d'une association
      *
-     * @return String
+     * @return String name association
      */
     public String getNameAssociation() {
         return nameAssociation;
@@ -181,7 +182,7 @@ public class Attributs implements Type {
     /**
      * Méthode qui renvoie le type d'une association
      *
-     * @return String
+     * @return String type association
      */
     public String getTypeAssociation() {
         return typeAssociation;
@@ -190,7 +191,7 @@ public class Attributs implements Type {
     /**
      * Méthode qui renvoie la multiplicité d'une association
      *
-     * @return String
+     * @return String puml multiplicity
      */
     public String getPumlMultiplicity() {
         return pumlMultiplicity;

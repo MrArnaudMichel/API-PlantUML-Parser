@@ -38,6 +38,7 @@ import java.util.Set;
  *        <li>run</li>
  *        <li>dumpElement</li>
  *    </ul>
+ *
  * @pumlUse CreateFile
  * @pumlUse Config
  */
@@ -52,18 +53,15 @@ public class PumlDoclet implements Doclet {
      * @pumlNameAssociation Créer
      */
     private final SaveOption saveOption = new SaveOption();
-
+    /**
+     * @pumlNameAssociation Créer
+     */
+    private final Package pumlDiagram = new Package();
     /**
      * @pumlNameAssociation Créer
      */
 
     private boolean config = false;
-
-    /**
-     * @pumlNameAssociation Créer
-     */
-    private final Package pumlDiagram = new Package();
-
     /**
      * @pumlNameAssociation Créer
      */
@@ -176,7 +174,7 @@ public class PumlDoclet implements Doclet {
                 new Option("--field", false, "Deactivates attributes", "") {
                     @Override
                     public boolean process(String option, List<String> arguments) {
-                        if (!config){
+                        if (!config) {
                             saveOption.setDrawPrimitive(false);
                             saveOption.setDrawUnPrimitive(false);
                         }

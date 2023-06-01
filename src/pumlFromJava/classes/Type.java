@@ -22,7 +22,7 @@ public interface Type {
      * Méthode qui permet de savoir si la méthode est public
      *
      * @param parameters String
-     * @return boolean
+     * @return boolean boolean
      */
     default boolean isPublic(String parameters) {
         return parameters.contains("public");
@@ -32,7 +32,7 @@ public interface Type {
      * Méthode qui permet de savoir si la méthode est private
      *
      * @param parameters String
-     * @return boolean
+     * @return boolean boolean
      */
     default boolean isPrivate(String parameters) {
         return parameters.contains("private");
@@ -42,7 +42,7 @@ public interface Type {
      * Méthode qui permet de savoir si la méthode est protected
      *
      * @param parameters String
-     * @return boolean
+     * @return boolean boolean
      */
     default boolean isProtected(String parameters) {
         return parameters.contains("protected");
@@ -52,7 +52,7 @@ public interface Type {
      * Méthode qui permet de savoir si la méthode est abstract
      *
      * @param parameters String
-     * @return boolean
+     * @return boolean boolean
      */
     default boolean isAbstract(String parameters) {
         return parameters.contains("abstract");
@@ -62,7 +62,7 @@ public interface Type {
      * Méthode qui permet de savoir si la méthode est static
      *
      * @param parameters String
-     * @return boolean
+     * @return boolean boolean
      */
     default boolean isStatic(String parameters) {
         return parameters.contains("static");

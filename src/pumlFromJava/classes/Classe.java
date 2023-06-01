@@ -71,7 +71,8 @@ public class Classe extends Instance implements Type {
     /**
      * Constructeur de la classe Classe
      *
-     * @param element Element
+     * @param element  Element
+     * @param docTrees the doc trees
      */
     public Classe(Element element, DocTrees docTrees) {
         DocCommentTree docCommentTree = docTrees.getDocCommentTree(element);

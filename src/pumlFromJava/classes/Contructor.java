@@ -145,7 +145,7 @@ public class Contructor implements Type {
     /**
      * Méthode qui permet de récupérer les paramètres du constructeur
      *
-     * @return ArrayList<String [ ]> parameters
+     * @return ArrayList<String [ ]>   parameters
      */
     public ArrayList<String[]> getParameters() {
         return parameters;
