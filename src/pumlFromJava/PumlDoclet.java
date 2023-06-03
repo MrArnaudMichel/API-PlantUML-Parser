@@ -41,6 +41,7 @@ import java.util.Set;
  *
  * @pumlUse CreateFile
  * @pumlUse Config
+ * @pumlUse Option
  */
 public class PumlDoclet implements Doclet {
 

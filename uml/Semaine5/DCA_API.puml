@@ -111,7 +111,7 @@ Instance <|-- Interface
 Type <|.. Methode
 
 Type <|.. Attributs
-TypeMirror" 1 \n " <--o Attributs: < à un 
+TypeMirror" 1 \n " <--* Attributs: < à un 
 
 Instance <|-- Classe
 Type <|.. Classe

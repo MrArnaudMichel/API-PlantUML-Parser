@@ -142,4 +142,16 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 
 Nous avons réussi à produire un DCA et un DCC avec toutes les associations et les dépendances.
 Nos plus grandes difficultés ont été de comprendre comment fonctionnait l'API de javadoc et de la réutiliser pour produire notre diagramme.
-Nous avons aussi eu du mal à comprendre comment créer un DocTree car nous n'avion pas vu que DocletEnvironment avait une méthode pour cela.
+Nous avons aussi eu du mal à comprendre comment créer un DocTree car nous n'avions pas vu que DocletEnvironment avait une méthode pour cela.
+Pour finir, nous sommes vraiment content du résultat, car l'API est très souple notamment dans le choix des options ce qui permet de faire un diagramme très personnalisé.
+
+---
+
+__MICHEL__ Arnaud et __MORAWIEC__ Benjamin
+
+## Annexes
+
+### Diagramme de l'API
+
+![Diagramme DCC de l'API](../uml/Semaine5/DCC_API.png)
+![Diagramme DCA de l'API](../uml/Semaine5/DCA_API.png)
