@@ -171,5 +171,8 @@ __MICHEL__ Arnaud et __MORAWIEC__ Benjamin
 
 ### Diagramme de l'API
 
-![Diagramme DCC de l'API](../uml/Semaine5/DCC_API.png)
-![Diagramme DCA de l'API](../uml/Semaine5/DCA_API.png)
+#### Digramme de classe détaillé
+![Diagramme DCC de l'API](../uml/Semaine6/DCC_API.png)
+
+#### Diagramme de classe simplifié
+![Diagramme DCA de l'API](../uml/Semaine6/DCA_API.png)
