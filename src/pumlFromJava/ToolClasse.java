@@ -10,12 +10,12 @@ public class ToolClasse {
     public static final ArrayList<String> primitiveTypes = new ArrayList<String>() {{
         add("Byte");
         add("Short");
-        add("Int");
+        add("Integer");
         add("Long");
         add("Float");
-        add("Double");
+        add("Reel");
         add("Boolean");
-        add("Char");
+        add("Character");
     }};
 
 

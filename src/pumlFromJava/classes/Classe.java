@@ -146,8 +146,10 @@ public class Classe extends Instance implements Type {
         str.append(" {\n");
         if (saveOption.getDrawPrimitive()) {
             for (Attributs attribut : attributes) {
-                if (attribut.getType().getKind().isPrimitive() || ToolClasse.primitiveTypes.contains(attribut.getType().toString()) || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
+                if (attribut.getType().getKind().isPrimitive() || ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString())) || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                     str.append("\t").append(attribut.strDrawAttributs()).append("\n");
+                } else if (attribut.getType().toString().contains("[") && ToolClasse.primitiveTypes.contains(attribut.getType().toString().split("\\[")[0])) {
+                    str.append("\t").append(attribut.strDrawAttributs(true)).append("\n");
                 }
             }
         }
@@ -193,7 +195,9 @@ public class Classe extends Instance implements Type {
                     if (saveOption.getTypeDiagram().equals("DCA")) {
                         attribut.setName("");
                     }
-                    if ((ToolClasse.primitiveTypes.contains(attribut.getType().toString()) || !attribut.getType().getKind().isPrimitive()) && !(saveOption.getStrPrimitive() &&
+                    if ((!(attribut.getType().toString().contains("[") && ToolClasse.primitiveTypes.contains(attribut.getType().toString().split("\\[")[0]))
+                            || ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString()))
+                            || !attribut.getType().getKind().isPrimitive()) && !(saveOption.getStrPrimitive() &&
                             (attribut.getType().toString().equals("java.lang.String")
                                     || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>")
                                     || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
@@ -249,15 +253,17 @@ public class Classe extends Instance implements Type {
                                 str.append("\n");
                                 usedClasses.remove("String");
                             } else {
-                                str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1])
-                                        .append("\" 1 \\n ").append(attribut.getName()).append("\"").
-                                        append(" <--").append(attribut.getTypeAssociation()).
-                                        append(getName());
-                                if (!Objects.equals(attribut.getNameAssociation(), "")) {
-                                    str.append(": < ").append(attribut.getNameAssociation());
+                                if (!ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString()))) {
+                                    str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1])
+                                            .append("\" 1 \\n ").append(attribut.getName()).append("\"").
+                                            append(" <--").append(attribut.getTypeAssociation()).
+                                            append(getName());
+                                    if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                        str.append(": < ").append(attribut.getNameAssociation());
+                                    }
+                                    str.append("\n");
+                                    usedClasses.remove(ToolClasse.setUmlType(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]));
                                 }
-                                str.append("\n");
-                                usedClasses.remove(ToolClasse.setUmlType(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]));
                             }
 
                         }
@@ -306,14 +312,13 @@ public class Classe extends Instance implements Type {
                 }
             }
         }
-        for (String type : typeMethod) {
+        ArrayList<String> usedType = new ArrayList<>(typeMethod);
+        for (String type : usedType) {
             if (type.equals("*]")) {
                 typeMethod.remove(type);
-                break;
             }
             else if (ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(type))){
                 typeMethod.remove(type);
-                break;
             }
         }
         usedClasses.addAll(typeMethod);

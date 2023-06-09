@@ -95,6 +95,10 @@ public class Attributs implements Type {
         return writeType() + " " + name + " : " + ToolClasse.setUmlType(type.toString());
     }
 
+    public String strDrawAttributs(boolean isTab) {
+        return writeType() + " " + name + " : " + ToolClasse.setUmlType(type.toString().split("\\[")[0]) + pumlMultiplicity;
+    }
+
     /**
      * Méthode qui renvoie le type d'un attribut sous forme puml
      *
