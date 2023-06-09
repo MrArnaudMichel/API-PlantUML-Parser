@@ -146,7 +146,14 @@ public class Classe extends Instance implements Type {
         str.append(" {\n");
         if (saveOption.getDrawPrimitive()) {
             for (Attributs attribut : attributes) {
-                if (attribut.getType().getKind().isPrimitive() || ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString())) || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
+                System.out.println(saveOption.getStrPrimitive());
+                System.out.println(attribut.getType().toString());
+                if (attribut.getType().getKind().isPrimitive()
+                        || ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString()))
+                        || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")
+                        || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>")
+                        || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))
+                        || (attribut.getType().toString().contains("[") && ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString().split("\\[")[0])))) {
                     str.append("\t").append(attribut.strDrawAttributs()).append("\n");
                 } else if (attribut.getType().toString().contains("[") && ToolClasse.primitiveTypes.contains(attribut.getType().toString().split("\\[")[0])) {
                     str.append("\t").append(attribut.strDrawAttributs(true)).append("\n");
@@ -206,7 +213,7 @@ public class Classe extends Instance implements Type {
                             if (type.equals("String[]")) {
                                 type = "java.lang.String";
                             }
-                            str.append(type).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
+                            str.append(ToolClasse.setUmlType(type)).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
                                     .append(attribut.getName()).append("\"")
                                     .append(" <--").append(attribut.getTypeAssociation())
                                     .append(getName());
@@ -217,24 +224,26 @@ public class Classe extends Instance implements Type {
                             usedClasses.remove(ToolClasse.setUmlType(type));
                         } else if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains("[")) {
                             String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split("\\[")[0];
-                            if (type.equals("String[]")) {
-                                type = "java.lang.String";
+                            if (!ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(type))) {
+                                if (type.equals("String[]")) {
+                                    type = "java.lang.String";
+                                }
+                                str.append(ToolClasse.setUmlType(type)).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
+                                        .append(attribut.getName()).append("\"")
+                                        .append(" <--").append(attribut.getTypeAssociation())
+                                        .append(getName());
+                                if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                    str.append(": < ").append(attribut.getNameAssociation());
+                                }
+                                str.append("\n");
+                                usedClasses.remove(ToolClasse.setUmlType(type));
                             }
-                            str.append(type).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
-                                    .append(attribut.getName()).append("\"")
-                                    .append(" <--").append(attribut.getTypeAssociation())
-                                    .append(getName());
-                            if (!Objects.equals(attribut.getNameAssociation(), "")) {
-                                str.append(": < ").append(attribut.getNameAssociation());
-                            }
-                            str.append("\n");
-                            usedClasses.remove(ToolClasse.setUmlType(type));
                         } else if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains("<")) {
                             String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split("\\<")[attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split("\\[").length - 1];
                             if (type.equals("String[]")) {
                                 type = "java.lang.String";
                             }
-                            str.append(type).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
+                            str.append(ToolClasse.setUmlType(type)).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
                                     .append(attribut.getName()).append("\"")
                                     .append(" <--").append(attribut.getTypeAssociation())
                                     .append(getName());
@@ -254,7 +263,7 @@ public class Classe extends Instance implements Type {
                                 usedClasses.remove("String");
                             } else {
                                 if (!ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString()))) {
-                                    str.append(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1])
+                                    str.append(ToolClasse.setUmlType(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]))
                                             .append("\" 1 \\n ").append(attribut.getName()).append("\"").
                                             append(" <--").append(attribut.getTypeAssociation()).
                                             append(getName());

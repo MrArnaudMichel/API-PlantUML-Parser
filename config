@@ -1,5 +1,5 @@
 typeDiagram: DCC
-strPrimite: true
+strPrimitive: true
 association: true
 constructor: true
 method: true

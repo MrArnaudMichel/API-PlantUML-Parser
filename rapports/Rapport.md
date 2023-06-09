@@ -25,6 +25,8 @@ Pour la répartition :
 - __MICHEL__ Arnaud : Ajout de l'option --use et de tout le système de configuration.
 - __MORAWIEC__ Benjamin : Ajout des @Override dans le diagramme.
 - __MICHEL__ Arnaud et __MORAWIEC__ Benjamin : Obtention des commentaires javadoc pour les intégrer au diagramme.
+- __MICHEL__ Arnaud et __MORAWIEC__ Benjamin : Ajout des commentaires javadoc dans le diagramme.
+- __MORAWIEC__ Benjamin et __MICHEL__ Arnaud : Correction des bugs.
 
 ### Semaine 1 : les *doclets* de javadoc
 #### Objectif
@@ -135,6 +137,22 @@ Pour le DCA et le DCC de cette semaine, nous l'avons génerer depuis l'API puis 
 - Et nous avons ajouté les Doctree à l'API pour prendre en compte les commentaires. Ils peuvent notamment servir pour le nommage des associations. Pur cela, on peut ajouter le tag @pumlNameAssociation @pumlUse @pumlMultiplicity @pumlAgregation (par default) @pumlComposition 
 - Ajout de l'option --config aui prend en paramètre un fichier de config afin de mettre directement les paramètres dans un fichier de configuration. Tout est géré dans la methode static setConfig de la classe Config.
 - __Ajout du dossier javadocs qui contient la javadoc de l'API.__
+
+---
+
+### Semaine 6 : Finalisation
+
+#### Objectif
+- Préparation du rendu final et de la présentation
+
+#### Rendus
+- DCA et DCC API pumlFromJava mis à jour
+- sources des classes
+- rapport hebdomadaire
+
+#### Bilan de la semaine
+Nous avons corrigé les bugs de notre application et vérifié tout le code. Nous avons aussi fait la javadoc de notre application.
+Nous avons aussi fait la présentation de notre application.
 
 ---
 
