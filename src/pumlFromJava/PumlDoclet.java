@@ -286,7 +286,7 @@ public class PumlDoclet implements Doclet {
         dt = environment.getDocTrees();
         for (Element element : environment.getIncludedElements()) {
             if (first) {
-                pumlDiagram.setName(element.getEnclosedElements().toString().split("\\.")[0].split(",")[0]);
+                pumlDiagram.setName(element.getEnclosedElements().toString().split("\\.")[0].split(",")[0].split(" ")[0]);
                 first = false;
             }
             dumpElement(element);

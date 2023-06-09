@@ -79,7 +79,9 @@ public class PumlWriter {
      * @throws IOException Exception
      */
     private static void drawDC(Package pumldiagram, BufferedWriter writer, SaveOption saveOption) throws IOException {
-        writer.write("package " + pumldiagram.getName() + " {\n");
+        if (!pumldiagram.getName().trim().equals("")) {
+            writer.write("package " + pumldiagram.getName() + " {\n");
+        }
         for (Classe classe : pumldiagram.getClasses()) {
             writer.write(classe.strDrawDiagram(saveOption));
             writer.write("\n");
@@ -95,7 +97,9 @@ public class PumlWriter {
         for (Package package1 : pumldiagram.getPackages()) {
             drawDC(package1, writer, saveOption);
         }
-        writer.write("}\n");
+        if (!pumldiagram.getName().trim().equals(" ")) {
+            writer.write("}\n");
+        }
         drawLink(pumldiagram, writer, saveOption);
     }
 

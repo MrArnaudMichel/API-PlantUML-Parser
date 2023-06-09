@@ -87,6 +87,7 @@ public class Package {
             } else if (Objects.equals(enclosedElement.getKind().toString(), "INTERFACE")) {
                 this.addInterface(new Interface(enclosedElement));
             } else if (Objects.equals(enclosedElement.getKind().toString(), "PACKAGE")) {
+                System.out.println("Package : " + enclosedElement.getSimpleName().toString());
                 this.addPackage(new Package(enclosedElement, dt));
             }
         }

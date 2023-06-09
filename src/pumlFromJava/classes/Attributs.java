@@ -1,6 +1,7 @@
 package pumlFromJava.classes;
 
 import com.sun.source.util.DocTrees;
+import pumlFromJava.ToolClasse;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.type.TypeMirror;
@@ -85,13 +86,13 @@ public class Attributs implements Type {
      */
     public String strDrawAttributs() {
         if (type.toString().equals("java.util.ArrayList<java.lang.String[]>")) {
-            return writeType() + " " + name + " : String[*]";
+            return writeType() + " " + name + " : String"+ pumlMultiplicity;
         } else if (type.toString().equals("java.lang.String")) {
             return writeType() + " " + name + " : String";
         } else if (type.toString().equals("java.util.ArrayList<java.lang.String>")) {
-            return writeType() + " " + name + " : String[*]";
+            return writeType() + " " + name + " : String" + pumlMultiplicity;
         }
-        return writeType() + " " + name + " : " + Methode.setArray(type.toString());
+        return writeType() + " " + name + " : " + ToolClasse.setUmlType(type.toString());
     }
 
     /**

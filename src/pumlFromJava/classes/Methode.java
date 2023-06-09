@@ -1,5 +1,7 @@
 package pumlFromJava.classes;
 
+import pumlFromJava.ToolClasse;
+
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
@@ -55,13 +57,13 @@ public class Methode implements Type {
     public Methode(Element e) {
         setName(e.getSimpleName().toString());
         String returnType = e.asType().toString().split("\\.")[e.asType().toString().split("\\.").length - 1];
-        returnType = setArray(returnType);
+        returnType = ToolClasse.setUmlType(returnType);
         setReturnType(returnType);
         setVisibility(e.getModifiers().toString());
         String[] tab = new String[2];
         for (VariableElement parameter : ((ExecutableElement) e).getParameters()) {
             tab[0] = parameter.getSimpleName().toString();
-            tab[1] = setArray(parameter.asType().toString());
+            tab[1] = ToolClasse.setUmlType(parameter.asType().toString());
             parameters.add(tab.clone());
             tab[0] = "";
             tab[1] = "";
@@ -70,34 +72,6 @@ public class Methode implements Type {
 
     }
 
-    /**
-     * Constructeur de la classe Methode
-     *
-     * @param type String
-     * @return String array
-     */
-    public static String setArray(String type) {
-        type = type.split("\\.")[type.split("\\.").length - 1];
-        if (type.contains(")")) {
-            type = type.split("\\)")[1];
-            if (type.equals("void")) {
-                type = "";
-            } else if (type.equals("int")) {
-                type = "Integer";
-            } else if (type.equals("boolean")) {
-                type = "Boolean";
-            } else if (type.equalsIgnoreCase("float")) {
-                type = "Reel";
-            } else if (type.equalsIgnoreCase("double")) {
-                type = "Reel";
-            }
-        }
-        if (!type.equals("") && type.charAt(type.length() - 1) == '>') {
-            type = type.substring(0, type.length() - 1);
-            type += "[*]";
-        }
-        return type;
-    }
 
     /**
      * Méthode qui permet de dessiner une méthode

@@ -4,6 +4,7 @@ import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.util.DocTrees;
 import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
+import pumlFromJava.ToolClasse;
 
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
@@ -75,7 +76,6 @@ public class Classe extends Instance implements Type {
      * @param docTrees the doc trees
      */
     public Classe(Element element, DocTrees docTrees) {
-        DocCommentTree docCommentTree = docTrees.getDocCommentTree(element);
         if (docTrees.getDocCommentTree(element) != null) {
             for (var comment : docTrees.getDocCommentTree(element).getBlockTags()) {
                 if (comment.toString().contains("@pumlUse")) {
@@ -146,7 +146,7 @@ public class Classe extends Instance implements Type {
         str.append(" {\n");
         if (saveOption.getDrawPrimitive()) {
             for (Attributs attribut : attributes) {
-                if (attribut.getType().getKind().isPrimitive() || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
+                if (attribut.getType().getKind().isPrimitive() || ToolClasse.primitiveTypes.contains(attribut.getType().toString()) || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>") || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
                     str.append("\t").append(attribut.strDrawAttributs()).append("\n");
                 }
             }
@@ -193,7 +193,7 @@ public class Classe extends Instance implements Type {
                     if (saveOption.getTypeDiagram().equals("DCA")) {
                         attribut.setName("");
                     }
-                    if (!attribut.getType().getKind().isPrimitive() && !(saveOption.getStrPrimitive() &&
+                    if ((ToolClasse.primitiveTypes.contains(attribut.getType().toString()) || !attribut.getType().getKind().isPrimitive()) && !(saveOption.getStrPrimitive() &&
                             (attribut.getType().toString().equals("java.lang.String")
                                     || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String>")
                                     || attribut.getType().toString().equals("java.util.ArrayList<java.lang.String[]>")))) {
@@ -210,7 +210,35 @@ public class Classe extends Instance implements Type {
                                 str.append(": < ").append(attribut.getNameAssociation());
                             }
                             str.append("\n");
-                            usedClasses.remove(type);
+                            usedClasses.remove(ToolClasse.setUmlType(type));
+                        } else if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains("[")) {
+                            String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split("\\[")[0];
+                            if (type.equals("String[]")) {
+                                type = "java.lang.String";
+                            }
+                            str.append(type).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
+                                    .append(attribut.getName()).append("\"")
+                                    .append(" <--").append(attribut.getTypeAssociation())
+                                    .append(getName());
+                            if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                str.append(": < ").append(attribut.getNameAssociation());
+                            }
+                            str.append("\n");
+                            usedClasses.remove(ToolClasse.setUmlType(type));
+                        } else if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].contains("<")) {
+                            String type = attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split("\\<")[attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].split("\\[").length - 1];
+                            if (type.equals("String[]")) {
+                                type = "java.lang.String";
+                            }
+                            str.append(type).append("\" ").append(attribut.getPumlMultiplicity()).append(" \\n ")
+                                    .append(attribut.getName()).append("\"")
+                                    .append(" <--").append(attribut.getTypeAssociation())
+                                    .append(getName());
+                            if (!Objects.equals(attribut.getNameAssociation(), "")) {
+                                str.append(": < ").append(attribut.getNameAssociation());
+                            }
+                            str.append("\n");
+                            usedClasses.remove(ToolClasse.setUmlType(type));
                         } else {
                             if (attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String") || attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1].equals("String[]")) {
                                 str.append("java.lang.String").append("\" 1 \\n ")
@@ -229,7 +257,7 @@ public class Classe extends Instance implements Type {
                                     str.append(": < ").append(attribut.getNameAssociation());
                                 }
                                 str.append("\n");
-                                usedClasses.remove(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]);
+                                usedClasses.remove(ToolClasse.setUmlType(attribut.getType().toString().split("\\.")[attribut.getType().toString().split("\\.").length - 1]));
                             }
 
                         }
@@ -237,7 +265,7 @@ public class Classe extends Instance implements Type {
                 }
                 if (!saveOption.getTypeDiagram().equals("DCA") && saveOption.isDrawUse()) {
                     for (String usedClass : usedClasses) {
-                        str.append(getName()).append(" ..> ").append(" \"<<use>>\" ").append(usedClass).append("\n");
+                        str.append(getName()).append(" ..> ").append(usedClass).append(": <<use>>").append("\n");
                     }
                 }
             }
@@ -262,24 +290,28 @@ public class Classe extends Instance implements Type {
             }
         };
         for (Methode methode : getMethods()) {
-            if (!primitive.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !typeMethod.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !methode.getReturnType().equals("") && !methode.getReturnType().contains("String")) {
-                typeMethod.add(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]);
+            if (!primitive.contains(ToolClasse.setUmlType(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1])) && !typeMethod.contains(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]) && !methode.getReturnType().equals("") && !methode.getReturnType().contains("String")) {
+                typeMethod.add(ToolClasse.setUmlType(methode.getReturnType().split("\\[")[methode.getReturnType().split("\\[").length - 1]));
             }
             for (String[] type : methode.getParameters()) {
                 if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")) {
-                    typeMethod.add(type[1].split("\\[")[type[1].split("\\.").length - 1]);
+                    typeMethod.add(ToolClasse.setUmlType(type[1].split("\\[")[type[1].split("\\.").length - 1]));
                 }
             }
         }
         for (Contructor constructor : constructors) {
             for (String[] type : constructor.getParameters()) {
                 if (!primitive.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !typeMethod.contains(type[1].split("\\[")[type[1].split("\\[").length - 1]) && !type[1].contains("String")) {
-                    typeMethod.add(type[1].split("\\[")[type[1].split("\\[").length - 1]);
+                    typeMethod.add(ToolClasse.setUmlType(type[1].split("\\[")[type[1].split("\\[").length - 1]));
                 }
             }
         }
         for (String type : typeMethod) {
             if (type.equals("*]")) {
+                typeMethod.remove(type);
+                break;
+            }
+            else if (ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(type))){
                 typeMethod.remove(type);
                 break;
             }
