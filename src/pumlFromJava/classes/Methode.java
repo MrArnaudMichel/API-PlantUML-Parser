@@ -37,6 +37,8 @@ import java.util.ArrayList;
  *     <li>visibility</li>
  *     <li>parameters</li>
  * </ul>
+ *
+ * @pumlUse ToolClasse
  */
 public class Methode implements Type {
 

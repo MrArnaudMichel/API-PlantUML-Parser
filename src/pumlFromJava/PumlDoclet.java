@@ -109,141 +109,143 @@ public class PumlDoclet implements Doclet {
     @Override
     public Set<? extends Option> getSupportedOptions() {
         return Set.of(
-                new Option("--out", true, "Specify a document name the title by default is \"file\"", "<string>") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        fileCreator.setOutFileName(arguments.get(0));
-                        return true;
-                    }
-                },
-                new Option("--d", true, "Specify where to place generated output files the directory by default is current directory", "<string>") {
-                    @Override
-                    public boolean process(String option,
-                                           List<String> arguments) {
-                        fileCreator.setOutFilePath(arguments.get(0));
-                        return true;
-                    }
-                },
-                new Option("--config", true, "Specify a configuration file", "<string>") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        Config.setConfig(arguments.get(0), saveOption);
-                        config = true;
-                        return true;
-                    }
-                },
-                new Option("--dca", false, "If the option is specified then the program produces a DCA", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setTypeDiagram("DCA");
-                        return true;
-                    }
-                },
-                new Option("--str", false, "Considers the String type as primitive", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setStrPrimitive(false);
-                        return true;
-                    }
-                },
-                new Option("--association", false, "Deactivates associations", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setAssociation(false);
-                        return true;
-                    }
-                },
-                new Option("--constructor", false, "Deactivates constructors", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setConstructor(false);
-                        return true;
-                    }
-                },
-                new Option("--method", false, "Deactivates methods", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setMethod(false);
-                        return true;
-                    }
-                },
-                new Option("--field", false, "Deactivates attributes", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config) {
-                            saveOption.setDrawPrimitive(false);
-                            saveOption.setDrawUnPrimitive(false);
-                        }
-                        return true;
-                    }
-                },
-                new Option("--primitive", false, "Deactivates primitive types", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setDrawPrimitive(false);
-                        return true;
-                    }
-                },
-                new Option("--UnPrimitive", false, "Deactivates non-primitive types", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setDrawUnPrimitive(false);
-                        return true;
-                    }
-                },
-                new Option("--extends", false, "Deactivates extends", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setDrawExtends(false);
-                        return true;
-                    }
-                },
-                new Option("--implements", false, "Deactivates implements", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setDrawImplements(false);
-                        return true;
-                    }
-                },
-                new Option("--use", false, "Deactivates use", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        if (!config)
-                            saveOption.setDrawUse(false);
-                        return true;
-                    }
-                },
-                new Option("--help", false, "Print a synopsis of nonstandard options and exit", "") {
-                    @Override
-                    public boolean process(String option, List<String> arguments) {
-                        System.out.println(
-                                "Usage: javadoc [options] [packagenames] [sourcefiles] [@files]\n" +
-                                        "Standard options:\n" +
-                                        "  --d <directory>             Specify where to place generated output files the directory by default is current directory\n" +
-                                        "  --out <title>               Specify a document name the title by default is \"file\".\n" +
-                                        "  --dca                       If the option is specified then the program produces a DCA.\n" +
-                                        "  --str                       Considers the String type as primitive.\n" +
-                                        "  --association               Deactivates associations.\n" +
-                                        "  --constructor               Deactivates constructors.\n" +
-                                        "  --method                    Deactivates methods.\n" +
-                                        "  --field                     Deactivates attributes.\n" +
-                                        "  --primitive             Deactivates primitive types.\n" +
-                                        "  --UnPrimitive               Deactivates non-primitive types.\n" +
-                                        "  --extends                   Deactivates extends.\n" +
-                                        "  --implements                Deactivates implements.\n" +
-                                        "  --help                      Print a synopsis of nonstandard options and exit.\n");
-                        return true;
-                    }
+            new Option("--out", true, "Specify a document name the title by default is \"file\"", "<string>") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    fileCreator.setOutFileName(arguments.get(0));
+                    return true;
                 }
+            },
+            new Option("--d", true, "Specify where to place generated output files the directory by default is current directory", "<string>") {
+                @Override
+                public boolean process(String option,
+                                       List<String> arguments) {
+                    fileCreator.setOutFilePath(arguments.get(0));
+                    return true;
+                }
+            },
+            new Option("--dca", false, "If the option is specified then the program produces a DCA", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setTypeDiagram("DCA");
+                    return true;
+                }
+            },
+            new Option("--str", false, "Considers the String type as primitive", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setStrPrimitive(false);
+                    return true;
+                }
+            },
+            new Option("--association", false, "Deactivates associations", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setAssociation(false);
+                    return true;
+                }
+            },
+            new Option("--constructor", false, "Deactivates constructors", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setConstructor(false);
+                    return true;
+                }
+            },
+            new Option("--method", false, "Deactivates methods", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setMethod(false);
+                    return true;
+                }
+            },
+            new Option("--field", false, "Deactivates attributes", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config) {
+                        saveOption.setDrawPrimitive(false);
+                        saveOption.setDrawUnPrimitive(false);
+                    }
+                    return true;
+                }
+            },
+            new Option("--primitive", false, "Deactivates primitive types", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setDrawPrimitive(false);
+                    return true;
+                }
+            },
+            new Option("--UnPrimitive", false, "Deactivates non-primitive types", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setDrawUnPrimitive(false);
+                    return true;
+                }
+            },
+            new Option("--extends", false, "Deactivates extends", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setDrawExtends(false);
+                    return true;
+                }
+            },
+            new Option("--implements", false, "Deactivates implements", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setDrawImplements(false);
+                    return true;
+                }
+            },
+            new Option("--use", false, "Deactivates use", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    if (!config)
+                        saveOption.setDrawUse(false);
+                    return true;
+                }
+            },
+            new Option("--config", true, "Specify a configuration file", "<string>") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    Config.setConfig(arguments.get(0), saveOption);
+                    config = true;
+                    return true;
+                }
+            },
+            new Option("--help", false, "Print a synopsis of nonstandard options and exit", "") {
+                @Override
+                public boolean process(String option, List<String> arguments) {
+                    System.out.println(
+                        "Usage: javadoc [options] [packagenames] [sourcefiles] [@files]\n" +
+                                "Standard options:\n" +
+                                "  --d <directory>             Specify where to place generated output files the directory by default is current directory\n" +
+                                "  --out <title>               Specify a document name the title by default is \"file\".\n" +
+                                "  --dca                       If the option is specified then the program produces a DCA.\n" +
+                                "  --str                       Considers the String type as primitive.\n" +
+                                "  --association               Deactivates associations.\n" +
+                                "  --constructor               Deactivates constructors.\n" +
+                                "  --method                    Deactivates methods.\n" +
+                                "  --field                     Deactivates attributes.\n" +
+                                "  --primitive                 Deactivates primitive types.\n" +
+                                "  --UnPrimitive               Deactivates non-primitive types.\n" +
+                                "  --extends                   Deactivates extends.\n" +
+                                "  --implements                Deactivates implements.\n" +
+                                "  --drawUse                   Deactivates use.\n" +
+                                "  --config <file>             Specify a configuration file.\n" +
+                                "  --help                      Print a synopsis of nonstandard options and exit.\n");
+                    return true;
+                }
+            }
         );
     }
 

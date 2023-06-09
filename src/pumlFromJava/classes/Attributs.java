@@ -34,6 +34,8 @@ import javax.lang.model.type.TypeMirror;
  *     <li>type</li>
  *     <li>visibility</li>
  * </ul>
+ *
+ * @pumlUse ToolClasse
  */
 public class Attributs implements Type {
     private String name;
@@ -86,7 +88,7 @@ public class Attributs implements Type {
      */
     public String strDrawAttributs() {
         if (type.toString().equals("java.util.ArrayList<java.lang.String[]>")) {
-            return writeType() + " " + name + " : String"+ pumlMultiplicity;
+            return writeType() + " " + name + " : String" + pumlMultiplicity;
         } else if (type.toString().equals("java.lang.String")) {
             return writeType() + " " + name + " : String";
         } else if (type.toString().equals("java.util.ArrayList<java.lang.String>")) {
@@ -182,6 +184,15 @@ public class Attributs implements Type {
      */
     public String getNameAssociation() {
         return nameAssociation;
+    }
+
+    /**
+     * Méthode qui permet de modifier le nom d'une association
+     *
+     * @param nameAssociation String
+     */
+    public void setNameAssociation(String nameAssociation) {
+        this.nameAssociation = nameAssociation;
     }
 
     /**

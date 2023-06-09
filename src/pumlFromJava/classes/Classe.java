@@ -1,6 +1,5 @@
 package pumlFromJava.classes;
 
-import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.util.DocTrees;
 import jdk.jfr.Description;
 import pumlFromJava.SaveOption;
@@ -45,6 +44,7 @@ import java.util.Objects;
  * </ul>
  *
  * @see Type
+ * @pumlUse ToolClasse
  */
 @Description(
         "author: Arnaud, Benjamin;"
@@ -316,8 +316,7 @@ public class Classe extends Instance implements Type {
         for (String type : usedType) {
             if (type.equals("*]")) {
                 typeMethod.remove(type);
-            }
-            else if (ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(type))){
+            } else if (ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(type))) {
                 typeMethod.remove(type);
             }
         }

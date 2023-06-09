@@ -45,19 +45,21 @@ public class Java2Puml {
 
     Options:
     "Standard options:\n" +
-            "  --d <directory>             Specify where to place generated output files the directory by default is current directory\n" +
-            "  --out <title>               Specify a document name the title by default is \"name\".\n" +
-            "  --dca                       If the option is specified then the program produces a DCA.\n" +
-            "  --str                       Considers the String type as primitive.\n" +
-            "  --association               Deactivates associations.\n" +
-            "  --constructor               Deactivates constructors.\n" +
-            "  --method                    Deactivates methods.\n" +
-            "  --field                     Deactivates attributes.\n" +
-            "  --primitive                 Deactivates primitive types.\n" +
-            "  --UnPrimitive               Deactivates non-primitive types.\n" +
-            "  --extends                   Deactivates extends.\n" +
-            "  --implements                Deactivates implements.\n" +
-            "  --help                      Print a synopsis of nonstandard options and exit.\n");
+        "  --d <directory>             Specify where to place generated output files the directory by default is current directory\n" +
+        "  --out <title>               Specify a document name the title by default is \"file\".\n" +
+        "  --dca                       If the option is specified then the program produces a DCA.\n" +
+        "  --str                       Considers the String type as primitive.\n" +
+        "  --association               Deactivates associations.\n" +
+        "  --constructor               Deactivates constructors.\n" +
+        "  --method                    Deactivates methods.\n" +
+        "  --field                     Deactivates attributes.\n" +
+        "  --primitive                 Deactivates primitive types.\n" +
+        "  --UnPrimitive               Deactivates non-primitive types.\n" +
+        "  --extends                   Deactivates extends.\n" +
+        "  --implements                Deactivates implements.\n" +
+        "  --drawUse                   Deactivates use.\n" +
+        "  --config <file>             Specify a configuration file.\n" +
+        "  --help                      Print a synopsis of nonstandard options and exit.\n");
  */
 
         toolProvider.run(System.out, System.err, args);

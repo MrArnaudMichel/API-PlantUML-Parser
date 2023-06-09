@@ -20,7 +20,6 @@ public class ToolClasse {
 
 
     /**
-     *
      * @param type String
      * @return String array
      */
@@ -51,7 +50,7 @@ public class ToolClasse {
         if (!type.equals("") && type.charAt(type.length() - 1) == '>') {
             type = type.substring(0, type.length() - 1);
             type += "[*]";
-        } else if (type.contains("[")){
+        } else if (type.contains("[")) {
             type = type.split("\\[")[0];
             type += "[*]";
         }
