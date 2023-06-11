@@ -146,8 +146,6 @@ public class Classe extends Instance implements Type {
         str.append(" {\n");
         if (saveOption.getDrawPrimitive()) {
             for (Attributs attribut : attributes) {
-                System.out.println(saveOption.getStrPrimitive());
-                System.out.println(attribut.getType().toString());
                 if (attribut.getType().getKind().isPrimitive()
                         || ToolClasse.primitiveTypes.contains(ToolClasse.setUmlType(attribut.getType().toString()))
                         || (saveOption.getStrPrimitive() && (attribut.getType().toString().equals("java.lang.String")

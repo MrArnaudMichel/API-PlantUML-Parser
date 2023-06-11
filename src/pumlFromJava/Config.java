@@ -23,28 +23,20 @@ public class Config {
             String[] lines = str.split("\n");
             for (String line : lines) {
                 String[] words = line.split(": ");
-                if (words[0].equals("typeDiagram")) {
-                    saveOption.setTypeDiagram(words[1]);
-                } else if (words[0].equals("strPrimitive")) {
-                    saveOption.setStrPrimitive(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("association")) {
-                    saveOption.setAssociation(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("constructor")) {
-                    saveOption.setConstructor(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("method")) {
-                    saveOption.setMethod(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("drawPrimitive")) {
-                    saveOption.setDrawPrimitive(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("drawUnPrimitive")) {
-                    saveOption.setDrawUnPrimitive(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("drawExtends")) {
-                    saveOption.setDrawExtends(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("drawImplements")) {
-                    saveOption.setDrawImplements(Boolean.parseBoolean(words[1]));
-                } else if (words[0].equals("drawUses")) {
-                    saveOption.setDrawUse(Boolean.parseBoolean(words[1]));
+                switch (words[0]) {
+                    case "typeDiagram" -> saveOption.setTypeDiagram(words[1].trim());
+                    case "strPrimitive" -> saveOption.setStrPrimitive(words[1].trim().equals("true"));
+                    case "association" -> saveOption.setAssociation(words[1].trim().equals("true"));
+                    case "constructor" -> saveOption.setConstructor(words[1].trim().equals("true"));
+                    case "method" -> saveOption.setMethod(words[1].trim().equals("true"));
+                    case "drawPrimitive" -> saveOption.setDrawPrimitive(words[1].trim().equals("true"));
+                    case "drawUnPrimitive" -> saveOption.setDrawUnPrimitive(words[1].trim().equals("true"));
+                    case "drawExtends" -> saveOption.setDrawExtends(words[1].trim().equals("true"));
+                    case "drawImplements" -> saveOption.setDrawImplements(words[1].trim().equals("true"));
+                    case "drawUses" -> saveOption.setDrawUse(words[1].trim().equals("true"));
                 }
             }
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
