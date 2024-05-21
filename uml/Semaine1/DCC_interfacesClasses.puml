@@ -1,0 +1,31 @@
+@startuml
+title DCC des interfaces et classes utiles pour les Doclets
+
+interface Doclet {
+  +process()
+  +generateOutput()
+  +saveOutput()
+}
+
+interface LanguageVersion {
+  +languageVersion()
+}
+
+class AbstractDoclet {
+  +process()
+  +generateOutput()
+  +saveOutput()
+  -options : Map<String, String>
+}
+
+class StandardDoclet {
+  +process()
+  +generateOutput()
+  +saveOutput()
+}
+
+Doclet <|-- AbstractDoclet
+Doclet <|-- StandardDoclet
+AbstractDoclet <|-- StandardDoclet
+
+@enduml

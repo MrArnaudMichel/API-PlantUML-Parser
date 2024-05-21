@@ -1,0 +1,18 @@
+@startuml
+title DCA des interfaces et classes utiles pour les Doclets
+
+
+
+
+class Java2Puml
+interface ToolProvider
+interface Doclet
+class Optional
+
+class FirstDoclet implements Doclet
+
+ ToolProvider <-- Java2Puml : < utilise
+ Optional <-- ToolProvider : < cree
+
+
+@enduml

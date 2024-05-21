@@ -1,0 +1,315 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package pumlFromJava {
+class CreateFile {
+	+ {static} DEFAULT_NAME : String
+	+ {static} DEFAULT_PATH : String
+	- outFileName : String
+	- outFilePath : String
+	+<<Create>> CreateFile()
+	+ creationFichier() : String
+	+ createFile(fileName : String)
+	+ getOutFileName() : String
+	+ setOutFileName(outFileName : String)
+	+ getOutFilePath() : String
+	+ setOutFilePath(outFilePath : String)
+}
+
+class SaveOption {
+	- typeDiagram : String
+	- strPrimitive : boolean
+	- association : boolean
+	- constructor : boolean
+	- method : boolean
+	- drawPrimitive : boolean
+	- drawUnPrimitive : boolean
+	- drawExtends : boolean
+	- drawImplements : boolean
+	- drawUse : boolean
+	+<<Create>> SaveOption()
+	+ getTypeDiagram() : String
+	+ setTypeDiagram(typeDiagram : String)
+	+ getStrPrimitive() : Boolean
+	+ setStrPrimitive(strPrimitive : boolean)
+	+ getAssociation() : Boolean
+	+ setAssociation(association : boolean)
+	+ getConstructor() : Boolean
+	+ setConstructor(constructor : boolean)
+	+ getMethod() : Boolean
+	+ setMethod(method : boolean)
+	+ getDrawPrimitive() : Boolean
+	+ setDrawPrimitive(drawPrimitive : boolean)
+	+ getDrawUnPrimitive() : Boolean
+	+ setDrawUnPrimitive(drawUnPrimitive : boolean)
+	+ getDrawExtends() : Boolean
+	+ setDrawExtends(drawExtends : boolean)
+	+ getDrawImplements() : Boolean
+	+ setDrawImplements(drawImplements : boolean)
+	+ isDrawUse() : Boolean
+	+ setDrawUse(drawUse : boolean)
+}
+
+class Package {
+	- name : String
+	+<<Create>> Package()
+	+<<Create>> Package(element : Element, dt : DocTrees)
+	+ getClasses() : Classe[*]
+	+ setClasses(classes : Classe[*])
+	+ addClasse(classe : Classe)
+	+ getInterfaces() : Interface[*]
+	+ setInterfaces(interfaces : Interface[*])
+	+ addInterface(interface1 : Interface)
+	+ getEnumerations() : Enumerations[*]
+	+ setEnumerations(enumerations : Enumerations[*])
+	+ addEnumeration(enumeration : Enumerations)
+	+ getPackages() : Package[*]
+	+ setPackages(packages : Package[*])
+	+ addPackage(package1 : Package)
+	+ getName() : String
+	+ setName(name : String)
+}
+
+class PumlWriter {
+	+<<Create>> PumlWriter()
+	- {static} writeEntete(writer : BufferedWriter)
+	- {static} writeFin(writer : BufferedWriter)
+	+ {static} fillPuml(pumldiagram : Package, fileName : String, saveOption : SaveOption)
+	- {static} drawDC(pumldiagram : Package, writer : BufferedWriter, saveOption : SaveOption)
+	- {static} drawLink(pumldiagram : Package, writer : BufferedWriter, saveOption : SaveOption)
+}
+
+class FirstDoclet {
+	+<<Create>> FirstDoclet()
+	+ init(Override)
+	+ getName(Override) : String
+	+ getSupportedOptions(Override) : Option[*]
+	+ getSupportedSourceVersion(Override) : SourceVersion
+	+ run(Override) : Boolean
+	- dumpElement(element : Element)
+}
+
+class PumlDoclet {
+	- config : boolean
+	+<<Create>> PumlDoclet()
+	+ init(Override)
+	+ getName(Override) : String
+	+ getSupportedOptions(Override) : Option[*]
+	+ getSupportedSourceVersion(Override) : SourceVersion
+	+ run(Override) : Boolean
+	- dumpElement(element : Element)
+}
+
+class Java2Puml {
+	+<<Create>> Java2Puml()
+	+ {static} main(args : String[])
+}
+
+class Config {
+	+<<Create>> Config()
+	+ {static} setConfig(path : String, saveOption : SaveOption)
+}
+
+class Option {
+	- name : String
+	- hasArg : boolean
+	- description : String
+	- parameters : String
+	<<Create>> Option(name : String, hasArg : Boolean, description : String, parameters : String)
+	+ getArgumentCount(Override) : Integer
+	+ getDescription(Override) : String
+	+ getKind(Override) : Kind
+	+ getNames(Override) : String[*]
+	+ getParameters(Override) : String
+}
+
+package classes {
+class Contructor {
+	- name : String
+	- visibility : String
+	- parameters : String[*]
+	+<<Create>> Contructor(e : Element, name : String)
+	+ strDraw() : String
+	- typeConstructor(visibility : String) : String
+	+ getName() : String
+	+ setName(name : String)
+	+ getVisibility() : String
+	+ setVisibility(visibility : String)
+	+ getParameters() : String[][*]
+	+ setParameters(parameters : String[][*])
+}
+
+class Instance {
+	- name : String
+	- extendsClasse : String
+	- namePackage : String
+	+<<Create>> Instance()
+	+ getName() : String
+	+ setName(name : String)
+	+ getMethods() : Methode[*]
+	+ setMethods(methods : Methode[*])
+	+ getExtendsClasse() : String
+	+ setExtendsClasse(extendsClasse : String)
+	+ getImplementsInterface() : TypeMirror[*]
+	+ setImplementsInterface(implementsInterface : TypeMirror[*])
+	+ getNamePackage() : String
+	+ setNamePackage(namePackage : String)
+}
+
+class Enumerations {
+	- name : String
+	- attributes : String[*]
+	- namePackage : String
+	+<<Create>> Enumerations(element : Element)
+	+ strDraw(saveOption : SaveOption) : String
+	+ getName() : String
+	+ setName(name : String)
+	+ getAttributes() : String[*]
+	+ setAttributes(attributes : String[*])
+	+ getNamePackage() : String
+	+ setNamePackage(namePackage : String)
+}
+
+class Interface {
+	+<<Create>> Interface(element : Element)
+	+ strDraw(saveOption : SaveOption) : String
+	+ strRelation(saveOption : SaveOption) : String
+}
+
+class Methode {
+	- parameters : String[*]
+	- name : String
+	- returnType : String
+	- visibility : String
+	- isOverride : boolean
+	+<<Create>> Methode(e : Element)
+	+ {static} setArray(type : String) : String
+	+ strDraw() : String
+	- writeType() : String
+	+ getIsOverride() : Boolean
+	+ setIsOverride(isOverride : boolean)
+	+ getParameters() : String[][*]
+	+ getName() : String
+	+ setName(name : String)
+	+ getReturnType() : String
+	+ setReturnType(returnType : String)
+	+ getVisibility(Override) : String
+	+ setVisibility(visibility : String)
+}
+
+class Attributs {
+	- name : String
+	- typeAssociation : String
+	- visibility : String
+	- pumlMultiplicity : String
+	- nameAssociation : String
+	+<<Create>> Attributs(element : Element, docTrees : DocTrees)
+	+ strDrawAttributs() : String
+	- writeType() : String
+	+ getName() : String
+	+ setName(name : String)
+	+ getType() : TypeMirror
+	+ setType(type : TypeMirror)
+	+ getVisibility() : String
+	+ setVisibility(visibility : String)
+	+ getNameAssociation() : String
+	+ getTypeAssociation() : String
+	+ getPumlMultiplicity() : String
+}
+
+class Classe<< Arnaud, Benjamin >> {
+	- usedClasses : String[*]
+	- author : String[*]
+	+<<Create>> Classe(element : Element, docTrees : DocTrees)
+	+ strDrawDiagram(saveOption : SaveOption) : String
+	+ strRelation(saveOption : SaveOption) : String
+	- drawUse()
+}
+
+interface Type<<interface>> {
+	+ isPublic(parameters : String) : Boolean
+	+ isPrivate(parameters : String) : Boolean
+	+ isProtected(parameters : String) : Boolean
+	+ isAbstract(parameters : String) : Boolean
+	+ isStatic(parameters : String) : Boolean
+	+ getVisibility() : String
+}
+
+}
+Type <|.. Contructor
+Contructor ..>  "<<use>>" Element
+
+Methode" [*] \n methods" <--* Instance: < Contient 
+TypeMirror" [*] \n implementsInterface" <--* Instance
+
+Enumerations ..>  "<<use>>" SaveOption
+Enumerations ..>  "<<use>>" Element
+
+Instance <|-- Interface
+Interface ..>  "<<use>>" SaveOption
+Interface ..>  "<<use>>" Element
+
+Type <|.. Methode
+Methode ..>  "<<use>>" Element
+
+Type <|.. Attributs
+TypeMirror" 1 \n type" <--* Attributs: < à un 
+Attributs ..>  "<<use>>" Element
+Attributs ..>  "<<use>>" DocTrees
+
+Instance <|-- Classe
+Type <|.. Classe
+Attributs" [*] \n attributes" <--* Classe: < contient 
+Contructor" [*] \n constructors" <--* Classe: < contient 
+Classe ..>  "<<use>>" SaveOption
+Classe ..>  "<<use>>" Element
+Classe ..>  "<<use>>" DocTrees
+
+
+}
+
+
+Classe" [0..*]  \n classes" <--* Package: < Contient 
+Interface" [0..*]  \n interfaces" <--* Package: < Contient 
+Enumerations" [0..*]  \n enumerations" <--* Package: < Contient 
+Package" [0..*]  \n packages" <--* Package: < Contient 
+Package ..>  "<<use>>" Element
+Package ..>  "<<use>>" DocTrees
+
+PumlWriter ..>  "<<use>>" BufferedWriter
+PumlWriter ..>  "<<use>>" Package
+PumlWriter ..>  "<<use>>" SaveOption
+
+Doclet <|.. FirstDoclet
+FirstDoclet ..>  "<<use>>" Locale
+FirstDoclet ..>  "<<use>>" Reporter
+FirstDoclet ..>  "<<use>>" SourceVersion
+FirstDoclet ..>  "<<use>>" DocletEnvironment
+FirstDoclet ..>  "<<use>>" Element
+
+Doclet <|.. PumlDoclet
+CreateFile" 1 \n fileCreator" <--* PumlDoclet: < Créer 
+SaveOption" 1 \n saveOption" <--* PumlDoclet: < Créer 
+Package" 1 \n pumlDiagram" <--* PumlDoclet: < Créer 
+DocTrees" 1 \n dt" <--* PumlDoclet: < Créer 
+PumlDoclet ..>  "<<use>>" Config
+PumlDoclet ..>  "<<use>>" Option
+PumlDoclet ..>  "<<use>>" Locale
+PumlDoclet ..>  "<<use>>" Reporter
+PumlDoclet ..>  "<<use>>" SourceVersion
+PumlDoclet ..>  "<<use>>" DocletEnvironment
+PumlDoclet ..>  "<<use>>" Element
+
+Java2Puml ..>  "<<use>>" PumlDoclet
+
+Config ..>  "<<use>>" SaveOption
+
+Option <|.. Option
+Option ..>  "<<use>>" Kind
+
+
+@enduml

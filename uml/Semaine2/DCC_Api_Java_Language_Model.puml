@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+interface Element <<interface>>
+{
+    + getKind() : ElementKind
+    + getSimpleName() : Name
+    + getEnclosedElement() : List<Element>
+    + getEnclosingElement() : Element
+}
+
+enum ElementKind <<enum>>
+{
+    ENUM
+    CLASS
+    INTERFACE
+}
+
+enum Modifier <<enum>>
+{
+    PUBLIC
+    PROTECTED
+    PRIVATE
+    ABSTRACT
+    STATIC
+    FINAL
+}
+
+interface Name <<interface>>
+{
+    + equals() : boolean
+}
+
+class TypeElement
+{
+    + getSimpleName() : Name
+    + getTypeParameters() : List<TypeParameterElement>
+}
+
+Element " *   " o---> "1\n-Kind" ElementKind : Possède >
+Element " *   " o---> "1\n-Modifier" Modifier : Possède >
+Element " *   " o---> "1\n-Name" Name : Possède >
+TypeElement " *   " o---> "1\n-Name" Name : Possède >
+TypeElement " *   " o---> "*\n-EnclosedElement" TypeElement : Possède >
+
+@enduml

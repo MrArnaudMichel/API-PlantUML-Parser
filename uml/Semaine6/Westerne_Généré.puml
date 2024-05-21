@@ -1,0 +1,194 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package western {
+class Histoire4 {
+	+<<Create>> Histoire4()
+	+ {static} main(args : String[*])
+}
+
+class Cowboy {
+	- gains : Integer
+	+<<Create>> Cowboy(nom : String)
+	+<<Create>> Cowboy(nom : String, boisson : Boisson)
+	+ getPseudo(Override) : String
+	+ liberer(dame : Dame)
+	+ liberer(captives : Dame[*])
+	+ capturer(horsLaLoi : HorsLaLoi)
+	+ tirerSur(brigand : HorsLaLoi)
+	+ sePresenter(Override)
+	+ {static} getBoissonParDefaut() : Boisson
+	+ {static} setBoissonParDefaut(boisson : Boisson)
+}
+
+class Substantif {
+	- nom : String
+	+<<Create>> Substantif(nom : String, genre : Genre)
+	+ getNom() : String
+	+ getGenre() : Genre
+	+ toString(Override) : String
+	+ {static} isVowel(c : Character) : Boolean
+	+ {static} startsWithVowel(s : String) : Boolean
+	+ getArticleIndefini() : String
+	+ avecArticleIndefini() : String
+	+ {static} getArticleDefini(genre : Genre) : String
+	+ getArticleDefini() : String
+	+ avecArticleDefini() : String
+	+ {static} faireElision(article : String) : String
+	+ elision() : Boolean
+	+ getArticlePartitif() : String
+	+ avecArticlePartitif() : String
+	+ avecElision(article : String) : String
+	+ avecPreposition(preposition : String) : String
+}
+
+class Narrateur {
+	+<<Create>> Narrateur()
+	+<<Create>> Narrateur(nom : String)
+	+ dire(Override)
+	+ boire(Override)
+	+ boire(Override)
+	+ getPseudo(Override) : String
+}
+
+class Boisson {
+	+<<Create>> Boisson(nom : String, genre : Genre)
+	+ getNom() : String
+	+ getGenre() : Genre
+	+ getNomAvecArticleIndefini() : String
+	+ getNomAvecArticlePartitif() : String
+	+ getNomAvecArticleDefini() : String
+	+ getNomAvecPreposition(preposition : String) : String
+}
+
+class Brigand {
+	# {static} LOOK_PAR_DEFAUT : String
+	- look : String
+	- recompense : Integer
+	- estLibre : Boolean
+	+<<Create>> Brigand(nom : String)
+	+<<Create>> Brigand(nom : String, boisson : Boisson)
+	+<<Create>> Brigand(nom : String, boisson : Boisson, look : String)
+	+ getLook() : String
+	+ getRecompense() : Integer
+	+ estLibre() : Boolean
+	+ kidnapper(dame : Dame)
+	+ seFaireCapturer(cowBoy : Cowboy)
+	+ seFaireTirerDessus(cowBoy : Cowboy)
+	+ getPseudo(Override) : String
+	+ getCaptives() : Dame[*]
+	+ sePresenter(Override)
+	+ {static} getBoissonParDefaut() : Boisson
+	+ {static} setBoissonParDefaut(boisson : Boisson)
+}
+
+class Personnage {
+	- nom : String
+	+<<Create>> Personnage(nom : String)
+	+<<Create>> Personnage(nom : String, boisson : Boisson)
+	+ dire(texte : String)
+	+ sePresenter()
+	+ boire(boisson : Boisson)
+	+ boire()
+	+ getNom() : String
+	+ getBoisson() : Boisson
+	+ {static} getPseudos(personnages : Nommable[*]) : String
+	+ {static} getBoissonParDefaut() : Boisson
+}
+
+class Dame {
+	- estLibre : Boolean
+	+<<Create>> Dame(nom : String)
+	+<<Create>> Dame(nom : String, boisson : Boisson)
+	+ getPseudo(Override) : String
+	+ seFaireKidnapper(horsLaLoi : HorsLaLoi)
+	+ seFaireLiberer(cowBoy : Cowboy)
+	+ estLibre() : Boolean
+	+ sePresenter(Override)
+	+ {static} getBoissonParDefaut() : Boisson
+	+ {static} setBoissonParDefaut(boisson : Boisson)
+	+ getRavisseur() : HorsLaLoi
+}
+
+class Ripou {
+	+<<Create>> Ripou(nom : String)
+	+<<Create>> Ripou(nom : String, boisson : Boisson)
+	+<<Create>> Ripou(nom : String, boisson : Boisson, look : String)
+	+ getLook() : String
+	+ estLibre(Override) : Boolean
+	+ getRecompense(Override) : Integer
+	+ kidnapper(Override)
+	+ getCaptives(Override) : Dame[*]
+	+ seFaireCapturer(Override)
+	+ seFaireTirerDessus(Override)
+	+ getPseudo(Override) : String
+	+ sePresenter(Override)
+	+ liberer(Override)
+}
+
+interface HorsLaLoi<<interface>> {
+	+ {abstract} estLibre() : Boolean
+	+ {abstract} getRecompense() : Integer
+	+ {abstract} kidnapper(dame : Dame)
+	+ {abstract} seFaireCapturer(cowBoy : Cowboy)
+	+ {abstract} seFaireTirerDessus(cowBoy : Cowboy)
+	+ {abstract} getLook() : String
+	+ {abstract} getCaptives() : Dame[*]
+}
+
+interface Nommable<<interface>> {
+	+ {abstract} getNom() : String
+	+ {abstract} getPseudo() : String
+}
+
+enum Genre<<enumeration>> {
+	FEMININ
+	MASCULIN
+}
+
+}
+
+Personnage <|-- Cowboy
+HorsLaLoi" [*] \n captures" <--* Cowboy
+Boisson" 1 \n boissonParDefaut" <--* Cowboy
+Cowboy ..> Dame: <<use>>
+Cowboy ..> Dame: <<use>>
+
+Genre" 1 \n genre" <--* Substantif
+
+Personnage <|-- Narrateur
+Narrateur ..> Boisson: <<use>>
+
+Substantif" 1 \n substantif" <--* Boisson
+Boisson" 1 \n EAU" <--* Boisson
+Boisson ..> Genre: <<use>>
+
+Personnage <|-- Brigand
+HorsLaLoi <|.. Brigand
+Dame" [*] \n captives" <--* Brigand
+Cowboy" 1 \n gardien" <--* Brigand
+Boisson" 1 \n boissonParDefaut" <--* Brigand
+
+Nommable <|.. Personnage
+Boisson" 1 \n BOISSON_PAR_DEFAUT" <--* Personnage
+Boisson" 1 \n boisson" <--* Personnage
+
+Personnage <|-- Dame
+Cowboy" 1 \n sauveur" <--* Dame
+HorsLaLoi" 1 \n ravisseur" <--* Dame
+Boisson" 1 \n boissonParDefaut" <--* Dame
+
+Cowboy <|-- Ripou
+HorsLaLoi <|.. Ripou
+Brigand" 1 \n brigand" <--* Ripou
+Ripou ..> Dame: <<use>>
+Ripou ..> Boisson: <<use>>
+
+
+
+
+@enduml

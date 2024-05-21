@@ -12,22 +12,21 @@ import java.util.Set;
 
 /**
  * Doclets : https://openjdk.org/groups/compiler/processing-code.html
- *
+ * <p>
  * Doclets provide code that can be executed by the JDK javadoc tool.
  * Although the tool is primarily designed to support the ability to generate
  * API documentation from element declarations and documentation comments,
  * it is not limited to that purpose, and can run any user-supplied doclet,
  * which can use the Language Model API and Compiler Tree API to analyze the packages,
  * classes and files specified on the command line.
- */
-
-/**
+ * <br>
  * A minimal doclet that just prints out the names of the
  * selected elements.
  */
 public class FirstDoclet implements Doclet {
     @Override
-    public void init(Locale locale, Reporter reporter) {  }
+    public void init(Locale locale, Reporter reporter) {
+    }
 
     @Override
     public String getName() {
@@ -62,15 +61,13 @@ public class FirstDoclet implements Doclet {
         System.out.println(this.getName());
         System.out.println(environment.getSpecifiedElements());
         System.out.println(environment.getIncludedElements());
-        for (Element element : environment.getSpecifiedElements())
-        {
+        for (Element element : environment.getSpecifiedElements()) {
             dumpElement(element);
         }
         return true;
     }
 
-    private void dumpElement(Element element)
-    {
+    private void dumpElement(Element element) {
         System.out.print("---- ");
         System.out.println("element: " + element);
         System.out.println("kind: " + element.getKind());

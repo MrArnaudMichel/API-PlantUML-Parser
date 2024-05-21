@@ -1,0 +1,248 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+class pumlFromJava.PumlDiagram {
++<<create>> PumlDiagram()
++ getClasses() : Classe[*]
++ setClasses(classe: Classe[*])
++ addClasse(classe: Classe)
++ getInterfaces() : Interface[*]
++ setInterfaces(interface: Interface[*])
++ addInterface(interface: Interface)
++ getEnumerations() : Enumerations[*]
++ setEnumerations(enumerations: Enumerations[*])
++ addEnumeration(enumerations: Enumerations[*])
+}
+class pumlFromJava.CreateFile {
++ DEFAULT_NAME : String
++ DEFAULT_PATH : String
+- outFileName : String
+- outFilePath : String
++<<create>> CreateFile()
++ creationFichier() : String
++ createFile(out: String)
++ getOutFileName() : String
++ setOutFileName(outFileName: String)
++ getOutFilePath() : String
++ setOutFilePath(outFilePath : String)
+}
+class pumlFromJava.PumlWriter {
++<<create>> PumlWriter()
+- writeEntete(writer: BufferedWriter)
+- writeFin(writer: BufferedWriter)
++ fillPuml(pumlDiagram: PumlDiagram,out String,dcc String)
+- drawDC(pumlDiagram: PumlDiagram,writer: BufferedWriter,dcc: String)
+}
+class pumlFromJava.FirstDoclet {
++<<create>> FirstDoclet()
++ init(local: Locale,reporter: Reporter)
++ getName() : String
++ getSupportedOptions() : Set<? extends jdk.javadoc.doclet.Doclet.Option>
++ getSupportedSourceVersion() : SourceVersion
++ run(docletEnvironnement: DocletEnvironment) : boolean
+- dumpElement(element: Element)
+}
+class pumlFromJava.PumlDoclet {
+- fileCreator : pumlFromJava.CreateFile
+- pumlDiagram : pumlFromJava.PumlDiagram
+- choixDc : String
++<<create>> PumlDoclet()
++ init(local: Locale,reporter: Reporter)
++ getName() : String
++ getSupportedOptions() : Set<? extends pumlFromJava.PumlDoclet.Option>
++ getSupportedSourceVersion() : SourceVersion
++ run(docletEnvironnement: DocletEnvironment) : boolean
+- dumpElement(element: Element)
+}
+class pumlFromJava.Java2Puml {
++<<create>> Java2Puml()
++ main(args: String[])
+}
+class pumlFromJava.classes.Instance {
+- name : String
+- extendsClasses : String[*]
+- implementsInterfaces : String[*]
+- namePackage : String
++<<create>> Instance()
++ getName() : String
++ setName(name: String)
++ getMethods() : Methode[*]
++ setMethods(methods: Methode[*])
++ getExtendsClasses() : String[*]
++ setExtendsClasses(extendsClasses: String[*])
++ getImplementsInterfaces() : String[*]
++ setImplementsInterfaces(implementsInterfaces: String[*])
++ getNamePackage() : String
++ setNamePackage(name: String)
+}
+class pumlFromJava.classes.Enumerations {
+- name : String
+- attributes : String[*]
+- namePackage : String
++<<create>> Enumerations(element: Element)
++ strDraw() : String
++ getName() : String
++ setName(name: String)
++ getAttributes() : String[*]
++ setAttributes(attributes: String[*])
++ getNamePackage() : String
++ setNamePackage(name: String)
+}
+class pumlFromJava.classes.Interface {
++<<create>> Interface(element: Element)
++ strDraw(dcc String) : String
+}
+class pumlFromJava.classes.Methode {
+- name : String
+- returnType : String
+- visibility : String
+- parameters : String[*]
++<<create>> Methode(element: Element)
++ strDraw() : String
++ writeType() : String
++ getName() : String
++ setName(name: String)
++ getReturnType() : String
++ setReturnType(type: String)
++ getVisibility() : String
++ setVisibility(visibility: String)
++ getParameters() : String[*]
++ setParameters(parameters: String[*])
+}
+class pumlFromJava.classes.Attributs {
+- name : String
+- type : TypeMirror
+- visibility : String
++<<create>> Attributs(element: Element)
++ strDrawAttributs() : String
+- writeType() : String
++ getName() : String
++ setName(name: String)
++ getType() : TypeMirror
++ setType(TypeMirror)
++ getVisibility() : String
++ setVisibility(visibility: String)
+}
+class pumlFromJava.classes.Classe {
+- constructors : String[*]
++<<create>> Classe(element: Element)
++ typeConstructor(type: String) : String
++ strDraw(String) : String
++ getConstructors() : String[*]
++ setConstructors(constructors: String[*])
++ getAttributes() : Attributs[*]
++ setAttributes(attributes: Attributs[*])
+}
+class pumlFromJava.PumlDiagram {
+- classes : Classe[*]
+- interfaces : Interface[*]
+- enumerations : Enumerations[*]
++<<create>> PumlDiagram()
++ getClasses() : Classe[*]
++ setClasses(classes: Classe[*])
++ addClasse(classe: Classe)
++ getInterfaces() : Interface[*]
++ setInterfaces(interfaces: Interface[*])
++ addInterface(interface: Interface)
++ getEnumerations() : Enumerations[*]
++ setEnumerations(enumerations: Enumerations[*])
++ addEnumeration(enumerations: Enumerations[*])
+}
+class pumlFromJava.CreateFile {
++ DEFAULT_NAME : String
++ DEFAULT_PATH : String
+- outFileName : String
+- outFilePath : String
++<<create>> CreateFile()
++ creationFichier() : String
++ createFile(file String)
++ getOutFileName() : String
++ setOutFileName(name String)
++ getOutFilePath() : String
++ setOutFilePath(path String)
+}
+class pumlFromJava.PumlWriter {
++<<create>> PumlWriter()
+- writeEntete(writer: BufferedWriter)
+- writeFin(writer: BufferedWriter)
++ fillPuml(pumlDiagram: PumlDiagram,out String,dcc String)
+- drawDC(pumlDiagram: PumlDiagram,writer: BufferedWriter,dcc: String)
+}
+class pumlFromJava.FirstDoclet {
++<<create>> FirstDoclet()
++ init(local: Locale,reporter: Reporter)
++ getName() : String
++ getSupportedOptions() : Set<? extends jdk.javadoc.doclet.Doclet.Option>
++ getSupportedSourceVersion() : SourceVersion
++ run(docletEnvironnement: DocletEnvironment) : boolean
+- dumpElement(element: Element)
+}
+class pumlFromJava.PumlDoclet {
+- choixDc : String
++<<create>> PumlDoclet()
++ init(local: Locale,reporter: Reporter)
++ getName() : String
++ getSupportedOptions() : Set<? extends pumlFromJava.PumlDoclet.Option>
++ getSupportedSourceVersion() : SourceVersion
++ run(docletEnvironnement: DocletEnvironment) : boolean
+- dumpElement(element: Element)
+}
+class pumlFromJava.Java2Puml {
++<<create>> Java2Puml()
++ main(String[] args)
+}
+class pumlFromJava.Option {
+- name : String
+- hasArg : boolean
+- description : String
+- parameters : String
+<<create>> Option(name: String,hasArg: boolean,description: String,parameters: String)
++ getArgumentCount() : int
++ getDescription() : String
++ getKind() : Kind
++ getNames() : String[]
++ getParameters() : String
+}
+interface pumlFromJava.classes.Type<<interface>> {
++ isPublic(String) : boolean
++ isPrivate(String) : boolean
++ isProtected(String) : boolean
++ isAbstract(String) : boolean
++ isStatic(String) : boolean
++ getVisibility() : String
+}
+
+pumlFromJava.classes.Instance <|-- pumlFromJava.classes.Interface
+jdk.javadoc.doclet.Doclet <|.. pumlFromJava.FirstDoclet
+jdk.javadoc.doclet.Doclet <|.. pumlFromJava.PumlDoclet
+pumlFromJava.PumlDoclet +.. pumlFromJava.PumlDoclet.Option
+pumlFromJava.Option <|.. pumlFromJava.PumlDoclet.Option
+pumlFromJava.classes.Type <|.. pumlFromJava.classes.Methode
+pumlFromJava.classes.Type <|.. pumlFromJava.classes.Classe
+pumlFromJava.classes.Instance <|-- pumlFromJava.classes.Classe
+pumlFromJava.classes.Type <|.. pumlFromJava.classes.Attributs
+
+pumlFromJava.PumlDoclet ..> pumlFromJava.Option : <<use>>
+pumlFromJava.PumlDoclet ..> pumlFromJava.PumlDiagram : <<use>>
+pumlFromJava.PumlDoclet ..> pumlFromJava.CreateFile : <<use>>
+pumlFromJava.PumlDoclet ..> pumlFromJava.PumlWriter : <<use>>
+pumlFromJava.PumlDoclet ..> pumlFromJava.classes.Classe : <<use>>
+pumlFromJava.PumlDoclet ..> pumlFromJava.classes.Interface : <<use>>
+pumlFromJava.PumlDoclet ..> pumlFromJava.classes.Enumerations : <<use>>
+pumlFromJava.Java2Puml ..> pumlFromJava.PumlDoclet : <<use>>
+pumlFromJava.Java2Puml ..> pumlFromJava.FirstDoclet : <<use>>
+
+pumlFromJava.classes.Instance --> "* \n methodes" pumlFromJava.classes.Methode : methodes
+pumlFromJava.classes.Classe --> "* \n attributs" pumlFromJava.classes.Attributs : attribute
+
+pumlFromJava.PumlDiagram --> "* \n classes" pumlFromJava.classes.Classe : classes
+pumlFromJava.PumlDiagram --> "* \n interfaces" pumlFromJava.classes.Interface : interfaces
+pumlFromJava.PumlDiagram --> "* \n enumerations" pumlFromJava.classes.Enumerations : enumerations
+
+pumlFromJava.PumlDoclet --> "* \n pumlDiagram" pumlFromJava.PumlDiagram : pumlDiagram
+pumlFromJava.PumlDoclet --> "* \n pumlDiagram" pumlFromJava.CreateFile : fileCreator
+@enduml

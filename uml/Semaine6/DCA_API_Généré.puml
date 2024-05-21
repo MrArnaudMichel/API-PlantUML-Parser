@@ -1,0 +1,149 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam classFontStyle Bold
+skinparam style strictuml
+hide empty members
+
+package pumlFromJava {
+class CreateFile {
+	+ {static} DEFAULT_NAME : String
+	+ {static} DEFAULT_PATH : String
+	- outFileName : String
+	- outFilePath : String
+}
+
+class SaveOption {
+	- typeDiagram : String
+	- strPrimitive : Boolean
+	- association : Boolean
+	- constructor : Boolean
+	- method : Boolean
+	- drawPrimitive : Boolean
+	- drawUnPrimitive : Boolean
+	- drawExtends : Boolean
+	- drawImplements : Boolean
+	- drawUse : Boolean
+}
+
+class Package {
+	- name : String
+}
+
+class PumlWriter {
+}
+
+class FirstDoclet {
+}
+
+class PumlDoclet {
+	- config : Boolean
+}
+
+class Java2Puml {
+}
+
+class ToolClasse {
+	+ {static} primitiveTypes : String[*]
+}
+
+class Config {
+}
+
+class Option {
+	- name : String
+	- hasArg : Boolean
+	- description : String
+	- parameters : String
+}
+
+package classes {
+class Contructor {
+	- name : String
+	- visibility : String
+	- parameters : String[*]
+}
+
+class Instance {
+	- name : String
+	- extendsClasse : String
+	- namePackage : String
+}
+
+class Enumerations {
+	- name : String
+	- attributes : String[*]
+	- namePackage : String
+}
+
+class Interface {
+}
+
+class Methode {
+	- parameters : String[*]
+	- name : String
+	- returnType : String
+	- visibility : String
+	- isOverride : Boolean
+}
+
+class Attributs {
+	- name : String
+	- typeAssociation : String
+	- visibility : String
+	- pumlMultiplicity : String
+	- nameAssociation : String
+}
+
+class Classe<< Arnaud, Benjamin >> {
+	- usedClasses : String[*]
+	- author : String[*]
+}
+
+interface Type<<interface>> {
+}
+
+}
+Type <|.. Contructor
+
+Methode" [*] \n " <--* Instance: < Contient 
+TypeMirror" [*] \n " <--* Instance
+
+
+Instance <|-- Interface
+
+Type <|.. Methode
+
+Type <|.. Attributs
+TypeMirror" 1 \n " <--* Attributs: < à un 
+
+Instance <|-- Classe
+Type <|.. Classe
+Attributs" [*] \n " <--* Classe: < contient 
+Contructor" [*] \n " <--* Classe: < contient 
+
+
+}
+
+
+Classe" [0..*]  \n " <--* Package: < Contient 
+Interface" [0..*]  \n " <--* Package: < Contient 
+Enumerations" [0..*]  \n " <--* Package: < Contient 
+Package" [0..*]  \n " <--* Package: < Contient 
+
+
+Doclet <|.. FirstDoclet
+
+Doclet <|.. PumlDoclet
+CreateFile" 1 \n " <--* PumlDoclet: < Créer 
+SaveOption" 1 \n " <--* PumlDoclet: < Créer 
+Package" 1 \n " <--* PumlDoclet: < Créer 
+DocTrees" 1 \n " <--* PumlDoclet: < Créer 
+
+
+
+
+Option <|.. Option
+
+
+@enduml
